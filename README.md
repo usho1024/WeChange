@@ -1,24 +1,46 @@
-# README
+# WeChange!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+『WeChange!』は、駆け出しエンジニア同士で気軽に交流や情報交換ができるSNSです。
 
-Things you may want to cover:
+### サイトテーマ
+駆け出しエンジニア向けSNS
 
-* Ruby version
+### テーマを選んだ理由
+- 自分と同じ駆け出しエンジニアとSNSを通して手軽に繋がりたいと思ったから
+- 駆け出しエンジニア中心のいいコミュニティが探してもなかったから
 
-* System dependencies
+### 名前に込めた意味
+*"エンジニアになって人生を変えたい！"*
+そんな駆け出しエンジニアの夢を実現する一助になればいいと思い、この名前をつけました。
 
-* Configuration
+### ターゲットユーザ
+- プログラミングをはじめたいと考えている人
+- エンジニア転職を目標に現在プログラミングスクールに通っている人
+- エンジニア転職を目標に現在プログラミングを独学している人
+- 未経験からエンジニア転職して1〜2年程度の人
 
-* Database creation
+### 主な利用シーン
+- エンジニア人脈を広げたい時
+- ITに関する最新技術や個人的な勉強の悩みなど情報交換したい時
+- プログラミング勉強のモチベーションを上げたい時
 
-* Database initialization
+## 設計書
+鋭意作成中・・・
+- ER図
+- テーブル定義書
+- アプリケーション詳細設計
 
-* How to run the test suite
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1CPgOUYC84neEGCovVf93LNb69Zl9O_rptn_8AT287Xs/edit?usp=sharing
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails（Ver.5.2.6）
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
