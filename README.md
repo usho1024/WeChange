@@ -45,10 +45,20 @@
 - プログラミング勉強のモチベーションを上げたい時
 
 ## 設計書
-鋭意作成中・・・
-- ER図
-- テーブル定義書
-- アプリケーション詳細設計
+- UI Flows  
+![WeChange uiflows drawio](https://user-images.githubusercontent.com/89927015/140930667-fcc47c9e-996d-4518-9225-3a484c4d8e6f.png)
+
+- ワイヤーフレーム  
+https://drive.google.com/file/d/1Kji_h2fdLRZmXKqJltK7jPYUkIEpwyCC/view?usp=sharing
+
+- ER図  
+![WeChange ER drawio](https://user-images.githubusercontent.com/89927015/140932339-09fdb811-5758-4930-af0d-9e6270587757.png)
+
+- テーブル定義書  
+https://docs.google.com/spreadsheets/d/1-6Q_ry5s1EAviS5_OJXP_eEemNr5jwTf/edit?usp=sharing&ouid=106227655918922754387&rtpof=true&sd=true
+
+- アプリケーション詳細設計  
+https://docs.google.com/spreadsheets/d/1lIDx1p1m3m4vohcyfYJsNaEl46Rc0NAT/edit?usp=sharing&ouid=106227655918922754387&rtpof=true&sd=true
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1CPgOUYC84neEGCovVf93LNb69Zl9O_rptn_8AT287Xs/edit?usp=sharing
