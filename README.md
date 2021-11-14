@@ -67,8 +67,10 @@ https://docs.google.com/spreadsheets/d/1CPgOUYC84neEGCovVf93LNb69Zl9O_rptn_8AT28
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails（Ver.5.2.6）
+- テンプレートエンジン：Slim
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- PC：MacBook Air（M1,2020）
 
 ## 使用素材
 検討中・・・
