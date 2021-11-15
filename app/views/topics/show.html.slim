@@ -1,0 +1,17 @@
+p#notice = notice
+
+p
+  strong User:
+  = @topic.user_id
+
+p
+  strong Title:
+  = @topic.title
+
+p
+  strong Body:
+  = @topic.body
+
+=> link_to 'Edit', edit_topic_path(@topic)
+'|
+=< link_to 'Back', topics_path

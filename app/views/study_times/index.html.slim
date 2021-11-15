@@ -1,0 +1,23 @@
+h1 Listing study_times
+
+table
+  thead
+    tr
+      th User
+      th Time
+      th
+      th
+      th
+
+  tbody
+    - @study_times.each do |study_time|
+      tr
+        td = study_time.user_id
+        td = study_time.time
+        td = link_to 'Show', study_time
+        td = link_to 'Edit', edit_study_time_path(study_time)
+        td = link_to 'Destroy', study_time, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Study time', new_study_time_path

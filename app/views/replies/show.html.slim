@@ -1,0 +1,17 @@
+p#notice = notice
+
+p
+  strong User:
+  = @reply.user_id
+
+p
+  strong Tweet:
+  = @reply.tweet_id
+
+p
+  strong Body:
+  = @reply.body
+
+=> link_to 'Edit', edit_reply_path(@reply)
+'|
+=< link_to 'Back', replies_path

@@ -1,0 +1,18 @@
+= form_for @reply do |f|
+  - if @reply.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@reply.errors.count, 'error')} prohibited this reply from being saved:"
+      ul
+        - @reply.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :tweet_id
+    = f.number_field :tweet_id
+  .field
+    = f.label :body
+    = f.text_field :body
+  .actions = f.submit
