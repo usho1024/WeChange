@@ -1,30 +1,24 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show]
+  before_action :authenticate_user!
 
   def show
+    @book = Book.find(params[:id])
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
-
-    respond_to do |format|
-      if @tweet.save
-        format.html { redirect_to @tweet, notice: "Tweet was successfully created." }
-        format.json { render :show, status: :created, location: @tweet }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
-      end
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    if @book.save
+      redirect_to book_path(@book), notice: "You have created book successfully."
+    else
+      @books = Book.all
+      render 'index'
     end
   end
 
   private
 
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
-
-    def tweet_params
-      params.require(:tweet).permit(:user_id, :body)
-    end
+  def book_params
+    params.require(:book).permit(:title, :body)
+  end
 end

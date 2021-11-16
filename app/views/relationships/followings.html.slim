@@ -1,0 +1,7 @@
+h2
+  | Follow Users
+- if @users.exists?
+  = render '/users/index', users: @users
+- else
+  p
+    | ユーザーはいません
