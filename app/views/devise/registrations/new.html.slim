@@ -1,29 +1,29 @@
 .container
   .row
     .col-md-4.offset-md-4
-      h4
+      h4.mb-3
         | 新規登録
       = form_with model: @user, url: user_registration_path, local: true do |f|
         = render "devise/shared/error_messages", resource: resource
-        .field
+        .field.mb-3
           = f.label :name, "ハンドルネーム"
           br
           = f.text_field :name, autofocus: true, class: 'form-control'
-        .field
+        .field.mb-3
           = f.label :email, "メールアドレス"
           br
           = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
-        .field
+        .field.mb-3
           = f.label :password, "パスワード(#{@minimum_password_length}文字以上)"
           br
           = f.password_field :password, autocomplete: "new-password", class: 'form-control'
-        .field
+        .field.mb-3
           = f.label :password_confirmation, "パスワード(確認用)"
           br
           = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
-        .actions
+        .actions.mb-4
           = f.submit "新規登録", class: 'btn btn-success form-control'
-      h4
+      h4.mb-3
         | 既に登録済みの方
       p
         = link_to "こちら", new_user_session_path

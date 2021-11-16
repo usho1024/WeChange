@@ -1,24 +1,24 @@
 .container
   .row
     .col-md-4.offset-md-4
-      h4
+      h4.mb-3
         | ログイン
       = form_with model: @user, url: user_session_path, local: true do |f|
-        .field
+        .field.mb-3
           = f.label :email, "メールアドレス"
           br
           = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
-        .field
+        .field.mb-2
           = f.label :password, "パスワード"
           br
           = f.password_field :password, autocomplete: "current-password", class: 'form-control'
         - if devise_mapping.rememberable?
-          .field
+          .field.mb-3
             = f.check_box :remember_me
             = f.label :　保存する
-        .actions
+        .actions.mb-4
           = f.submit "ログイン", class: 'btn btn-primary form-control'
-      h4
+      h4.mb-3
         | 会員登録がお済みでない方
       p
         = link_to "こちら", new_user_registration_path
