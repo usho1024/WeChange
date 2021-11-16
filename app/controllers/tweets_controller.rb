@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @book = Book.find(params[:id])
+    @tweet = Tweet.find(params[:id])
   end
 
   def create

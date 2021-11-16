@@ -1,15 +1,6 @@
-= form_for @tweet do |f|
-  - if @tweet.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@tweet.errors.count, 'error')} prohibited this tweet from being saved:"
-      ul
-        - @tweet.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :body
-    = f.text_field :body
-  .actions = f.submit
+= form_with model:[user,tweet], local:true do |f|
+  .form-group
+    = f.label :いまどうしてる？
+    = f.text_area :body, class: 'form-control tweet_body', rows: '10', placeholder: '140字以内でつぶやこう！'
+  .form-group
+    = f.submit "投稿する", class: 'btn btn-primary form-control'
