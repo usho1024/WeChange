@@ -5,9 +5,26 @@ header
         span
           | WeChange！
       - if user_signed_in?
-        span
-          | 今日も一日頑張っていきましょう　
-          = current_user.name
-          | 　さん&#x2757;&#x1f4bb;
-        span
-          | [　検索フォーム(仮)　]
+        span.ml-4
+          | ようこそ　
+          = link_to current_user.name, user_path(current_user), class: 'btn btn-info btn-sm'
+          | 　さん！
+      - else
+          | ご利用いただくには新規登録かログインをしてください。
+      button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
+        span.navbar-toggler-icon
+      #navbarNavDropdown.collapse.navbar-collapse
+        ul.navbar-nav.ml-5
+          - if user_signed_in?
+            li
+              = link_to ' ホーム', root_path, class: 'fas fa-home nav-link text-light btn btn-info btn-sm mr-3'
+            li
+              = link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-light btn btn-danger btn-sm'
+          - else
+            li
+              = link_to ' 新規登録', new_user_registration_path, class: 'fas fa-user-plus nav-link text-light btn btn-success btn-sm mr-3'
+            li
+              = link_to ' ログイン', new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-light btn btn-info btn-sm'
+      - if user_signed_in?
+        span.ml-auto
+          | [　　　検索窓　　　]
