@@ -1,24 +1,39 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:destroy]
 
   def show
     @tweet = Tweet.find(params[:id])
   end
 
   def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    if @book.save
-      redirect_to book_path(@book), notice: "You have created book successfully."
+    @tweet = Tweet.new(tweet_params)
+    @tweet.user_id = current_user.id
+    if @tweet.save
+      redirect_to root_path
     else
-      @books = Book.all
-      render 'index'
+      @tweets = current_user.tweets
+      @user = current_user
+      @tweet = Tweet.new
+      render 'homes/top'
     end
+  end
+
+  def destroy
+    @tweet.destroy
+    redirect_to user_path(current_user)
   end
 
   private
 
-  def book_params
-    params.require(:book).permit(:title, :body)
+  def tweet_params
+    params.require(:tweet).permit(:body)
+  end
+
+  def ensure_correct_user
+    @tweet = Tweet.find(params[:id])
+    unless @tweet.user == current_user
+      redirect_to root_path
+    end
   end
 end

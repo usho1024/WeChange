@@ -1,8 +1,21 @@
 .container
   .row
     .col-md-8.offset-md-1
-      h3
-        | トップページ（タイムライン）
+      table.table.bg-white.table-borderless
+        tbody.border
+          - @tweets.each do |tweet|
+            tr.border-top
+              td
+                = link_to user_path(tweet.user) do
+                  = attachment_image_tag(tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
+              td
+                = tweet.user.name
+              td
+                = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+            tr.border-bottom
+              td[colspan="3"]
+                = link_to user_tweet_path(tweet, tweet.user_id), class: 'text-dark' do
+                  = tweet.body
     .col-md-3
       = render 'layouts/sidebar', tweet: @tweet, user: @user
     
