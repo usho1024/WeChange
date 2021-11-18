@@ -6,11 +6,10 @@
       = link_to '　掲示板', topics_path ,class: 'fas fa-chalkboard nav-link text-dark'
     li
       = link_to '　勉強時間ランキング', users_path ,class: 'fas fa-crown nav-link text-dark'
-
 .tweet_form.mb-4
   = form_with model:[user,tweet], local:true do |f|
     .form-group
       = f.label :いまどうしてる？
       = f.text_area :body, class: 'form-control tweet_body', rows: '10', placeholder: '140字以内でつぶやこう！'
     .form-group
-      = f.submit "投稿する", class: 'btn btn-primary form-control'
+      = f.submit "つぶやく", class: 'btn btn-primary'

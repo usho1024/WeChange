@@ -23,9 +23,9 @@
               - if tweet.user == current_user
               td
                 = link_to 'つぶやきを削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-danger ml-4"
-            tr.border-bottom
+            tr
               td[colspan="6"]
                 = link_to user_tweet_path(tweet.user, tweet), class: 'text-dark' do
                   = tweet.body
     .col-md-3
-      = render 'layouts/sidebar', tweet: @tweet_new, user: @user
+      = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

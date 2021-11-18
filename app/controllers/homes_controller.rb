@@ -3,8 +3,7 @@ class HomesController < ApplicationController
 
   def top
     @tweets = current_user.tweets
-    @user = current_user
+    @current_user = current_user
     @tweet_new = Tweet.new
   end
-
 end

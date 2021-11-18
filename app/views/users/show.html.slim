@@ -1,2 +1,13 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+.container
+  .row
+    .col-md-8.offset-md-1
+      table.table.bg-white.table-borderless
+        tbody.border
+          tr.d-flex.align-items-center
+            td
+              = link_to user_path(@user) do
+                = attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg")
+            td
+              = @user.name
+    .col-md-3
+      = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

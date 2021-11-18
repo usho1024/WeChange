@@ -1,20 +1,35 @@
 class RepliesController < ApplicationController
 	before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:destroy]
 
 	def create
-		@book = Book.find(params[:book_id])
-		@book_comment = BookComment.new(book_comment_params)
-		@book_comment.book_id = @book.id
-		@book_comment.user_id = current_user.id
-		if @book_comment.save
-  		redirect_to book_path(@book.id)
+		@tweet = Tweet.find(params[:tweet_id])
+		@reply = Reply.new(reply_params)
+		@reply.tweet_id = @tweet.id
+		@reply.user_id = current_user.id
+		if @reply.save
+  		redirect_to user_tweet_path(@tweet.user, @tweet.id)
 		else
-		  render 'books/show'
+		  render 'tweets/show'
 		end
 	end
 
-	private
-	def book_comment_params
-		params.require(:book_comment).permit(:comment)
+	def destroy
+		@reply.destroy
+		redirect_to request.referer
 	end
+
+	private
+
+	def reply_params
+		params.require(:reply).permit(:body)
+	end
+
+  def ensure_correct_user
+    @tweet = Tweet.find(params[:tweet_id])
+    @reply = @tweet.replies.find(params[:id])
+    unless @reply.user == current_user
+      redirect_to root_path
+    end
+  end
 end

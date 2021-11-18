@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
-    @book = Book.new
+    @current_user = current_user
+    @tweet_new = Tweet.new
   end
 
   def index
