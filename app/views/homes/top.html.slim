@@ -8,7 +8,7 @@
               | タイムライン
         tbody.border
           - @tweets.each do |tweet|
-            tr.border-top
+            tr.border-top.d-flex.align-items-center
               td
                 = link_to user_path(tweet.user) do
                   = attachment_image_tag(tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
@@ -22,7 +22,7 @@
                 = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
               - if tweet.user == current_user
               td
-                = link_to '削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-danger"
+                = link_to 'つぶやきを削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-danger ml-4"
             tr.border-bottom
               td[colspan="6"]
                 = link_to user_tweet_path(tweet.user, tweet), class: 'text-dark' do
