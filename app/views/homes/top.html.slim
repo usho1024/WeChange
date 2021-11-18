@@ -2,6 +2,10 @@
   .row
     .col-md-8.offset-md-1
       table.table.bg-white.table-borderless
+        thead.border
+          td[colspan="6"]
+            h4.font-weight-bold.m-0
+              | タイムライン
         tbody.border
           - @tweets.each do |tweet|
             tr.border-top
@@ -11,11 +15,17 @@
               td
                 = tweet.user.name
               td
+                = render "favorites/favorite-btn", tweet: tweet
+              td.fas.fa-comment
+                = tweet.replies.count
+              td
                 = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+              - if tweet.user == current_user
+              td
+                = link_to '削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-danger"
             tr.border-bottom
-              td[colspan="3"]
-                = link_to user_tweet_path(tweet, tweet.user_id), class: 'text-dark' do
+              td[colspan="6"]
+                = link_to user_tweet_path(tweet.user, tweet), class: 'text-dark' do
                   = tweet.body
     .col-md-3
-      = render 'layouts/sidebar', tweet: @tweet, user: @user
-    
+      = render 'layouts/sidebar', tweet: @tweet_new, user: @user

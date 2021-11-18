@@ -1,0 +1,4 @@
+- if tweet.favorited_by?(current_user)
+  = link_to tweet.favorites.count, user_tweet_favorites_path(tweet.user, tweet), method: :delete, class: "fas fa-heart heart_red"
+- else
+  = link_to tweet.favorites.count, user_tweet_favorites_path(tweet.user, tweet), method: :post, class: "fas fa-heart heart_blue"

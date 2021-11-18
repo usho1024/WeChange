@@ -4,6 +4,8 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
+    @user = current_user
+    @tweet_new = Tweet.new
   end
 
   def create
@@ -14,14 +16,14 @@ class TweetsController < ApplicationController
     else
       @tweets = current_user.tweets
       @user = current_user
-      @tweet = Tweet.new
+      @tweet_new = Tweet.new
       render 'homes/top'
     end
   end
 
   def destroy
     @tweet.destroy
-    redirect_to user_path(current_user)
+    redirect_to root_path
   end
 
   private
