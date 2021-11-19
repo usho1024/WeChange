@@ -3,53 +3,52 @@
     .col-md-8.offset-md-1
       table.table.bg-white.table-borderless
         tbody.border
-          tr.d-flex.align-items-center
+          tr.d-flex.align-items-end
             td
               = link_to user_path(@tweet.user) do
                 = attachment_image_tag(@tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
-            td
+            td.font-weight-bold
               = @tweet.user.name
             td
               = render "favorites/favorite-btn", tweet: @tweet
-            td.fas.fa-comment
+            td.fas.fa-comment.mb-1
               = @tweet.replies.count
             td
               = @tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
             - if @tweet.user == current_user
-            td
-              = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-danger  ml-4"
+              td
+                = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-outline-danger ml-4 px-3"
           tr
-            td[colspan="6"]
+            td.h5.p-3[colspan="6"]
               = @tweet.body
       table.table.bg-white.table-borderless
         thead.border
-          td[colspan="4"]
-            h4.font-weight-bold.p-2.m-0
-              | このつぶやきへの返信 :　
-              = @tweet.replies.count
-              |  件
+          th.font-weight-bold
+            | このつぶやきへの返信 :　
+            = @tweet.replies.count
+            |  件
         tbody.border
           - @tweet.replies.each do |reply|
-            tr.d-flex.align-items-center.border-top
+            tr.d-flex.align-items-end.border-top
               td
                 = link_to user_path(reply.user) do
                   = attachment_image_tag(reply.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
-              td
+              td.font-weight-bold
                 = reply.user.name
               td
                 = reply.created_at.strftime('%Y/%m/%d　%H:%M:%S')
               - if reply.user == current_user
-              td
-                = link_to '返信を削除', user_tweet_reply_path(@tweet.user, @tweet, reply), method: :delete, class: "btn btn-sm btn-danger  ml-4"
+                td
+                  = link_to '返信を削除', user_tweet_reply_path(@tweet.user, @tweet, reply), method: :delete, class: "btn btn-sm btn-outline-danger ml-4 px-3"
             tr
               td[colspan="4"]
                 = reply.body
       .tweet_form.mt-4.mb-5
         = form_with model:[@user, @tweet, @reply], local:true do |f|
           .form-group
-            = f.label :返信フォーム
+            = f.label :このつぶやきについてどう思いましたか？
             = f.text_area :body, class: 'form-control tweet_body', rows: '5', placeholder: '140字以内で返信してみよう！'
           .form-group
-            = f.submit "返信する", class: 'btn btn-primary'
+            = f.submit "返信する", class: 'btn btn-primary px-3'
     .col-md-3
       = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

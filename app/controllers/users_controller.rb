@@ -4,8 +4,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tweets = @user.tweets
     @current_user = current_user
     @tweet_new = Tweet.new
+    @study_time = StudyTime.new
   end
 
   def index

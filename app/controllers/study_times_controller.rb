@@ -2,19 +2,19 @@ class StudyTimesController < ApplicationController
 	before_action :authenticate_user!
 
 	def create
-		@book = Book.find(params[:book_id])
-		@book_comment = BookComment.new(book_comment_params)
-		@book_comment.book_id = @book.id
-		@book_comment.user_id = current_user.id
-		if @book_comment.save
-  		redirect_to book_path(@book.id)
+		@user = User.find(params[:user_id])
+		@study_time = StudyTime.new(study_time_params)
+		@study_time.user_id = @user.id
+		@study_time.user_id = current_user.id
+		if @study_time.save
+  		redirect_to user_path(@user.id)
 		else
-		  render 'books/show'
+		  render 'users/show'
 		end
 	end
 
 	private
-	def book_comment_params
-		params.require(:book_comment).permit(:comment)
+	def study_time_params
+		params.require(:study_time).permit(:time)
 	end
 end
