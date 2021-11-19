@@ -6,7 +6,7 @@
           tr.d-flex.align-items-end
             td
               = link_to user_path(@tweet.user) do
-                = attachment_image_tag(@tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
+                = attachment_image_tag(@tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
             td.font-weight-bold
               = @tweet.user.name
             td
@@ -32,7 +32,7 @@
             tr.d-flex.align-items-end.border-top
               td
                 = link_to user_path(reply.user) do
-                  = attachment_image_tag(reply.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
+                  = attachment_image_tag(reply.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
               td.font-weight-bold
                 = reply.user.name
               td

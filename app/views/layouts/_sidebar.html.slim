@@ -1,5 +1,5 @@
 .menu
-  h5.mb-3.font-weight-bold.bg-secondary.text-light.text-center.p-1
+  h5.mb-3.font-weight-bold.bg-secondary.text-light.text-center.p-2
     | Contents
   ul.mb-4
     li
@@ -10,6 +10,6 @@
   = form_with model:[user,tweet], local:true do |f|
     .form-group
       = f.label :いまどうしてる？
-      = f.text_area :body, class: 'form-control tweet_body', rows: '10', placeholder: '140字以内でつぶやこう！'
+      = f.text_area :body, class: 'form-control', rows: '10', placeholder: '140字以内でつぶやこう！'
     .form-group
       = f.submit "つぶやく", class: 'btn btn-primary px-3'

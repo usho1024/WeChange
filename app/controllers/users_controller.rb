@@ -16,12 +16,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    @current_user = current_user
+    @tweet_new = Tweet.new
   end
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user)
     else
+      @current_user = current_user
+      @tweet_new = Tweet.new
       render "edit"
     end
   end
@@ -29,7 +34,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:name, :introduction, :image)
   end
 
   def ensure_correct_user

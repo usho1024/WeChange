@@ -9,6 +9,9 @@ class StudyTimesController < ApplicationController
 		if @study_time.save
   		redirect_to user_path(@user.id)
 		else
+			@tweets = @user.tweets
+	    @current_user = current_user
+	    @tweet_new = Tweet.new
 		  render 'users/show'
 		end
 	end

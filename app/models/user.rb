@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :study_times
   attachment :image, destroy: false
 
-  validates :name, length: { minimum: 1, maximum: 20 }, uniqueness: true
+  validates :name, length: { minimum: 1, maximum: 10 }, uniqueness: true
   validates :introduction, length: { maximum: 200 }
 
   # 自分がフォローされる（被フォロー）側の関係性

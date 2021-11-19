@@ -3,7 +3,7 @@ tbody.border
     tr.border-top.d-flex.align-items-end
       td
         = link_to user_path(tweet.user) do
-          = attachment_image_tag(tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg")
+          = attachment_image_tag(tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
       td.font-weight-bold
         = tweet.user.name
       td

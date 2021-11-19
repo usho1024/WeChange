@@ -51,7 +51,7 @@
               td
                 | 本日の勉強時間を記録しましょう！（一日一回）
             tr
-              td.pl-5
+              td.pl-5.pb-4
                 = form_with model:[@user,@study_time], local:true do |f|
                   = f.number_field :time, min: 0, max: 24
                   |　時間

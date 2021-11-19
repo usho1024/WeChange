@@ -5,10 +5,9 @@ header
         span.font-weight-bold
           | WeChange！
       - if user_signed_in?
-        span.ml-4
-          | ようこそ　
-          = link_to current_user.name, user_path(current_user), class: 'btn btn-info btn-sm font-weight-bold'
-          | 　さん！
+        = link_to user_path(current_user), class: 'ml-4' do
+          = attachment_image_tag(current_user, :image, :fill, 40, 40, fallback: "no-image-icon.jpg", class: "rounded-circle")
+          = link_to current_user.name, user_path(current_user), class: 'font-weight-bold text-light ml-2 pt-2'
       - else
           | ご利用いただくには新規登録かログインが必要です。
       button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]

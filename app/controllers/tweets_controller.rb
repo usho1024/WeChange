@@ -16,10 +16,7 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to root_path
     else
-      @tweets = current_user.tweets
-      @user = current_user
-      @tweet_new = Tweet.new
-      render 'homes/top'
+      redirect_to request.referer
     end
   end
 
