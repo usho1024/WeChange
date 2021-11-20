@@ -1,21 +1,20 @@
 .container
   .row
-    .col-md-6.offset-md-2
-      h5.mb-3.font-weight-bold.bg-secondary.text-light.text-center.p-2
-        | プロフィール編集
-      = form_with model:@user, local:true do |f|
-        .form-group
-          = f.label :ユーザーアイコン
-          .image-group
-            = attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: 'mr-3'
-            = f.attachment_field :image, class: 'align-bottom'
-        .form-group
-          = f.label :ハンドルネーム
-          = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control'
-        .form-group
-          = f.label :自己紹介文
-          = f.text_area :introduction, placeholder:"200文字以内で入力してください", rows: '10', class: 'form-control'
-        .form-group.mb-5
-          = f.submit "変更を保存", class: 'btn btn-success px-3'
-    .col-md-3.offset-md-1
-      = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
+    .col-md-6.offset-md-3
+      .profile-edit.bg-white.border.p-4.mb-5
+        h5.mb-3.font-weight-bold.bg-secondary.text-light.text-center.p-2.rounded
+          | プロフィール編集
+        = form_with model:@user, local:true do |f|
+          .form-group
+            = f.label :ユーザーアイコン
+            .image-group
+              = attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: 'mr-3'
+              = f.attachment_field :image, class: 'align-bottom'
+          .form-group
+            = f.label :ハンドルネーム
+            = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control border border-secondary'
+          .form-group
+            = f.label :自己紹介文
+            = f.text_area :introduction, placeholder:"200文字以内で入力してください", rows: '10', class: 'form-control border border-secondary'
+          .form-group
+            = f.submit "変更を保存", class: 'btn btn-success px-3'

@@ -6,5 +6,4 @@
           th.h5.font-weight-bold
             | タイムライン
         = render 'tweets/index', tweets: @tweets
-    .col-md-3
-      = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
+    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

@@ -5,7 +5,7 @@
         tbody.border
           tr.d-flex.align-items-end
             td
-              = attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg")
+              = attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle")
             td.font-weight-bold.h5.mb-0.mr-4
               = @user.name
             td.mr-1
@@ -28,34 +28,33 @@
           tr
             td
               = @user.introduction
-          tr
-            td
-              | トータル勉強時間： 
-              = @user.study_times.all.sum(:time)
-              |  時間
-          tr
-            td
-              | 今週の勉強時間： 
-              = @user.study_times.all.sum(:time)
-              |  時間
+      .study_time-area.bg-white.border.mb-3.p-4
+        .study_time-sum-area
+        .weekly-time.h5
+          | 直近一週間の勉強時間： 
+          = @user.study_times.all.sum(:time)
+          |  時間
+        .total-time.mb-3
+          | トータル勉強時間： 
+          = @user.study_times.all.sum(:time)
+          |  時間
+        .record-area.mb-3.font-weight-bold
           - @user.study_times.each do |study_time|
-            tr.border
-              td.border
+            .weekly-report.d-inline-block.border.mb-4.mr-3.text-center.border-secondary.rounded.bg-light
+              .day.p-2.border-bottom.border-secondary
                 = study_time.created_at.strftime('%m/%d')
-            tr.border
-              td.border
+              .study_time.p-2
                 = study_time.time
-                |  時間
-          - if @user == current_user
-            tr
-              td
-                | 本日の勉強時間を記録しましょう！（一日一回）
-            tr
-              td.pl-5.pb-4
-                = form_with model:[@user,@study_time], local:true do |f|
-                  = f.number_field :time, min: 0, max: 24
-                  |　時間
-                  = f.submit "記録する", class: 'btn btn-primary btn-sm ml-5 px-3'
+                |  h
+        - if @user == current_user
+          .form-area
+            .form-title
+              | 本日の勉強時間を記録しましょう！（一日一回）
+            .form-time.pl-4.py-3
+              = form_with model:[@user,@study_time], local:true do |f|
+                = f.number_field :time, min: 0, max: 24
+                |　時間
+                = f.submit "記録する", class: 'btn btn-primary btn-sm ml-5 px-3'
       table.table.bg-white.table-borderless.mb-5
         thead.border
           th.font-weight-bold
@@ -63,5 +62,4 @@
             = @user.tweets.count
             |  件
         = render 'tweets/index', tweets: @tweets
-    .col-md-3
-      = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
+    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

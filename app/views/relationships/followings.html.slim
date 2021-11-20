@@ -5,7 +5,7 @@
         thead.border
           th.h5.font-weight-bold
             = @user.name
-            | がフォローしている
+            | がフォロー中の
             = @users.count
             | 人のユーザー
         tbody.border
@@ -25,5 +25,4 @@
             tr
               td
                 = user.introduction
-    .col-md-3
-      = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
+    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

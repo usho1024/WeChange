@@ -24,15 +24,12 @@ body {
 }
 
 header {
-  background-color: #ff9b38;
-  color: white;
+  background-color: #caa906;
   border-bottom: solid 2px #dadada;
 }
 
 footer {
-  background-color: #ff9b38;
-  color: white;
-  height: 125px;
+  height: 150px;
   border-top: solid 2px #dadada;
 }
 
@@ -44,10 +41,15 @@ footer {
   color: #404040;
   border-left: solid 6px #6c757d;/*左側の線*/
   border-bottom: solid 2px #dadada;/*下に灰色線*/
-  background: white;
+  background: #F4F5F7;
   margin-bottom: 5px;/*下のバーとの余白*/
   line-height: 1.5;
-  padding: 0.5em;
+  padding: 0.3em;
   list-style-type: none!important;/*ポチ消す*/
   font-weight: bold;
+  font-size: 15px;
+}
+
+.weekly-report {
+  width: 80px;
 }

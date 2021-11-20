@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-4.offset-md-4
+    .col-md-4.offset-md-4.bg-white.p-4.mb-4.border
       h4.mb-3
         | 新規登録
       = form_with model: @user, url: user_registration_path, local: true do |f|
@@ -8,22 +8,22 @@
         .field.mb-3
           = f.label :name, "ハンドルネーム"
           br
-          = f.text_field :name, autofocus: true, class: 'form-control'
+          = f.text_field :name, autofocus: true, class: 'form-control border border-secondary'
         .field.mb-3
           = f.label :email, "メールアドレス"
           br
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control border border-secondary'
         .field.mb-3
           = f.label :password, "パスワード(#{@minimum_password_length}文字以上)"
           br
-          = f.password_field :password, autocomplete: "new-password", class: 'form-control'
+          = f.password_field :password, autocomplete: "new-password", class: 'form-control border border-secondary'
         .field.mb-4
           = f.label :password_confirmation, "パスワード(確認用)"
           br
-          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control border border-secondary'
         .actions.mb-4
           = f.submit "新規登録", class: 'btn btn-success form-control'
-      h4.mb-3
+      h4
         | 既に登録済みの方
       p
         = link_to "こちら", new_user_session_path

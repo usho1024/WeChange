@@ -9,8 +9,9 @@ class TopicsController < ApplicationController
   end
 
   def index
-    @books = Book.all
-    @book = Book.new
+    @topics = Topic.all
+    @current_user = current_user
+    @tweet_new = Tweet.new
   end
 
   def create
@@ -26,7 +27,7 @@ class TopicsController < ApplicationController
 
   private
 
-  def book_params
-    params.require(:book).permit(:title, :body)
+  def topic_params
+    params.require(:topic).permit(:title, :body)
   end
 end
