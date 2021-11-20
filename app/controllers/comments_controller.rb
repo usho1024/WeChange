@@ -2,19 +2,21 @@ class CommentsController < ApplicationController
 	before_action :authenticate_user!
 
 	def create
-		@book = Book.find(params[:book_id])
-		@book_comment = BookComment.new(book_comment_params)
-		@book_comment.book_id = @book.id
-		@book_comment.user_id = current_user.id
-		if @book_comment.save
-  		redirect_to book_path(@book.id)
+		@topic = Topic.find(params[:topic_id])
+		@comment = Comment.new(comment_params)
+		@comment.topic_id = @topic.id
+		@comment.user_id = current_user.id
+		if @comment.save
+  		redirect_to topic_path(@topic)
 		else
-		  render 'books/show'
+	    @current_user = current_user
+	    @tweet_new = Tweet.new
+		  render 'topics/show'
 		end
 	end
 
 	private
-	def book_comment_params
-		params.require(:book_comment).permit(:comment)
+	def comment_params
+		params.require(:comment).permit(:body)
 	end
 end

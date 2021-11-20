@@ -1,46 +1,48 @@
 .container
   .row
     .col-md-8.offset-md-1
-      table.table.bg-white.table-borderless
-        tbody.border
-          tr.d-flex.align-items-end
-            td
-              = attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle")
-            td.font-weight-bold.h5.mb-0.mr-4
-              = @user.name
-            td.mr-1
-              = link_to user_followings_path(@user), class: 'text-dark' do
-                = @user.followings.count
-                |  フォロー中
-            td
-              = link_to user_followers_path(@user), class: 'text-dark' do
-                = @user.followers.count
-                |  フォロワー
-            - if @user == current_user
-              td
-                = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-dark ml-4 px-3"
-            - else
-              td
-                - if current_user.following?(@user)
-                  = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3"
-                - else
-                  = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3"
-          tr
-            td
-              = @user.introduction
+      .user.bg-white.border.mb-3.p-4
+        .head.d-flex
+          .image.mr-3
+            = attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle")
+          table.table.table-borderless
+            tbody
+              tr
+                td.font-weight-bold.h5.mb-0.pb-0.pt-4
+                  = @user.name
+                  - if @user == current_user
+                    span.ml-5
+                      = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-dark px-3"
+                  - else
+                    span.ml-5
+                      - if current_user.following?(@user)
+                        = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3"
+                      - else
+                        = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3"
+              tr
+                td
+                  = link_to user_followings_path(@user), class: 'text-dark' do
+                    = @user.followings.count
+                    |  フォロー中
+                  span.ml-4
+                    = link_to user_followers_path(@user), class: 'text-dark' do
+                      = @user.followers.count
+                      |  フォロワー
+        .body
+          = @user.introduction
       .study_time-area.bg-white.border.mb-3.p-4
         .study_time-sum-area
         .weekly-time.h5
           | 直近一週間の勉強時間： 
-          = @user.study_times.all.sum(:time)
+          = @weekly_time
           |  時間
         .total-time.mb-3
           | トータル勉強時間： 
-          = @user.study_times.all.sum(:time)
+          = @user.study_times.sum(:time)
           |  時間
-        .record-area.mb-3.font-weight-bold
-          - @user.study_times.each do |study_time|
-            .weekly-report.d-inline-block.border.mb-4.mr-3.text-center.border-secondary.rounded.bg-light
+        .record-area.font-weight-bold.d-flex.flex-row
+          - @user.study_times.last(7).each do |study_time|
+            .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded.bg-light
               .day.p-2.border-bottom.border-secondary
                 = study_time.created_at.strftime('%m/%d')
               .study_time.p-2

@@ -35,4 +35,16 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  
+# 直近一週間の勉強時間の合計を取得するインスタンスメソッド
+  def weekly_time
+    #まず空の配列を用意する
+    array = []
+    #study_timeテーブルから最新レコードを7つ取得し、timeカラムのデータを配列に入れる
+    study_times.last(7).each do |study_time|
+      array << study_time.time
+    end
+    #sumメソッドで合計値を算出する
+    array.sum
+  end
 end

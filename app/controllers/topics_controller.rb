@@ -2,10 +2,14 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    @topic = Topic.new
   end
 
   def show
-    @book = Book.find(params[:id])
+    @topic = Topic.find(params[:id])
+    @comment = Comment.new
+    @current_user = current_user
+    @tweet_new = Tweet.new
   end
 
   def index
@@ -15,13 +19,12 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    if @book.save
-      redirect_to book_path(@book), notice: "You have created book successfully."
+    @topic = Topic.new(topic_params)
+    @topic.user_id = current_user.id
+    if @topic.save
+      redirect_to topic_path(@topic)
     else
-      @books = Book.all
-      render 'index'
+      render 'new'
     end
   end
 

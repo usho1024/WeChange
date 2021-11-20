@@ -8,11 +8,14 @@ class UsersController < ApplicationController
     @current_user = current_user
     @tweet_new = Tweet.new
     @study_time = StudyTime.new
+    @weekly_time = @user.weekly_time
   end
 
   def index
     @users = User.all
-    @book = Book.new
+    @current_user = current_user
+    @tweet_new = Tweet.new
+    @study_time = StudyTime.new
   end
 
   def edit
@@ -43,4 +46,5 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
 end
