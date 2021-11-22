@@ -1,29 +1,44 @@
-header.text-white
+header#main.text-white
   nav.navbar.navbar-expand-lg.navbar-dark
     .container
-      a.navbar-brand.p-2[href="/"]
+      a.navbar-brand.p-3[href="/"]
         span.font-weight-bold
           | WeChange！
-      - if user_signed_in?
-        = link_to user_path(current_user), class: 'ml-4' do
-          = attachment_image_tag(current_user, :image, :fill, 40, 40, fallback: "no-image-icon.jpg", class: "rounded-circle")
-          = link_to current_user.name, user_path(current_user), class: 'font-weight-bold text-light ml-2 pt-2'
-      - else
-          | ご利用いただくには新規登録かログインが必要です。
-      button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
-        span.navbar-toggler-icon
-      #navbarNavDropdown.collapse.navbar-collapse
-        ul.navbar-nav.ml-5
+      .links.ml-auto.d-flex
+        .user-image
           - if user_signed_in?
-            li
-              = link_to ' ホーム', root_path, class: 'fas fa-home nav-link text-dark btn btn-light btn-sm mr-3 rounded-pill px-3'
-            li
-              = link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-dark btn btn-light btn-sm rounded-pill px-3'
+            = link_to user_path(current_user) do
+              = attachment_image_tag(current_user, :image, :fill, 45, 45, fallback: "no-image-icon.jpg", class: "rounded-circle")
+              = link_to current_user.name, user_path(current_user), class: 'font-weight-bold text-light ml-2'
           - else
-            li
-              = link_to ' 新規登録', new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark btn btn-light btn-sm mr-3 rounded-pill px-3'
-            li
-              = link_to ' ログイン', new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-dark btn btn-light btn-sm rounded-pill px-3'
-      - if user_signed_in?
-        span.ml-auto
-          | [　　　検索窓　　　]
+            .font-weight-bold.pt-1
+              | ご利用いただくには新規登録かログインが必要です。
+        button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
+          span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+          ul.navbar-nav.ml-5
+            - if user_signed_in?
+              li
+                = link_to ' ホーム', root_path, class: 'fas fa-home nav-link text-dark btn btn-light btn-sm mr-3 rounded-pill px-3'
+              li
+                = link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-dark btn btn-light btn-sm rounded-pill px-3'
+            - else
+              li
+                = link_to ' 新規登録', new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark btn btn-light btn-sm mr-3 rounded-pill px-3'
+              li
+                = link_to ' ログイン', new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-dark btn btn-light btn-sm rounded-pill px-3'
+- if user_signed_in?
+  header#sub.bg-white
+    nav.navbar.navbar-expand-lg.navbar-dark
+      .container
+        .font-weight-bold.catch-copy
+          | 駆け出しエンジニア同士でたくさんつながろう！
+        .search-form.ml-auto
+          = form_with url: search_path, method: :get, local: true do |f|
+            span.mr-2
+              = f.text_field :content, class: 'bg-light rounded-pill border px-3', placeholder: 'キーワード検索'
+            span.mr-2
+              = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), class: "mr-2"
+            span.mr-3
+              = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
+            = f.submit '検索', class: "text-white btn btn-sm rounded-pill px-4 mb-1 font-weight-bold post"

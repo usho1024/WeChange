@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :topics, only: [:index, :show, :create, :new] do
     resources :comments, only: [:create]
   end
+  get '/search' => 'searches#search'
 end

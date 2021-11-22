@@ -47,4 +47,21 @@ class User < ApplicationRecord
     #sumメソッドで合計値を算出する
     array.sum
   end
+
+# ユーザーを検索するクラスメソッド
+  def self.search_for(content, method)
+    #完全一致
+    if method == 'perfect'
+      User.where(name: content)
+    #前方一致
+    elsif method == 'forward'
+      User.where('name LIKE ?', content + '%')
+    #後方一致
+    elsif method == 'backward'
+      User.where('name LIKE ?', '%' + content)
+    else
+    #部分一致
+      User.where('name LIKE ?', '%' + content + '%')
+    end
+  end
 end

@@ -16,9 +16,9 @@
                   - else
                     span.ml-5
                       - if current_user.following?(@user)
-                        = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3"
+                        = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3 rounded-pill"
                       - else
-                        = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3"
+                        = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3 rounded-pill"
               tr
                 td
                   = link_to user_followings_path(@user), class: 'text-dark' do
@@ -42,7 +42,7 @@
           |  時間
         .record-area.font-weight-bold.d-flex.flex-row
           - @user.study_times.last(7).each do |study_time|
-            .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded.bg-light
+            .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded
               .day.p-2.border-bottom.border-secondary
                 = study_time.created_at.strftime('%m/%d')
               .study_time.p-2

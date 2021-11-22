@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-md-8.offset-md-1
+      - if @model == 'user'
+        table.table.bg-white.table-borderless.mb-5
+          thead.border
+            th.h5.font-weight-bold
+              | " 
+              = @content
+              |  "のユーザー検索結果、
+              = @records.count
+              | 件のヒット
+          = render 'users/index', users: @records
+      - elsif @model == 'tweet'
+        table.table.bg-white.table-borderless.mb-5
+          thead.border
+            th.h5.font-weight-bold
+              | " 
+              = @content
+              |  "のつぶやき検索結果、
+              = @records.count
+              | 件のヒット
+          = render 'tweets/index', tweets: @records
+    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
