@@ -3,7 +3,7 @@
     .col-md-8.offset-md-1
       .topic-area.bg-white.mb-5.p-3.border
         .head.border.p-2.bg-secondary.text-light.rounded.d-flex
-          .title.h5.m-0.pt-1
+          .title.h5.m-0.p-1.font-weight-bold
            | 勉強時間ランキング
         .body.mt-2
           - @users.each do |user|
@@ -15,7 +15,7 @@
                 tbody.font-weight-bold
                   tr
                     td.p-0
-                      = user.name
+                      = link_to user.name, user_path(user), class: "text-dark"
                   tr
                     td.p-0
                       = user.weekly_time

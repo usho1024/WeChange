@@ -11,10 +11,12 @@
               = link_to user_path(@topic.user) do
                 = attachment_image_tag(@topic.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
             td.font-weight-bold
-              = @topic.user.name
-            td.fas.fa-comment.mb-1
-              = @topic.comments.count
+              = link_to @topic.user.name, user_path(@topic.user), class: "text-dark"
             td
+              span.fas.fa-comment
+                |  
+                = @topic.comments.count
+            td.ml-2
               = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
           tr
             td.h5.px-4.pb-4[colspan="6"]
@@ -35,8 +37,8 @@
                 = link_to user_path(comment.user) do
                   = attachment_image_tag(comment.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
               td.font-weight-bold
-                = comment.user.name
-              td
+                = link_to comment.user.name, user_path(comment.user), class: "text-dark"
+              td.ml-2
                 = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
             tr
               td[colspan="4"]

@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-4.offset-md-4.bg-white.p-4.mb-4.border
-      h4.mb-3
+      h4.mb-3.font-weight-bold
         | ログイン
       = form_with model: @user, url: user_session_path, local: true do |f|
         .field.mb-3
@@ -18,8 +18,8 @@
             = f.label :　保存する
         .actions.mb-4
           = f.submit "ログイン", class: 'btn btn-info form-control'
-      h4.mb-3
+      h4.mb-3.font-weight-bold
         | 会員登録がお済みでない方
       p
-        = link_to "こちら", new_user_registration_path
+        = link_to "こちら", new_user_registration_path, class: "text-primary"
         | 　から新規登録を行なってください。

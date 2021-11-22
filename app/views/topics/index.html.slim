@@ -3,7 +3,7 @@
     .col-md-8.offset-md-1
       .topic-area.bg-white.mb-5.p-3.border
         .head.border.p-2.bg-secondary.text-light.rounded.d-flex
-          .title.h5.m-0.pt-1
+          .title.h5.m-0.pt-1.font-weight-bold
            | トピック一覧
           .create.ml-auto
             = link_to 'トピックを作成する', new_topic_path, class: "btn btn-sm btn-primary px-3 mr-3"
@@ -16,7 +16,7 @@
               table.table.table-borderless
                 tbody
                   tr
-                    td.p-0
+                    td.p-0.font-weight-bold
                       = link_to topic_path(topic) do
                         = topic.title
                         | （
