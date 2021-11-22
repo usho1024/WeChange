@@ -8,21 +8,21 @@
         .field.mb-3
           = f.label :name, "ハンドルネーム"
           br
-          = f.text_field :name, autofocus: true, class: 'form-control border border-secondary'
+          = f.text_field :name, autofocus: true, class: 'form-control bg-light rounded-pill'
         .field.mb-3
           = f.label :email, "メールアドレス"
           br
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control border border-secondary'
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control bg-light rounded-pill'
         .field.mb-3
           = f.label :password, "パスワード(#{@minimum_password_length}文字以上)"
           br
-          = f.password_field :password, autocomplete: "new-password", class: 'form-control border border-secondary'
+          = f.password_field :password, autocomplete: "new-password", class: 'form-control bg-light rounded-pill'
         .field.mb-4
           = f.label :password_confirmation, "パスワード(確認用)"
           br
-          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control border border-secondary'
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control bg-light rounded-pill'
         .actions.mb-4
-          = f.submit "新規登録", class: 'btn btn-success form-control'
+          = f.submit "新規登録", class: 'btn btn-dark text-white rounded-pill form-control font-weight-bold'
       h4.mb-3.font-weight-bold
         | 既に登録済みの方
       p

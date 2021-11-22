@@ -13,7 +13,7 @@
             td.font-weight-bold
               = link_to @topic.user.name, user_path(@topic.user), class: "text-dark"
             td
-              span.fas.fa-comment
+              span.far.fa-comment
                 |  
                 = @topic.comments.count
             td.ml-2
@@ -47,7 +47,7 @@
         = form_with model:[@topic, @comment], local:true do |f|
           .form-group
             = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
-            = f.text_area :body, class: 'form-control border border-secondary', rows: '10', placeholder: '500字以内でコメントしてみよう！'
+            = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
           .form-group
-            = f.submit "コメントする", class: 'btn btn-primary px-3'
+            = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold px-4'
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

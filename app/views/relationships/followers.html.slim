@@ -19,9 +19,9 @@
               - if user != current_user
                 td
                   - if current_user.following?(user)
-                    = link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3"
+                    = link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3 rounded-pill font-weight-bold"
                   - else
-                    = link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3"
+                    = link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3 rounded-pill font-weight-bold"
             tr
               td
                 = user.introduction

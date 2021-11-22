@@ -12,7 +12,7 @@
                   = @user.name
                   - if @user == current_user
                     span.ml-5
-                      = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-dark px-3"
+                      = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
                   - else
                     span.ml-5
                       - if current_user.following?(@user)
@@ -54,9 +54,9 @@
               | 本日の勉強時間を記録しましょう！（一日一回）
             .form-time.pl-4.py-3
               = form_with model:[@user,@study_time], local:true do |f|
-                = f.number_field :time, min: 0, max: 24
+                = f.number_field :time, min: 0, max: 24, class: 'rounded bg-light border'
                 |　時間
-                = f.submit "記録する", class: 'btn btn-primary btn-sm ml-5 px-3'
+                = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
       table.table.bg-white.table-borderless.mb-5
         thead.border
           th.font-weight-bold

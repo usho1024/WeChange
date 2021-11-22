@@ -16,14 +16,14 @@ header.text-white
         ul.navbar-nav.ml-5
           - if user_signed_in?
             li
-              = link_to ' ホーム', root_path, class: 'fas fa-home nav-link text-light btn btn-info btn-sm mr-3'
+              = link_to ' ホーム', root_path, class: 'fas fa-home nav-link text-dark btn btn-light btn-sm mr-3 rounded-pill px-3'
             li
-              = link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-light btn btn-danger btn-sm'
+              = link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt nav-link text-dark btn btn-light btn-sm rounded-pill px-3'
           - else
             li
-              = link_to ' 新規登録', new_user_registration_path, class: 'fas fa-user-plus nav-link text-light btn btn-success btn-sm mr-3'
+              = link_to ' 新規登録', new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark btn btn-light btn-sm mr-3 rounded-pill px-3'
             li
-              = link_to ' ログイン', new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-light btn btn-info btn-sm'
+              = link_to ' ログイン', new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-dark btn btn-light btn-sm rounded-pill px-3'
       - if user_signed_in?
         span.ml-auto
           | [　　　検索窓　　　]

@@ -3,7 +3,7 @@
     .col-md-8.offset-md-1
       table.table.bg-white.table-borderless.mb-5
         thead.border
-          th.h5.font-weight-bold
+          th.h5.font-weight-bold.p-3
             | タイムライン
         = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
