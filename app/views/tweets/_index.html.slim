@@ -1,12 +1,12 @@
 tbody.border
   - tweets.each do |tweet|
-    tr.border-top.d-flex.align-items-end
+    tr id="tweet_#{tweet.id}" class="border-top d-flex align-items-end"
       td
         = link_to user_path(tweet.user) do
           = attachment_image_tag(tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
       td.font-weight-bold
         = link_to tweet.user.name, user_path(tweet.user), class: "text-dark"
-      td
+      td.favorite-btn
         = render "favorites/favorite-btn", tweet: tweet
       td
         span.far.fa-comment

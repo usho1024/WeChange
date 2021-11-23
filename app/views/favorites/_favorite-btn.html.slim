@@ -1,10 +1,10 @@
 - if tweet.favorited_by?(current_user)
-  = link_to user_tweet_favorites_path(tweet.user, tweet), method: :delete, class: "text-danger fas" do
+  = link_to user_tweet_favorites_path(tweet.user, tweet), method: :delete, remote: true, class: "text-danger fas" do
     span.fa-heart
     |  
     = tweet.favorites.count
 - else
-  = link_to user_tweet_favorites_path(tweet.user, tweet), method: :post, class: "text-muted far" do
+  = link_to user_tweet_favorites_path(tweet.user, tweet), method: :post, remote: true, class: "text-muted far" do
     span.fa-heart
     |  
     = tweet.favorites.count

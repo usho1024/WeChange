@@ -3,13 +3,13 @@
     .col-md-8.offset-md-1
       table.table.bg-white.table-borderless
         tbody.border
-          tr.d-flex.align-items-end
+          tr  id="tweet_#{@tweet.id}" class="d-flex align-items-end"
             td.pl-4
               = link_to user_path(@tweet.user) do
                 = attachment_image_tag(@tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
             td.font-weight-bold
               = link_to @tweet.user.name, user_path(@tweet.user), class: "text-dark"
-            td
+            td.favorite-btn
               = render "favorites/favorite-btn", tweet: @tweet
             td
               span.far.fa-comment

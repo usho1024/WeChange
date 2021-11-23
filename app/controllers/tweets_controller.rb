@@ -14,7 +14,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
     if @tweet.save
-      redirect_to root_path
+      redirect_to user_tweet_path(current_user, @tweet)
     else
       redirect_to request.referer
     end
