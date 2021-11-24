@@ -1,9 +1,9 @@
 .container
   .row
     .col-md-8.offset-md-1
-      table.table.bg-white.table-borderless
-        thead.border
-          th.h5.font-weight-bold.p-3
-            | タイムライン
+      .tl-area.bg-white.p-3.border
+        .contents-head.border.p-2.rounded.bg-dark.text-white.d-flex
+          span.h5.m-0.py-1.pl-2.font-weight-bold.fas.fa-comments
+           |  タイムライン
         = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

@@ -7,9 +7,9 @@
            |  トピック一覧
         .create-btn.mt-2
           = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
-        .body.mt-2
+        .contents.mt-3
           - @topics.each do |topic|
-            .topic.d-flex.align-items-center.border-bottom.p-2
+            .topic.d-flex.align-items-center.border-top.p-2
               .image.mr-3
                 = link_to user_path(topic.user) do
                   = attachment_image_tag(topic.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
