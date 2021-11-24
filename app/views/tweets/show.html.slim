@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-8.offset-md-1
-      table.table.bg-white.table-borderless
+      table.table.bg-white.table-borderless.mb-4
         tbody.border
           tr  id="tweet_#{@tweet.id}" class="d-flex align-items-end"
             td.pl-4
@@ -23,7 +23,7 @@
           tr
             td.h5.px-4.pb-4[colspan="6"]
               = @tweet.body
-      table.table.bg-white.table-borderless
+      table.table.bg-white.table-borderless.mb-4
         thead.border
           th.font-weight-bold
             | このつぶやきへの返信 :　
@@ -45,11 +45,11 @@
             tr
               td[colspan="4"]
                 = reply.body
-      .reply-form-area.mt-3.mb-5.bg-white.p-3.border
+      .reply-form-area.mt-3.bg-white.p-3.border
         = form_with model:[@user, @tweet, @reply], local:true do |f|
           .form-group
             = f.label :このつぶやきについてどう思いましたか？
             = f.text_area :body, class: 'form-control rounded bg-light', rows: '5', placeholder: '140字以内で返信してみよう！'
           .form-group
-            = f.submit "返信する", class: 'btn post rounded-pill text-white px-4'
+            = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold'
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

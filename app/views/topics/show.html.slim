@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-8.offset-md-1
-      table.table.bg-white.table-borderless
+      table.table.bg-white.table-borderless.mb-4
         thead.border
           th.font-weight-bold
             = @topic.title
@@ -21,7 +21,7 @@
           tr
             td.h5.px-4.pb-4[colspan="6"]
               = @topic.body
-      table.table.bg-white.table-borderless
+      table.table.bg-white.table-borderless.mb-4
         thead.border
           th.font-weight-bold
             | コメント :　
@@ -43,7 +43,7 @@
             tr
               td[colspan="4"]
                 = comment.body
-      .comment-form-area.mt-3.mb-5.bg-white.p-3.border
+      .comment-form-area.mt-3.bg-white.p-3.border
         = form_with model:[@topic, @comment], local:true do |f|
           .form-group
             = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）

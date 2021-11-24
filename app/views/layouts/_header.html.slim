@@ -11,7 +11,7 @@ header#main.text-white
               = attachment_image_tag(current_user, :image, :fill, 45, 45, fallback: "no-image-icon.jpg", class: "rounded-circle")
               = link_to current_user.name, user_path(current_user), class: 'font-weight-bold text-light ml-2'
           - else
-            .font-weight-bold.pt-1
+            .pt-1
               | ご利用いただくには新規登録かログインが必要です。
         button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
           span.navbar-toggler-icon

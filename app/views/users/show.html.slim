@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-8.offset-md-1
-      .user.bg-white.border.mb-3.p-4
+      .user.bg-white.border.mb-3.p-4.mb-4
         .head.d-flex
           .image.mr-3
             = attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle")
@@ -30,9 +30,9 @@
                       |  フォロワー
         .body
           = @user.introduction
-      .study_time-area.bg-white.border.mb-3.p-4
+      .study_time-area.bg-white.border.mb-4.p-4
         .study_time-sum-area
-        .weekly-time.h5
+        .weekly-time.h5.font-weight-bold
           | 直近一週間の勉強時間： 
           = @weekly_time
           |  時間
@@ -40,7 +40,7 @@
           | トータル勉強時間： 
           = @user.study_times.sum(:time)
           |  時間
-        .record-area.font-weight-bold.d-flex.flex-row
+        .record-area.d-flex.flex-row
           - @user.study_times.last(7).each do |study_time|
             .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded
               .day.p-2.border-bottom.border-secondary
@@ -52,12 +52,12 @@
           .form-area
             .form-title
               | 本日の勉強時間を記録しましょう！（一日一回）
-            .form-time.pl-4.py-3
+            .form-time.pl-4.pt-3
               = form_with model:[@user,@study_time], local:true do |f|
                 = f.number_field :time, min: 0, max: 24, class: 'rounded bg-light border'
                 |　時間
                 = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
-      table.table.bg-white.table-borderless.mb-5
+      table.table.bg-white.table-borderless
         thead.border
           th.font-weight-bold
             | このユーザーのつぶやき :　

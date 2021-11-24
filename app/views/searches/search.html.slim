@@ -2,9 +2,9 @@
   .row
     .col-md-8.offset-md-1
       - if @model == 'user'
-        table.table.bg-white.table-borderless.mb-5
+        table.table.bg-white.table-borderless
           thead.border
-            th.h5.font-weight-bold
+            th.h5
               | " 
               = @content
               |  "のユーザー検索結果、
@@ -12,9 +12,9 @@
               | 件のヒット
           = render 'users/index', users: @records
       - elsif @model == 'tweet'
-        table.table.bg-white.table-borderless.mb-5
+        table.table.bg-white.table-borderless
           thead.border
-            th.h5.font-weight-bold
+            th.h5
               | " 
               = @content
               |  "のつぶやき検索結果、
