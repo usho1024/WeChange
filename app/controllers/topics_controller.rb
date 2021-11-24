@@ -7,13 +7,14 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @comments = @topic.comments.page(params[:page])
     @comment = Comment.new
     @current_user = current_user
     @tweet_new = Tweet.new
   end
 
   def index
-    @topics = Topic.all
+    @topics = Topic.all.page(params[:page]).reverse_order
     @current_user = current_user
     @tweet_new = Tweet.new
   end

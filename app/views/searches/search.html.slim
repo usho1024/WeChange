@@ -2,23 +2,23 @@
   .row
     .col-md-8.offset-md-1
       - if @model == 'user'
-        table.table.bg-white.table-borderless
-          thead.border
-            th.h5
+        .main.bg-white.border.p-3.border
+          .contents-head.border-bottom
+            h5.m-0.p-3
               | " 
               = @content
               |  "のユーザー検索結果、
-              = @records.count
+              = @result.count
               | 件のヒット
           = render 'users/index', users: @records
       - elsif @model == 'tweet'
-        table.table.bg-white.table-borderless
-          thead.border
-            th.h5
+        .main.bg-white.border.p-3.border
+          .contents-head.border-bottom
+            h5.m-0.p-3
               | " 
               = @content
               |  "のつぶやき検索結果、
-              = @records.count
+              = @result.count
               | 件のヒット
           = render 'tweets/index', tweets: @records
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

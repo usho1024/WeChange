@@ -8,9 +8,11 @@ class SearchesController < ApplicationController
     @content = params[:content]
     @method = params[:method]
     if @model == 'user'
-      @records = User.search_for(@content, @method)
+      @result = User.search_for(@content, @method)
+      @records = User.search_for(@content, @method).page(params[:page]).reverse_order
     else
-      @records = Tweet.search_for(@content, @method)
+      @result = Tweet.search_for(@content, @method)
+      @records = Tweet.search_for(@content, @method).page(params[:page]).reverse_order
     end
   end
 end

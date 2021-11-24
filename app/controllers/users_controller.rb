@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tweets = @user.tweets
+    @tweets = @user.tweets.page(params[:page]).reverse_order
     @current_user = current_user
     @tweet_new = Tweet.new
     @study_time = StudyTime.new
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).reverse_order
     @current_user = current_user
     @tweet_new = Tweet.new
     @study_time = StudyTime.new
