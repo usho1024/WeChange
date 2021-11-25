@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
 		if @comment.save
   		redirect_to topic_path(@topic)
 		else
+			@comments = @topic.comments.page(params[:page])
 	    @current_user = current_user
 	    @tweet_new = Tweet.new
 		  render 'topics/show'

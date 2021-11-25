@@ -49,8 +49,8 @@ class User < ApplicationRecord
   end
 
 # 勉強時間の週間ランキングを表示するクラスメソッド
-  def self.create_all_ranks
-    User.find(Like.group(:note_id).order('count(note_id) desc').limit(3).pluck(:note_id))
+  def self.weekly_time
+    User.joins(:study_times).where(study_times: { created_at: (Time.current.all_week)}).group(:user_id).order("count(*) desc")
   end
 
 # ユーザーを検索するクラスメソッド

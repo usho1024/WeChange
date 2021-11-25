@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page])
+    @users = User.weekly_time.page(params[:page])
     @current_user = current_user
     @tweet_new = Tweet.new
     @study_time = StudyTime.new

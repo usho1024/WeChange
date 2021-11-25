@@ -51,10 +51,10 @@
         - if @user == current_user
           .form-area
             .form-title
-              | 本日の勉強時間を記録しましょう！（一日一回）
+              | 本日の勉強時間を記録しましょう！（一日一回、小数点第一位まで入力可）
             .form-time.pl-4.pt-3
               = form_with model:[@user,@study_time], local:true do |f|
-                = f.number_field :time, min: 0, max: 24, class: 'rounded bg-light border'
+                = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
                 |　時間
                 = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
       .tl-area.bg-white.p-3.border

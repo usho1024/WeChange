@@ -10,6 +10,7 @@ class RepliesController < ApplicationController
 		if @reply.save
   		redirect_to user_tweet_path(@tweet.user, @tweet.id)
 		else
+			@replies = @tweet.replies.page(params[:page])
 	    @current_user = current_user
 	    @tweet_new = Tweet.new
 	    @user = @tweet.user
