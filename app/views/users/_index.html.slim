@@ -14,5 +14,5 @@
             - else
               = link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3 rounded-pill font-weight-bold"
       .body.p-2
-        = user.introduction
+        = simple_format(user.introduction)
   = paginate users

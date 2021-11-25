@@ -20,16 +20,19 @@
               = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
           tr
             td.h5.px-4.pb-4[colspan="6"]
-              = @topic.body
+              = safe_join(@topic.body.split("\n"),tag(:br))
       .main.bg-white.border.p-3.border.mb-4
         .contents-head.border-bottom
           h5.m-0.p-3
             = @topic.comments.count
             | 件のコメント
         .contents
-          - @comments.each do |comment|
+          - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
             .comment.p-1.border-bottom
               .head.d-flex.align-items-end.p-2
+                .index.mr-4
+                  | No.
+                  = i
                 .image.mr-4
                   = link_to user_path(comment.user) do
                     = attachment_image_tag(comment.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
@@ -38,7 +41,7 @@
                 .time
                   = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
               .body.p-2
-                = comment.body
+                = safe_join(comment.body.split("\n"),tag(:br))
           = paginate @comments
       .comment-form-area.mt-3.bg-white.p-3.border
         = form_with model:[@topic, @comment], local:true do |f|

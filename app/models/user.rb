@@ -48,6 +48,11 @@ class User < ApplicationRecord
     array.sum
   end
 
+# 勉強時間の週間ランキングを表示するクラスメソッド
+  def self.create_all_ranks
+    User.find(Like.group(:note_id).order('count(note_id) desc').limit(3).pluck(:note_id))
+  end
+
 # ユーザーを検索するクラスメソッド
   def self.search_for(content, method)
     #完全一致

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.page(params[:page]).reverse_order
+    @users = User.page(params[:page])
     @current_user = current_user
     @tweet_new = Tweet.new
     @study_time = StudyTime.new

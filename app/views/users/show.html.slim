@@ -29,7 +29,7 @@
                       = @user.followers.count
                       |  フォロワー
         .body
-          = @user.introduction
+          = simple_format(@user.introduction)
       .study_time-area.bg-white.border.mb-4.p-4
         .study_time-sum-area
         .weekly-time.h5.font-weight-bold

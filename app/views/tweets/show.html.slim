@@ -22,7 +22,7 @@
                 = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-outline-danger ml-4 px-3 font-weight-bold rounded-pill"
           tr
             td.h5.px-4.pb-4[colspan="6"]
-              = @tweet.body
+              = simple_format(@tweet.body)
       .main.bg-white.border.p-3.border.mb-4
         .contents-head.border-bottom
           h5.m-0.p-3
@@ -43,7 +43,7 @@
                   .delete-btn.ml-auto
                     = link_to '返信を削除', user_tweet_reply_path(@tweet.user, @tweet, reply), method: :delete, class: "btn btn-sm btn-outline-danger ml-4 px-3 font-weight-bold rounded-pill"
               .body.p-2
-                = reply.body
+                = simple_format(reply.body)
           = paginate @replies
       .reply-form-area.mt-3.bg-white.p-3.border
         = form_with model:[@user, @tweet, @reply], local:true do |f|
