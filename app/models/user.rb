@@ -35,7 +35,7 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
 # 直近一週間の勉強時間の合計を取得するインスタンスメソッド
   def weekly_time
     #まず空の配列を用意する
@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
 # 勉強時間の週間ランキングを表示するクラスメソッド
   def self.weekly_time
-    User.joins(:study_times).where(study_times: { created_at: (Time.current.all_week)}).group(:user_id).order("count(*) desc")
+    User.joins(:study_times).where(study_times: { created_at: (Time.current.all_week)}).group(:id).order("sum(time) desc")
   end
 
 # ユーザーを検索するクラスメソッド

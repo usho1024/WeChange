@@ -19,11 +19,11 @@
                 = link_to user.name, user_path(user), class: "text-dark"
               .time.ml-auto
                 span.h4.mr-5
-                  = user.weekly_time
+                  = user.weekly_time.round(1)
                   |  時間
                 span
-                  | トータル 
-                  = user.study_times.sum(:time)
+                  | トータル
+                  = user.study_times.sum(:time).round(1)
                   |  時間
           = paginate @users
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
