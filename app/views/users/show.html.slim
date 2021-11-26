@@ -46,7 +46,7 @@
               .day.p-2.border-bottom.border-secondary
                 = study_time.created_at.strftime('%m/%d')
               .study_time.p-2
-                = study_time.time
+                = study_time.time.round(1)
                 |  h
         - if @user == current_user
           .form-area
