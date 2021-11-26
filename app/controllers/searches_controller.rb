@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-  before_action :authenticate_user!
 
   def search
     @current_user = current_user

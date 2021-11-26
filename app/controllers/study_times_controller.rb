@@ -1,8 +1,8 @@
 class StudyTimesController < ApplicationController
-	before_action :authenticate_user!
 	
 	def create
 		@user = User.find(params[:user_id])
+		@weekly_time = @user.weekly_time
 		@tweets = current_user.tweets.page(params[:page]).reverse_order
     @current_user = current_user
     @tweet_new = Tweet.new

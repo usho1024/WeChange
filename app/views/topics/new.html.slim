@@ -1,3 +1,11 @@
+.error.text-center.mb-3
+  - if @topic.errors.any?
+    .count
+      = @topic.errors.count
+      | 件のエラーが発生しました
+    - @topic.errors.full_messages.each do |message|
+      .massage
+        = message
 .container
   .row
     .col-md-6.offset-md-3
