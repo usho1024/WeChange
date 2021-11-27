@@ -8,20 +8,16 @@ class Tweet < ApplicationRecord
 		favorites.where(user_id: user.id).exists?
 	end
 
-# つぶやきを検索するクラスメソッド
+# つぶやきの検索方式を判別するクラスメソッド
   def self.search_for(content, method)
-    #完全一致
     if method == 'perfect'
-      Tweet.where(body: content)
-    #前方一致
+      Tweet.where(body: content) #完全一致
     elsif method == 'forward'
-      Tweet.where('body LIKE ?', content + '%')
-    #後方一致
+      Tweet.where('body LIKE ?', content + '%') #前方一致
     elsif method == 'backward'
-      Tweet.where('body LIKE ?', '%' + content)
+      Tweet.where('body LIKE ?', '%' + content) #後方一致
     else
-    #部分一致
-      Tweet.where('body LIKE ?', '%' + content + '%')
+      Tweet.where('body LIKE ?', '%' + content + '%') #部分一致
     end
   end
 end

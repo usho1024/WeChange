@@ -13,9 +13,14 @@ class TopicsController < ApplicationController
   end
 
   def index
-    @topics = Topic.all.page(params[:page]).reverse_order
     @current_user = current_user
     @tweet_new = Tweet.new
+    if selection = params[:keyword]
+      @topics = Topic.sort(selection)
+      @topics = Kaminari.paginate_array(@topics).page(params[:page])
+    else
+      @topics = Topic.page(params[:page]).reverse_order
+    end
   end
 
   def create

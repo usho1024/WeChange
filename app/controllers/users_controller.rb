@@ -8,13 +8,19 @@ class UsersController < ApplicationController
     @tweet_new = Tweet.new
     @study_time = StudyTime.new
     @weekly_time = @user.weekly_time
+    @total_time = @user.total_time
   end
 
   def index
-    @users = User.weekly_time.page(params[:page])
     @current_user = current_user
     @tweet_new = Tweet.new
-    @study_time = StudyTime.new
+    if @selection = params[:keyword]
+      @users = User.sort(@selection)
+      @users = Kaminari.paginate_array(@users).page(params[:page])
+    else
+      @users = User.weekly_time
+      @users = Kaminari.paginate_array(@users).page(params[:page])
+    end
   end
 
   def edit
