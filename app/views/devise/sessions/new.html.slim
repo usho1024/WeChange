@@ -1,7 +1,7 @@
 .container
   .row
     .col-md-4.offset-md-4.bg-white.p-4.border
-      h4.mb-3.font-weight-bold
+      h4.mb-3.font-weight-bold.text-center
         | ログイン
       = form_with model: @user, url: user_session_path, local: true do |f|
         .field.mb-3
@@ -18,8 +18,8 @@
             = f.label :　保存する
         .actions.mb-4
           = f.submit "ログイン", class: 'btn btn-dark text-white rounded-pill form-control font-weight-bold'
-      h4.mb-3.font-weight-bold
+      h4.mb-3.font-weight-bold.text-center.mt-5
         | 会員登録がお済みでない方
-      p
+      p.text-center
         = link_to "こちら", new_user_registration_path, class: "text-primary"
-        | 　から新規登録を行なってください。
+        | から新規登録を行なってください。

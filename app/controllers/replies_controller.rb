@@ -7,7 +7,7 @@ class RepliesController < ApplicationController
 		@reply.tweet_id = @tweet.id
 		@reply.user_id = current_user.id
 		if @reply.save
-  		redirect_to user_tweet_path(@tweet.user, @tweet.id)
+  		redirect_to request.referer
 		else
 			@replies = @tweet.replies.page(params[:page])
 	    @current_user = current_user

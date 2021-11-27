@@ -6,12 +6,12 @@ class CommentsController < ApplicationController
 		@comment.topic_id = @topic.id
 		@comment.user_id = current_user.id
 		if @comment.save
-  		redirect_to topic_path(@topic)
+  		redirect_to request.referer
 		else
 			@comments = @topic.comments.page(params[:page])
 	    @current_user = current_user
 	    @tweet_new = Tweet.new
-		  render 'topics/show'
+		  redirect_to request.referer
 		end
 	end
 
