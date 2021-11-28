@@ -39,7 +39,7 @@ class User < ApplicationRecord
   # 直近一週間の勉強時間の合計を算出するインスタンスメソッド
   def weekly_time
     array = []
-    study_times.where(study_times: { created_at: (Time.current.all_week)}).each do |study_time|
+    study_times.where(study_times: { created_at: Time.current.all_week }).each do |study_time|
       array << study_time.time
     end
     array.sum.round(1)
@@ -52,26 +52,26 @@ class User < ApplicationRecord
 
   # 直近一週間の勉強時間が多い順で10件レコードを取得するクラスメソッド
   def self.weekly_time
-    User.find(StudyTime.group(:user_id).where(study_times: { created_at: (Time.current.all_week)}).order(Arel.sql('sum(time) desc')).limit(10).pluck(:user_id))
+    User.find(StudyTime.group(:user_id).where(study_times: { created_at: Time.current.all_week }).order(Arel.sql('sum(time) desc')).limit(10).pluck(:user_id))
   end
 
   # ユーザーの検索方式を判別するクラスメソッド
   def self.search_for(content, method)
     if method == 'perfect'
-      User.where(name: content) #完全一致
+      User.where(name: content) # 完全一致
     elsif method == 'forward'
-      User.where('name LIKE ?', content + '%') #前方一致
+      User.where('name LIKE ?', content + '%') # 前方一致
     elsif method == 'backward'
-      User.where('name LIKE ?', '%' + content) #後方一致
+      User.where('name LIKE ?', '%' + content) # 後方一致
     else
-      User.where('name LIKE ?', '%' + content + '%') #部分一致
+      User.where('name LIKE ?', '%' + content + '%') # 部分一致
     end
   end
 
   # 勉強時間ランキングの対象期間（週間、トータル）を判別するクラスメソッド
   def self.sort(selection)
     if selection == 'weekly'
-      User.find(StudyTime.group(:user_id).where(study_times: { created_at: (Time.current.all_week)}).order(Arel.sql('sum(time) desc')).limit(10).pluck(:user_id))
+      User.find(StudyTime.group(:user_id).where(study_times: { created_at: Time.current.all_week }).order(Arel.sql('sum(time) desc')).limit(10).pluck(:user_id))
     else
       User.find(StudyTime.group(:user_id).order(Arel.sql('sum(time) desc')).limit(10).pluck(:user_id))
     end

@@ -1,5 +1,4 @@
 class HomesController < ApplicationController
-
   def top
     # whereメソッドでログインユーザーとそのフォローしているユーザーのつぶやきを取得する
     # "*"は可変長引数で、複数の引数（フォローしているユーザーID）を配列として返すことができる

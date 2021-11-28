@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   def create
     @tweet = Tweet.find(params[:tweet_id])
     favorite = @tweet.favorites.new(user_id: current_user.id)
