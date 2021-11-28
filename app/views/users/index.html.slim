@@ -7,7 +7,7 @@
             - if @selection == 'total'
               |  トータルの勉強時間ランキング　TOP10
             - else
-              |  今週の勉強時間ランキング　TOP10
+              |  今週の勉強時間ランキング　TOP10（毎週月曜0時リセット）
         .head.d-flex.align-items-center.mt-2
           .sort-form.ml-auto.mr-4
             = form_with url: users_path, method: :get, local: true do |form|

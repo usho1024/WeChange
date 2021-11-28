@@ -37,6 +37,15 @@ class User < ApplicationRecord
   end
 
   # 直近一週間の勉強時間の合計を算出するインスタンスメソッド
+  def last7_time
+    array = []
+    study_times.last(7).each do |study_time|
+      array << study_time.time
+    end
+    array.sum.round(1)
+  end
+
+  # 一週間（月〜金）の勉強時間の合計を算出するインスタンスメソッド
   def weekly_time
     array = []
     study_times.where(study_times: { created_at: Time.current.all_week }).each do |study_time|
@@ -50,7 +59,7 @@ class User < ApplicationRecord
     study_times.sum(:time).round(1)
   end
 
-  # 直近一週間の勉強時間が多い順で10件レコードを取得するクラスメソッド
+  # 一週間（月〜金）の勉強時間が多い順でレコードを10件取得するクラスメソッド
   def self.weekly_time
     User.find(StudyTime.group(:user_id).where(study_times: { created_at: Time.current.all_week }).order(Arel.sql('sum(time) desc')).limit(10).pluck(:user_id))
   end

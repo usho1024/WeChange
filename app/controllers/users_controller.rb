@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @current_user = current_user
     @tweet_new = Tweet.new
     @study_time = StudyTime.new
-    @weekly_time = @user.weekly_time
+    @last7_time = @user.last7_time
     @total_time = @user.total_time
   end
 
