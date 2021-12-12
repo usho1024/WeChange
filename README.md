@@ -64,7 +64,7 @@ https://docs.google.com/spreadsheets/d/1lIDx1p1m3m4vohcyfYJsNaEl46Rc0NAT/edit?us
 https://docs.google.com/spreadsheets/d/1CPgOUYC84neEGCovVf93LNb69Zl9O_rptn_8AT287Xs/edit?usp=sharing
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux release 2 (Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails(Ver.5.2.6)
 - テンプレートエンジン：Slim
