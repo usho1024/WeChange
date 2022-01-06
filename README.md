@@ -1,4 +1,4 @@
-# WeChange!a
+# WeChange!
 
 ## サイト概要
 『WeChange!』は、駆け出しエンジニア同士で気軽に交流や情報交換ができるSNSです。  

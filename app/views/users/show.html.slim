@@ -48,6 +48,9 @@
               .study_time.p-2
                 = study_time.time.round(1)
                 |  h
+              - if @user == current_user
+                .delete-btn.ml-auto
+                  = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 m-2 font-weight-bold rounded"
         - if @user == current_user
           .form-area
             .form-title
