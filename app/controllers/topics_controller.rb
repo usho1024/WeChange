@@ -7,7 +7,6 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @comments = @topic.comments.page(params[:page])
     @comment = Comment.new
-    @current_user = current_user
     @tweet_new = Tweet.new
   end
 

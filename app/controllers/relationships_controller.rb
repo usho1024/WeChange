@@ -12,14 +12,12 @@ class RelationshipsController < ApplicationController
   def followings
     @user = User.find(params[:user_id])
     @users = @user.followings.page(params[:page]).reverse_order
-    @current_user = current_user
     @tweet_new = Tweet.new
   end
 
   def followers
     @user = User.find(params[:user_id])
     @users = @user.followers.page(params[:page]).reverse_order
-    @current_user = current_user
     @tweet_new = Tweet.new
   end
 end
