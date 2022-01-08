@@ -1,5 +1,5 @@
 class StudyTimesController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:destroy, :edit, :update]
 
   def create
     @user = User.find(params[:user_id])
@@ -22,9 +22,16 @@ class StudyTimesController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
+    if @study_time.update(study_time_params)
+      redirect_to user_path(current_user)
+    else
+      @user = current_user
+      render "edit"
+    end
   end
 
   private

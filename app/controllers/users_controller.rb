@@ -24,17 +24,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-    @current_user = current_user
-    @tweet_new = Tweet.new
   end
 
   def update
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      @current_user = current_user
-      @tweet_new = Tweet.new
       render "edit"
     end
   end

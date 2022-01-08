@@ -34,6 +34,10 @@ ja:
               blank: "が入力されていません。"
             body:
               blank: "が入力されていません。"
+        study_time:
+          attributes:
+            time:
+              blank: "が入力されていません。"
     attributes:
       user:
         current_password: "現在のパスワード"

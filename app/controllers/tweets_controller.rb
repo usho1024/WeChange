@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet.destroy
-    redirect_to root_path
+    redirect_to request.referer
   end
 
   private
