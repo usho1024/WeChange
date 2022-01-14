@@ -52,4 +52,4 @@
             = f.text_area :body, class: 'form-control rounded bg-light', rows: '5', placeholder: '140字以内で返信してみよう！'
           .form-group
             = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold'
-    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
+    = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

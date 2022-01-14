@@ -1,0 +1,21 @@
+.error.text-center.mb-3
+  - if @study_time.errors.any?
+    .count
+      = @study_time.errors.count
+      | 件のエラーが発生しました
+    - @study_time.errors.full_messages.each do |message|
+      .massage
+        = message
+.container
+  .row
+    .col-md-6.offset-md-3
+      .profile-edit.bg-white.border.p-4
+        h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-2.rounded
+          | 勉強時間編集
+        = @study_time.created_at.strftime('%m月%d日')
+        = form_with model:[@user,@study_time], local:true do |f|
+          .form-group
+            = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
+            |　時間
+          .form-group
+            = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold px-4'

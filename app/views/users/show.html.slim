@@ -48,6 +48,11 @@
               .study_time.p-2
                 = study_time.time.round(1)
                 |  h
+              - if @user == current_user
+                .edit-btn.ml-auto
+                  = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
+                .delete-btn.ml-auto
+                  = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
         - if @user == current_user
           .form-area
             .form-title
@@ -62,4 +67,4 @@
           span.h5.m-0.py-1.pl-2.font-weight-bold.fas.fa-comments
            |  つぶやき
         = render 'tweets/index', tweets: @tweets
-    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
+    = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :replies, only: [:create, :destroy]
     end
-    resources :study_times, only: [:create]
+    resources :study_times, only: [:create, :destroy, :edit, :update]
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
