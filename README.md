@@ -1,6 +1,8 @@
 # WeChange!
 
 ## サイト概要
+<img width="1440" alt="スクリーンショット 2022-01-15 18 51 22" src="https://user-images.githubusercontent.com/89927015/149786396-632a8b3f-5af9-400e-9201-55111c85acd6.png">
+
 - URL：http://wechange-dwc.com
 - テストID：1@1
 - パスワード：123456
