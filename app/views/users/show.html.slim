@@ -4,7 +4,10 @@
       .user.bg-white.border.mb-3.p-4.mb-4
         .head.d-flex
           .image.mr-3
-            = attachment_image_tag(@user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: "rounded-circle")
+            - if @user.image.attached?
+              = image_tag @user.image.variant(resize:'100x100'), class: 'rounded-circle'
+            - else
+              = image_tag 'no_image.jpg', class: 'rounded-circle'
           table.table.table-borderless
             tbody
               tr

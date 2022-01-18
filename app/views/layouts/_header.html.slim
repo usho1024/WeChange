@@ -6,7 +6,10 @@ header#main.text-white
         .user-image
           - if user_signed_in?
             = link_to user_path(current_user) do
-              = attachment_image_tag(current_user, :image, :fill, 45, 45, fallback: "no-image-icon.jpg", class: "rounded-circle")
+              - if current_user.image.attached?
+                = image_tag current_user.image.variant(resize:'45x45')
+              - else
+                = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
               = link_to current_user.name, user_path(current_user), class: 'font-weight-bold text-light ml-2'
           - else
             .pt-1

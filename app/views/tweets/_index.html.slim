@@ -4,7 +4,10 @@
       .head.d-flex.align-items-end.p-2
         .image.mr-4
           = link_to user_path(tweet.user) do
-            = attachment_image_tag(tweet.user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
+            - if tweet.user.image.attached?
+              = image_tag tweet.user.image.variant(resize:'50x50')
+            - else
+              = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
         .name.font-weight-bold.mr-4
           = link_to tweet.user.name, user_path(tweet.user), class: "text-dark"
         .favorite-btn.mr-4

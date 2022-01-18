@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :topics
   has_many :comments
   has_many :study_times
-  attachment :image, destroy: false
+  has_one_attached :image
 
   validates :name, length: { minimum: 1, maximum: 10 }, uniqueness: true
   validates :introduction, length: { maximum: 200 }
