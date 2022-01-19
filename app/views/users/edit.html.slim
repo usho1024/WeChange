@@ -16,8 +16,11 @@
           .form-group
             = f.label :ユーザーアイコン
             .image-group
-              = attachment_image_tag @user, :image, :fill, 100, 100, fallback: "no_image.jpg", class: 'mr-3'
-              = f.attachment_field :image, class: 'align-bottom'
+              - if @user.image.attached?
+                = image_tag @user.image.variant(resize:'100x100'), class: 'mr-3'
+              - else
+                = image_tag 'no_image.jpg', class: 'mr-3'
+              = f.file_field :image, class: 'align-bottom'
           .form-group
             = f.label :ハンドルネーム
             = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control bg-light'

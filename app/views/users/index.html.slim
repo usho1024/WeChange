@@ -24,7 +24,10 @@
                   | 位
               .image.mr-4
                 = link_to user_path(user) do
-                  = attachment_image_tag(user, :image, :fill, 50, 50, fallback: "no-image-icon.jpg", class: "rounded-circle")
+                  - if user.image.attached?
+                    = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
+                  - else
+                    = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
               .name
                 = link_to user.name, user_path(user), class: "text-dark"
               .time.ml-auto
