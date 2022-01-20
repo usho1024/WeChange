@@ -26,6 +26,9 @@
           tr
             td.h5.px-4.pb-4[colspan="6"]
               = simple_format(@tweet.body)
+          - if @tweet.images.attached?
+            - @tweet.images.each do |image|
+              = image_tag image
       .main.bg-white.border.p-3.border.mb-4
         .contents-head.border-bottom
           h5.m-0.p-3

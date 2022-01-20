@@ -2,6 +2,7 @@ class Tweet < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :replies, dependent: :destroy
+  has_many_attached :images
   validates :body, presence: true, length: { maximum: 140 }
 
   def favorited_by?(user)
