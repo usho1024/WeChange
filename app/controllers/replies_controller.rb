@@ -24,7 +24,7 @@ class RepliesController < ApplicationController
   private
 
   def reply_params
-    params.require(:reply).permit(:body)
+    params.require(:reply).permit(:body, images: [])
   end
 
   def ensure_correct_user

@@ -21,13 +21,13 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet.destroy
-    redirect_to request.referer
+    redirect_to root_path
   end
 
   private
 
   def tweet_params
-    params.require(:tweet).permit(:body, :images)
+    params.require(:tweet).permit(:body, images: [])
   end
 
   def ensure_correct_user
