@@ -1,7 +1,7 @@
 # WeChange!
 
 ## サイト概要
-<img width="1440" alt="スクリーンショット 2022-01-15 18 51 22" src="https://user-images.githubusercontent.com/89927015/149786396-632a8b3f-5af9-400e-9201-55111c85acd6.png">
+![FireShot Capture 003 - WeChange - wechange-dwc com](https://user-images.githubusercontent.com/89927015/150535309-638bc148-70b6-4ccd-995c-e4874ec2fe5d.png)
 
 - URL：http://wechange-dwc.com
 - テストID：1@1
