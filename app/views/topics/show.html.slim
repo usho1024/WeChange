@@ -24,6 +24,11 @@
           tr
             td.h5.px-4.pb-4[colspan="6"]
               = safe_join(@topic.body.split("\n"),tag(:br))
+          tr
+            td
+              - if @topic.images.attached?
+                - @topic.images.each do |image|
+                  = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
       .main.bg-white.border.p-3.border.mb-4
         .contents-head.border-bottom
           h5.m-0.p-3
@@ -48,12 +53,19 @@
                   = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
               .body.p-2
                 = safe_join(comment.body.split("\n"),tag(:br))
+              .image
+                - if comment.images.attached?
+                  - comment.images.each do |image|
+                    = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
           = paginate @comments
       .comment-form-area.mt-3.bg-white.p-3.border
         = form_with model:[@topic, @comment], local:true do |f|
           .form-group
             = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
             = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
+          .form-group
+            = f.label :画像を添付する　
+            = f.file_field :images, multiple: true
           .form-group
             = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold px-4'
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

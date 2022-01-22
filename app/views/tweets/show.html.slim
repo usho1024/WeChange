@@ -28,7 +28,7 @@
               = simple_format(@tweet.body)
               - if @tweet.images.attached?
                 - @tweet.images.each do |image|
-                  = image_tag image.variant(resize: '200').processed, class: 'mr-3'
+                  = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
       .main.bg-white.border.p-3.border.mb-4
         .contents-head.border-bottom
           h5.m-0.p-3
@@ -55,7 +55,7 @@
                 = simple_format(reply.body)
                 - if reply.images.attached?
                   - reply.images.each do |image|
-                    = image_tag image.variant(resize: '200').processed, class: 'mr-3'
+                    = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
           = paginate @replies
       .reply-form-area.mt-3.bg-white.p-3.border
         = form_with model:[@user, @tweet, @reply], local:true do |f|
