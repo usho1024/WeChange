@@ -1,30 +1,32 @@
 .contents.mt-3
   - tweets.each do |tweet|
-    .tweet id="tweet_#{tweet.id}" class="p-1 border-bottom"
-      .head.d-flex.align-items-end.p-2
-        .image.mr-4
+    .container id="tweet_#{tweet.id}" class="p-1 border-bottom"
+      .row.align-items-end.p-2
+        .image.col-2.col-md-1
           = link_to user_path(tweet.user) do
             - if tweet.user.image.attached?
               = image_tag tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
             - else
               = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-        .name.font-weight-bold.mr-4
+        .name.font-weight-bold.col-3.ml-3
           = link_to tweet.user.name, user_path(tweet.user), class: "text-dark"
-        .favorite-btn.mr-4
+      .body.p-2
+      = link_to user_tweet_path(tweet.user, tweet), class: 'text-dark' do
+        = simple_format(tweet.body)
+        - if tweet.images.attached?
+          - tweet.images.each do |image|
+            = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
+      .row.align-items-end
+        .favorite-btn.col-3.col-md-2
           = render "favorites/favorite-btn", tweet: tweet
-        .count.mr-4
+        .count.col-3.col-md-2
           span.far.fa-comment
             |  
             = tweet.replies.count
-        .time.mr-4
+      .row.align-items-end.mb-2
+        .time.col-7
           = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
         - if tweet.user == current_user
-          .link-btn.ml-auto
-            = link_to 'つぶやきを削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-outline-danger ml-4 px-3 font-weight-bold rounded-pill"
-      .body.p-2
-        = link_to user_tweet_path(tweet.user, tweet), class: 'text-dark' do
-          = simple_format(tweet.body)
-          - if tweet.images.attached?
-            - tweet.images.each do |image|
-              = image_tag image.variant(resize: '200').processed, class: 'mr-3'
+          .link-btn
+            = link_to 'つぶやきを削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
   = paginate tweets
