@@ -8,19 +8,19 @@
               = image_tag tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
             - else
               = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-        .name.font-weight-bold.col-7.ml-3
+        .name.font-weight-bold.col-7.ml-2
           = link_to tweet.user.name, user_path(tweet.user), class: "text-dark"
       .row
-        .body.p-3
+        .body.px-3
           = link_to user_tweet_path(tweet.user, tweet), class: 'text-dark' do
             = simple_format(tweet.body)
             - if tweet.images.attached?
               - tweet.images.each do |image|
                 = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
-      .row.align-items-end
+      .row
         .favorite-btn.col-3.col-md-2
           = render "favorites/favorite-btn", tweet: tweet
-        .count.col-3.col-md-2
+        .replies-count.col-3.col-md-2
           span.far.fa-comment
             |  
             = tweet.replies.count
@@ -28,6 +28,6 @@
         .time.col-7
           = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
         - if tweet.user == current_user
-          .link-btn
+          .delete-btn
             = link_to 'つぶやきを削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
   = paginate tweets
