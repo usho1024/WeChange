@@ -1,17 +1,17 @@
 .contents.mt-3
   - tweets.each do |tweet|
-    .container id="tweet_#{tweet.id}" class="p-1 border-bottom"
-      .row.align-items-end.p-2
+    .tweet.container id="tweet_#{tweet.id}" class="border-bottom mt-2"
+      .row.align-items-end
         .image.col-2.col-md-1
           = link_to user_path(tweet.user) do
             - if tweet.user.image.attached?
               = image_tag tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
             - else
               = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-        .name.font-weight-bold.col-7.ml-2
+        .name.font-weight-bold.ml-3
           = link_to tweet.user.name, user_path(tweet.user), class: "text-dark"
       .row
-        .body.px-3
+        .body.p-2
           = link_to user_tweet_path(tweet.user, tweet), class: 'text-dark' do
             = simple_format(tweet.body)
             - if tweet.images.attached?

@@ -1,9 +1,8 @@
 .container
   .row
-    .col-12.col-md-8.offset-md-1
-      .tl-area.bg-white.p-2.border.mb-3
-        .contents-head.border.p-2.rounded.bg-dark.text-white
-          span.h5.m-0.py-1.pl-2.font-weight-bold.fas.fa-comments
-           |  タイムライン
-        = render 'tweets/index', tweets: @tweets
+    .tl-area.bg-white.p-2.border.col-md-8.offset-md-1
+      .contents-head.border.p-2.rounded.bg-dark.text-white
+        span.h5.m-0.py-1.pl-2.font-weight-bold.fas.fa-comments
+         |  タイムライン
+      = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user
