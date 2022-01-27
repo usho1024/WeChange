@@ -12,7 +12,7 @@ class RepliesController < ApplicationController
       @replies = @tweet.replies.page(params[:page])
       @tweet_new = Tweet.new
       @user = @tweet.user
-      render 'tweets/show'
+      redirect_to request.referer
     end
   end
 

@@ -25,9 +25,9 @@
             |  
             = tweet.replies.count
       .row.align-items-end.mb-2
-        .time.col-7
+        .time
           = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
         - if tweet.user == current_user
-          .delete-btn
+          .delete-btn.ml-auto
             = link_to 'つぶやきを削除', user_tweet_path(tweet.user, tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
   = paginate tweets

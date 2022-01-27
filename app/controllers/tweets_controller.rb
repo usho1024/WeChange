@@ -4,6 +4,7 @@ class TweetsController < ApplicationController
   def show
     @tweet = Tweet.find(params[:id])
     @replies = @tweet.replies.page(params[:page])
+    @count = @tweet.replies.count
     @tweet_new = Tweet.new
     @reply = Reply.new
     @user = @tweet.user
