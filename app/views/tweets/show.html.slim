@@ -1,18 +1,18 @@
 .container
   .row
-    .main.bg-white.border.p-2.col-md-8.offset-md-1
+    .main.bg-white.border.p-3.col-md-8.offset-md-1
       .tweet-area.container.mb-5 id="tweet_#{@tweet.id}" 
-        .row.align-items-end
+        .row.align-items-center
           .image
             = link_to user_path(@tweet.user) do
               - if @tweet.user.image.attached?
                 = image_tag @tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
               - else
                 = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-          .name.font-weight-bold.ml-3
+          .name.font-weight-bold.ml-2
             = link_to @tweet.user.name, user_path(@tweet.user), class: "text-dark"
         .row
-          .body.h5.p-2
+          .body.h5.pt-3
             = simple_format(@tweet.body)
             - if @tweet.images.attached?
               - @tweet.images.each do |image|
@@ -37,17 +37,17 @@
         .row
           - @replies.each do |reply|
             .reply.container.border-bottom.mt-2
-              .row.align-items-end
+              .row.align-items-center
                 .image
                   = link_to user_path(reply.user) do
                     - if reply.user.image.attached?
                       = image_tag reply.user.image.variant(resize:'50x50'), class: 'rounded-circle'
                     - else
                       = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-                .name.font-weight-bold.ml-3
+                .name.font-weight-bold.ml-2
                   = link_to reply.user.name, user_path(reply.user), class: "text-dark"
               .row
-                .body.p-2
+                .body.pt-2
                   = simple_format(reply.body)
                   - if reply.images.attached?
                     - reply.images.each do |image|
