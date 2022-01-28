@@ -1,7 +1,7 @@
 .container
   .row
     .main.bg-white.border.p-3.col-md-8.offset-md-1
-      .tweet-area.container.mb-5 id="tweet_#{@tweet.id}" 
+      .tweet-area.container.pb-3 id="tweet_#{@tweet.id}" 
         .row.align-items-center
           .image
             = link_to user_path(@tweet.user) do
@@ -16,7 +16,7 @@
             = simple_format(@tweet.body)
             - if @tweet.images.attached?
               - @tweet.images.each do |image|
-                = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
+                = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3'
         .row
           .favorite-btn.col-3.col-md-2
             = render "favorites/favorite-btn", tweet: @tweet
@@ -36,7 +36,7 @@
           | 件の返信
         .row
           - @replies.each do |reply|
-            .reply.container.border-bottom.mt-2
+            .reply.container.border-bottom.py-3
               .row.align-items-center
                 .image
                   = link_to user_path(reply.user) do
@@ -51,8 +51,8 @@
                   = simple_format(reply.body)
                   - if reply.images.attached?
                     - reply.images.each do |image|
-                      = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
-              .row.align-items-end.mb-2
+                      = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3'
+              .row.align-items-end
                 .time
                   = reply.created_at.strftime('%Y/%m/%d　%H:%M:%S')
                 - if reply.user == current_user

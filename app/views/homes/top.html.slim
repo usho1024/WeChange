@@ -2,7 +2,8 @@
   .row
     .tl-area.bg-white.p-3.border.col-md-8.offset-md-1
       .head
-        h5.mb-3.font-weight-bold.bg-dark.text-white.p-2.rounded.fas.fa-comments
-          |  タイムライン
+        h5.font-weight-bold.bg-dark.text-white.p-2.rounded
+          span.fas.fa-comments
+            |  タイムライン
       = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

@@ -1,4 +1,4 @@
-.contents.mt-3
+.contents
   - tweets.each do |tweet|
     .tweet.container id="tweet_#{tweet.id}" class="border-bottom py-3"
       .row.align-items-center
@@ -16,7 +16,7 @@
             = simple_format(tweet.body)
             - if tweet.images.attached?
               - tweet.images.each do |image|
-                = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
+                = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3'
       .row
         .favorite-btn.col-3.col-md-2
           = render "favorites/favorite-btn", tweet: tweet
@@ -24,7 +24,7 @@
           span.far.fa-comment
             |  
             = tweet.replies.count
-      .row.align-items-end.mb-2
+      .row.align-items-end
         .time
           = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
         - if tweet.user == current_user
