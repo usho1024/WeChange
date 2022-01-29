@@ -1,49 +1,48 @@
 .container
   .row
-    .col-md-8.offset-md-1
-      .user.bg-white.border.mb-3.p-4.mb-4
-        .head.d-flex
-          .image.mr-3
+    .col-md-8.offset-md-1.bg-white.p-3.border
+      .container.border-bottom
+        .row.mb-3
+          .image
             - if @user.image.attached?
               = image_tag @user.image.variant(resize:'100x100'), class: 'rounded-circle'
             - else
               = image_tag 'no_image.jpg', class: 'rounded-circle'
-          table.table.table-borderless
-            tbody
-              tr
-                td.font-weight-bold.h5.mb-0.pb-0.pt-4
-                  = @user.name
-                  - if @user == current_user
-                    span.ml-5
-                      = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
-                  - else
-                    span.ml-5
-                      - if current_user.following?(@user)
-                        = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3 rounded-pill"
-                      - else
-                        = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3 rounded-pill"
-              tr
-                td
-                  = link_to user_followings_path(@user), class: 'text-dark' do
-                    = @user.followings.count
-                    |  フォロー中
-                  span.ml-4
-                    = link_to user_followers_path(@user), class: 'text-dark' do
-                      = @user.followers.count
-                      |  フォロワー
-        .body
-          = simple_format(@user.introduction)
-      .study_time-area.bg-white.border.mb-4.p-4
-        .study_time-sum-area
-        .weekly-time.h5.font-weight-bold
-          | 最新7件の勉強時間計： 
-          = @last7_time
-          |  時間
-        .total-time.mb-3
-          | トータル勉強時間： 
-          = @total_time
-          |  時間
-        .record-area.d-flex.flex-row
+        .row.align-items-end.mb-3
+          .name.font-weight-bold.h5.m-0.p-0.col-md-4
+            = @user.name
+          .button.col-md-8.p-0.mt-2
+            - if @user == current_user
+              = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
+            - else
+              - if current_user.following?(@user)
+                = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
+              - else
+                = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill"
+        .row.mb-3
+          .follow
+            = link_to user_followings_path(@user), class: 'text-dark' do
+              = @user.followings.count
+              |  フォロー中
+            span.ml-4
+              = link_to user_followers_path(@user), class: 'text-dark' do
+                = @user.followers.count
+                |  フォロワー
+        .row
+          .body.p-1
+            = simple_format(@user.introduction)
+      .container.mb-4.p-4.border-bottom
+        .row
+          .weekly-time.h5.font-weight-bold
+            | 最新7件の勉強時間計： 
+            = @last7_time
+            |  時間
+        .row
+          .total-time.mb-3
+            | トータル勉強時間： 
+            = @total_time
+            |  時間
+        .row
           - @user.study_times.last(7).each do |study_time|
             .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded
               .day.p-2.border-bottom.border-secondary
@@ -57,17 +56,16 @@
                 .delete-btn.ml-auto
                   = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
         - if @user == current_user
-          .form-area
-            .form-title
+          .row
+            .title
               | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
-            .form-time.pl-4.pt-3
+          .row
+            .form.ml-3.pt-3
               = form_with model:[@user,@study_time], local:true do |f|
                 = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
                 |　時間
                 = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
-      .tl-area.bg-white.p-3.border
-        .contents-head.border.p-2.rounded.bg-dark.text-white.d-flex
-          span.h5.m-0.py-1.pl-2.font-weight-bold.fas.fa-comments
-           |  つぶやき
-        = render 'tweets/index', tweets: @tweets
+      h5.fas.fa-comments.font-weight-bold.text-white.p-2.bg-dark.rounded.col-12
+        |  つぶやき
+      = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user
