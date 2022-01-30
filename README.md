@@ -79,4 +79,4 @@ https://docs.google.com/spreadsheets/d/1CPgOUYC84neEGCovVf93LNb69Zl9O_rptn_8AT28
 - PC：MacBook Air(M1,2020)
 
 ## 使用素材
-- ぱくたそ(https://www.pakutaso.com/)、
+- ぱくたそ(https://www.pakutaso.com/)
