@@ -1,71 +1,71 @@
 .container
   .row
-    .col-md-8.offset-md-1
-      table.table.bg-white.table-borderless.mb-4
-        thead.border
-          th.font-weight-bold
+    .main.bg-white.border-left.p-3.col-md-8.offset-md-1
+      .topic-area.container.pb-3
+        .row
+          h5.font-weight-bold
             = @topic.title
-        tbody.border
-          tr.d-flex.align-items-end
-            td.pl-4
-              = link_to user_path(@topic.user) do
-                  - if @topic.user.image.attached?
-                    = image_tag @topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                  - else
-                    = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-            td.font-weight-bold
-              = link_to @topic.user.name, user_path(@topic.user), class: "text-dark"
-            td
-              span.far.fa-comment
-                |  
-                = @topic.comments.count
-            td.ml-2
-              = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-          tr
-            td.h5.px-4.pb-4[colspan="6"]
+        .row.align-items-center
+          .image
+            = link_to user_path(@topic.user) do
+                - if @topic.user.image.attached?
+                  = image_tag @topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
+                - else
+                  = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+          .name.font-weight-bold.ml-2
+            = link_to @topic.user.name, user_path(@topic.user), class: "text-dark"
+        .row
+          .body.h5.pt-3
+            .sentence
               = safe_join(@topic.body.split("\n"),tag(:br))
-          tr
-            td
-              - if @topic.images.attached?
+            - if @topic.images.attached?
+              .images.my-4
                 - @topic.images.each do |image|
-                  = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
-      .main.bg-white.border.p-3.border.mb-4
-        .contents-head.border-bottom
-          h5.m-0.p-3
-            = @topic.comments.count
-            | 件のコメント
-        .contents
-          - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
-            .comment.p-1.border-bottom
-              .head.d-flex.align-items-end.p-2
-                .index.mr-4
-                  | No.
-                  = i
-                .image.mr-4
-                  = link_to user_path(comment.user) do
-                    - if comment.user.image.attached?
-                      = image_tag comment.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                    - else
-                      = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-                .name.font-weight-bold.mr-5
-                  = link_to comment.user.name, user_path(comment.user), class: "text-dark"
-                .time
-                  = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-              .body.p-2
-                = safe_join(comment.body.split("\n"),tag(:br))
-              .image
-                - if comment.images.attached?
-                  - comment.images.each do |image|
-                    = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
-          = paginate @comments
-      .comment-form-area.mt-3.bg-white.p-3.border
-        = form_with model:[@topic, @comment], local:true do |f|
-          .form-group
-            = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
-            = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
-          .form-group
-            = f.label :画像を添付する　
-            = f.file_field :images, multiple: true
-          .form-group
-            = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold px-4'
+                  = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3'
+        .row.align-items-end
+          .comment-count
+            span.far.fa-comment
+              |  
+              = @topic.comments.count
+          .time.ml-5
+            = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+      .main.p-3.mb-4
+          .contents-head.border-bottom
+            h5.m-0.p-3
+              = @topic.comments.count
+              | 件のコメント
+          .contents
+            - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
+              .comment.p-1.border-bottom
+                .head.d-flex.align-items-end.p-2
+                  .index.mr-4
+                    | No.
+                    = i
+                  .image.mr-4
+                    = link_to user_path(comment.user) do
+                      - if comment.user.image.attached?
+                        = image_tag comment.user.image.variant(resize:'50x50'), class: 'rounded-circle'
+                      - else
+                        = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+                  .name.font-weight-bold.mr-5
+                    = link_to comment.user.name, user_path(comment.user), class: "text-dark"
+                  .time
+                    = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+                .body.p-2
+                  = safe_join(comment.body.split("\n"),tag(:br))
+                .image
+                  - if comment.images.attached?
+                    - comment.images.each do |image|
+                      = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3'
+            = paginate @comments
+          .comment-form-area.mt-3.bg-white.p-3
+            = form_with model:[@topic, @comment], local:true do |f|
+              .form-group
+                = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
+                = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
+              .form-group
+                = f.label :画像を添付する　
+                = f.file_field :images, multiple: true
+              .form-group
+                = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold px-4'
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

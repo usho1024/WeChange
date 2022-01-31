@@ -1,6 +1,6 @@
 .container
   .row
-    .main.bg-white.border.p-3.col-md-8.offset-md-1
+    .main.bg-white.border-left.p-3.col-md-8.offset-md-1
       .tweet-area.container.pb-3 id="tweet_#{@tweet.id}" 
         .row.align-items-center
           .image
@@ -18,9 +18,9 @@
               - @tweet.images.each do |image|
                 = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3'
         .row
-          .favorite-btn.col-3.col-md-2
+          .favorite-btn
             = render "favorites/favorite-btn", tweet: @tweet
-          .replies-count.col-3.col-md-2
+          .replies-count.ml-5
             span.far.fa-comment
               |  
               = @tweet.replies.count
