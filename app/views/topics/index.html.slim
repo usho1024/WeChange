@@ -1,14 +1,14 @@
 .container
   .row
-    .col-md-8.offset-md-1
-      .topic-area.bg-white.p-3.border
-        .contents-head.border.p-2.rounded.bg-dark.text-white.d-flex
-          span.h5.m-0.py-1.pl-2.font-weight-bold.fas.fa-chalkboard
+    .col-md-8.offset-md-1.bg-white.p-3.border
+      .container
+        .row
+          h5.fas.fa-chalkboard.font-weight-bold.bg-dark.text-white.p-3.rounded.col-12
            |  トピック一覧
-        .head.d-flex.align-items-center.mt-2
-          .create-btn
+        .row
+          .create-btn.col-md-6
             = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
-          .sort-form.ml-auto.mr-4
+          .sort-form.col-md-6
             = form_with url: topics_path, method: :get, local: true do |form|
               span.mr-3
                 = form.select :keyword, [ ['作成日が新しい順', 'new'],
@@ -18,9 +18,10 @@
                                         ]
               span.
                 = form.submit "ソートする", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
-        .contents.mt-3
-          - @topics.each do |topic|
-            .topic.d-flex.align-items-center.border-bottom.p-3
+      .topics-area.mt-1
+        - @topics.each do |topic|
+          .topic.container.border-bottom.p-3
+            .row
               .image.mr-3
                 = link_to user_path(topic.user) do
                   - if topic.user.image.attached?
@@ -36,5 +37,5 @@
                     | ）
                 .time
                   = topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-          = paginate @topics
+        = paginate @topics
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
