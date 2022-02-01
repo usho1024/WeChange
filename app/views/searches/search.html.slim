@@ -1,24 +1,22 @@
 .container
   .row
-    .col-md-8.offset-md-1
+    .col-12.col-md-8.main.bg-white.p-3
       - if @model == 'user'
-        .main.bg-white.border.p-3.border
-          .contents-head.border-bottom
-            h5.m-0.p-3
-              | " 
-              = @content
-              |  "のユーザー検索結果、
-              = @result.count
-              | 件のヒット
-          = render 'users/index', users: @records
+        .contents-head.border-bottom
+          h5.m-0.p-3
+            | " 
+            = @content
+            |  "のユーザー検索結果、
+            = @result.count
+            | 件のヒット
+        = render 'users/index', users: @records
       - elsif @model == 'tweet'
-        .main.bg-white.border.p-3.border
-          .contents-head.border-bottom
-            h5.m-0.p-3
-              | " 
-              = @content
-              |  "のつぶやき検索結果、
-              = @result.count
-              | 件のヒット
-          = render 'tweets/index', tweets: @records
+        .contents-head.border-bottom
+          h5.m-0.p-3
+            | " 
+            = @content
+            |  "のつぶやき検索結果、
+            = @result.count
+            | 件のヒット
+        = render 'tweets/index', tweets: @records
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

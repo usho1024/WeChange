@@ -20,19 +20,19 @@ header#main.text-white
           - else
               = link_to ' 新規登録', new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark btn btn-light btn-sm mr-3 rounded-pill px-3'
               = link_to ' ログイン', new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-dark btn btn-light btn-sm rounded-pill px-3'
-- if user_signed_in?
-  header#sub.bg-white
-    nav.navbar.navbar-expand-lg.navbar-dark
-      .container
-        .row.p-1
-          .font-weight-bold.catch-copy
-            | 駆け出しエンジニアの輪を広げよう！
-        .row.search-form.p-1
-          = form_with url: search_path, method: :get, local: true do |f|
-            span.mr-2.col-12
-              = f.text_field :content, class: 'bg-light rounded-pill border px-3', placeholder: 'キーワード検索'
-            span.mr-2.col-12
-              = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), class: "mr-2"
-            span.mr-3
-              = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
-            = f.submit '検索', class: "text-white btn btn-sm rounded-pill px-4 mb-1 mt-1 font-weight-bold post"
+  - if user_signed_in?
+    header#sub.bg-white
+      nav.navbar.navbar-expand-lg.navbar-dark
+        .container
+          .row.p-1
+            .font-weight-bold.catch-copy
+              | 駆け出しエンジニアの輪を広げよう！
+          .row.search-form.p-1
+            = form_with url: search_path, method: :get, local: true do |f|
+              span.mr-2.col-12
+                = f.text_field :content, class: 'bg-light rounded-pill border px-3', placeholder: 'キーワード検索'
+              span.mr-2.col-12
+                = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), class: "mr-2"
+              span.mr-3
+                = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
+              = f.submit '検索', class: "text-white btn btn-sm rounded-pill px-4 mb-1 mt-1 font-weight-bold post"

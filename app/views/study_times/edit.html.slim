@@ -1,5 +1,5 @@
-.error.text-center.mb-3
-  - if @study_time.errors.any?
+- if @study_time.errors.any?
+  .error.text-center.mb-3
     .count
       = @study_time.errors.count
       | 件のエラーが発生しました
@@ -9,8 +9,8 @@
 .container
   .row
     .col-md-6.offset-md-3
-      .profile-edit.bg-white.border.p-4
-        h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-2.rounded
+      .profile-edit.bg-white.p-4
+        h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-3.rounded
           | 勉強時間編集
         = @study_time.created_at.strftime('%m月%d日')
         = form_with model:[@user,@study_time], local:true do |f|

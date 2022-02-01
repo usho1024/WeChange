@@ -1,50 +1,49 @@
 .container
   .row
-    .col-md-8.offset-md-1
-      .topic-area.bg-white.p-3.border
-        .contents-head.border.p-2.rounded.bg-dark.text-white.d-flex
-          span.h5.m-0.py-1.pl-2.font-weight-bold.fas.fa-crown
-            - if @selection == 'total'
-              |  トータルの勉強時間ランキング　TOP10
-            - else
-              |  今週の勉強時間ランキング　TOP10（毎週月曜0時リセット）
-        .head.d-flex.align-items-center.mt-2
-          .sort-form.ml-auto.mr-4
-            = form_with url: users_path, method: :get, local: true do |form|
-              span.mr-3
-                = form.select :keyword, [['週間勉強時間ランキング', 'weekly'],['トータル勉強時間ランキング', 'total']]
-              span.
-                = form.submit "表示する", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
-        .contents.mt-3
-          - @users.each.with_index(@users.offset_value + 1) do |user, i|
-            .topic.d-flex.align-items-center.border-bottom.p-3
-              .index.mr-4
-                span.h4
-                  = i
-                  | 位
-              .image.mr-4
-                = link_to user_path(user) do
-                  - if user.image.attached?
-                    = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                  - else
-                    = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-              .name
-                = link_to user.name, user_path(user), class: "text-dark"
-              .time.ml-auto
-                - if @selection == 'total'
-                  span.h4.mr-5
-                    = user.total_time
-                    |  時間
-                  span
-                    |  週間 
-                    = user.weekly_time
-                    |  時間
+    .col-12.col-md-8.topic-area.bg-white.p-4
+      .contents-head.border.p-2.rounded.bg-dark.text-white
+        span.h5.m-0.p-2.font-weight-bold.fas.fa-crown
+          - if @selection == 'total'
+            |  トータルの勉強時間ランキング　TOP10
+          - else
+            |  今週の勉強時間ランキング　TOP10（毎週月曜0時リセット）
+      .head.d-flex.align-items-center.mt-2
+        .sort-form.ml-auto.mr-4
+          = form_with url: users_path, method: :get, local: true do |form|
+            span.mr-3
+              = form.select :keyword, [['週間勉強時間ランキング', 'weekly'],['トータル勉強時間ランキング', 'total']]
+            span.
+              = form.submit "表示する", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
+      .contents.mt-3
+        - @users.each.with_index(@users.offset_value + 1) do |user, i|
+          .topic.d-flex.align-items-center.border-bottom.p-3
+            .index.mr-4
+              span.h4
+                = i
+                | 位
+            .image.mr-4
+              = link_to user_path(user) do
+                - if user.image.attached?
+                  = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
                 - else
-                  span.h4.mr-5
-                    = user.weekly_time
-                    |  時間
-                  span
-                    | トータル 
-                    = user.total_time
-                    |  時間
+                  = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+            .name
+              = link_to user.name, user_path(user), class: "text-dark"
+            .time.ml-auto
+              - if @selection == 'total'
+                span.h4.mr-5
+                  = user.total_time
+                  |  時間
+                span
+                  |  週間 
+                  = user.weekly_time
+                  |  時間
+              - else
+                span.h4.mr-5
+                  = user.weekly_time
+                  |  時間
+                span
+                  | トータル 
+                  = user.total_time
+                  |  時間
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

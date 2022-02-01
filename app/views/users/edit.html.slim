@@ -1,5 +1,5 @@
-.error.text-center.mb-3
-  - if @user.errors.any?
+- if @user.errors.any?
+  .error.text-center.mb-3
     .count
       = @user.errors.count
       | 件のエラーが発生しました
@@ -8,9 +8,9 @@
         = message
 .container
   .row
-    .col-md-6.offset-md-3
-      .profile-edit.bg-white.border.p-4
-        h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-2.rounded
+    .col-12.col-md-6.offset-md-3
+      .profile-edit.bg-white.p-4
+        h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-3.rounded
           | プロフィール編集
         = form_with model:@user, local:true do |f|
           .form-group
