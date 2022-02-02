@@ -1,7 +1,7 @@
 .container
   .row
-    .main.bg-white.border-left.p-4.col-12.col-md-8
-      .topic-area.container.pb-3
+    .main.bg-white.p-4.col-12.col-md-8
+      .topic-area.container.pb-3.border-bottom
         .row.p-2.border-bottom
           h5.font-weight-bold
             = @topic.title
@@ -19,7 +19,7 @@
             .sentence
               = safe_join(@topic.body.split("\n"),tag(:br))
             - if @topic.images.attached?
-              .images.my-3
+              .images.mt-3
                 - @topic.images.each do |image|
                   = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3'
         .row.align-items-end
@@ -36,24 +36,18 @@
               = @topic.comments.count
               | 件のコメント
         .row
-          .contents
+          .contents.col-12.p-0
             - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
               .comment.border-bottom.p-3
-                .row.head.align-items-end.p-2
+                .row.head.align-items-end
                   .index.mr-3
                     | No.
                     = i
-                  .image.mr-4
-                    = link_to user_path(comment.user) do
-                      - if comment.user.image.attached?
-                        = image_tag comment.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                      - else
-                        = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
                   .name.font-weight-bold.mr-5
                     = link_to comment.user.name, user_path(comment.user), class: "text-dark"
                   .time
                     = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-                .row.body.p-2
+                .row.body.mt-2
                   = safe_join(comment.body.split("\n"),tag(:br))
                 - if comment.images.attached?
                   .row.image

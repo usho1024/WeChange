@@ -9,7 +9,7 @@
                 = image_tag @tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
               - else
                 = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-          .name.font-weight-bold.ml-2
+          .name.font-weight-bold.ml-3
             = link_to @tweet.user.name, user_path(@tweet.user), class: "text-dark"
         .row
           .body.h5.pt-3
@@ -44,7 +44,7 @@
                       = image_tag reply.user.image.variant(resize:'50x50'), class: 'rounded-circle'
                     - else
                       = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-                .name.font-weight-bold.ml-2
+                .name.font-weight-bold.ml-3
                   = link_to reply.user.name, user_path(reply.user), class: "text-dark"
               .row
                 .body.pt-2
