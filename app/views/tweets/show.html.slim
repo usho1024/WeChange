@@ -1,6 +1,6 @@
 .container
   .row
-    .main.bg-white.border-left.p-4.col-12.col-md-8
+    .main.bg-white.p-4.col-12.col-md-8
       .tweet-area.container.pb-3 id="tweet_#{@tweet.id}" 
         .row.align-items-center
           .image
@@ -30,35 +30,36 @@
           - if @tweet.user == current_user
             .delete-btn.ml-auto
               = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
-      .reply-area.container.mb-5
-        .row.h5.border-top.border-bottom.p-3
+      .reply-area.mb-5
+        .title.h5.border-top.border-bottom.py-3
           = @count
           | 件の返信
-        .row
+        .replies-area
           - @replies.each do |reply|
-            .reply.container.border-bottom.py-3
-              .row.align-items-center
-                .image
-                  = link_to user_path(reply.user) do
-                    - if reply.user.image.attached?
-                      = image_tag reply.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                    - else
-                      = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-                .name.font-weight-bold.ml-3
-                  = link_to reply.user.name, user_path(reply.user), class: "text-dark"
-              .row
-                .body.pt-2
-                  = simple_format(reply.body)
-                  - if reply.images.attached?
-                    - reply.images.each do |image|
-                      = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3'
-              .row.align-items-end
-                .time
-                  = reply.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-                - if reply.user == current_user
-                .delete-btn.ml-auto
-                  = link_to '返信を削除', user_tweet_reply_path(@tweet.user, @tweet, reply), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
-        = paginate @replies
+            .reply.border-bottom.py-3
+              .head.container
+                .row.align-items-center
+                  .image
+                    = link_to user_path(reply.user) do
+                      - if reply.user.image.attached?
+                        = image_tag reply.user.image.variant(resize:'50x50'), class: 'rounded-circle'
+                      - else
+                        = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+                  .name.font-weight-bold.ml-3
+                    = link_to reply.user.name, user_path(reply.user), class: "text-dark"
+              .body.mt-2
+                = simple_format(reply.body)
+                - if reply.images.attached?
+                  - reply.images.each do |image|
+                    = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3'
+              .bottom.container
+                .row.align-items-end
+                  .time
+                    = reply.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+                  - if reply.user == current_user
+                  .delete-btn.ml-auto
+                    = link_to '返信を削除', user_tweet_reply_path(@tweet.user, @tweet, reply), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
+          = paginate @replies
       .reply-form-area
         = form_with model:[@user, @tweet, @reply], local:true do |f|
           .form-group

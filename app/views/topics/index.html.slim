@@ -1,14 +1,14 @@
 .container
   .row
-    .col-12.col-md-8.bg-white.p-4
-      .container
-        .row
-          h5.fas.fa-chalkboard.font-weight-bold.bg-dark.text-white.p-3.rounded.col-12
+    .main.col-md-8.bg-white.p-4
+      .title.bg-dark.rounded.h5.font-weight-bold.text-white.p-3.mb-3
+        span.fas.fa-chalkboard
            |  トピック一覧
+      .search-area.container
         .row
-          .create-btn.col-md-6
+          .create-btn.col-md-6.p-0
             = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
-          .sort-form.col-md-6
+          .sort-form.col-md-6.p-0
             = form_with url: topics_path, method: :get, local: true do |form|
               span.mr-3
                 = form.select :keyword, [ ['作成日が新しい順', 'new'],
@@ -16,9 +16,9 @@
                                           ['コメントが多い順', 'many'],
                                           ['コメントが少ない順', 'less'],
                                         ]
-              span.
+              span
                 = form.submit "ソートする", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
-      .topics-area.mt-1
+      .topics-area
         - @topics.each do |topic|
           .topic.container.border-bottom.p-3
             .row

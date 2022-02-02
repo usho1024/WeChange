@@ -1,71 +1,67 @@
 .container
   .row
-    .col-12.col-md-8.bg-white.p-4
-      .container.border-bottom
-        .row.mb-2
-          .image
-            - if @user.image.attached?
-              = image_tag @user.image.variant(resize:'80x80'), class: 'rounded-circle'
-            - else
-              = image_tag 'no_image.jpg', class: 'rounded-circle'
-        .row.align-items-end.mb-3
-          .name.font-weight-bold.h5.m-0.p-0.col-md-4
-            = @user.name
-          .button.col-md-8.p-0.mt-2
-            - if @user == current_user
-              = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
-            - else
-              - if current_user.following?(@user)
-                = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
-              - else
-                = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill"
-        .row.mb-3
-          .follow
-            = link_to user_followings_path(@user), class: 'text-dark' do
-              = @user.followings.count
-              |  フォロー中
-            span.ml-4
-              = link_to user_followers_path(@user), class: 'text-dark' do
-                = @user.followers.count
-                |  フォロワー
-        .row
-          .body.p-1
-            = simple_format(@user.introduction)
-      .container.mb-4.p-4.border-bottom
-        .row
-          .weekly-time.h5.font-weight-bold
-            | 最新7件の勉強時間計： 
-            = @last7_time
-            |  時間
-        .row
-          .total-time.mb-3
-            | トータル勉強時間： 
-            = @total_time
-            |  時間
-        .row
-          - @user.study_times.last(7).each do |study_time|
-            .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded
-              .day.p-2.border-bottom.border-secondary
-                = study_time.created_at.strftime('%m/%d')
-              .study_time.p-2
-                = study_time.time.round(1)
-                |  h
+    .col-md-8.bg-white.p-4
+      .user.border-bottom
+        .image.mb-2
+          - if @user.image.attached?
+            = image_tag @user.image.variant(resize:'80x80'), class: 'rounded-circle'
+          - else
+            = image_tag 'no_image.jpg', class: 'rounded-circle'
+        .name-area.container
+          .row.align-items-end.mb-3
+            .name.font-weight-bold.h5.m-0.p-0.col-6.col-md-4
+              = @user.name
+            .button.col-6.col-md-8.p-0.mt-2
               - if @user == current_user
-                .edit-btn.ml-auto
-                  = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
-                .delete-btn.ml-auto
-                  = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
+                = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
+              - else
+                - if current_user.following?(@user)
+                  = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
+                - else
+                  = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill"
+        .follow
+          = link_to user_followings_path(@user), class: 'text-dark' do
+            = @user.followings.count
+            |  フォロー中
+          span.ml-4
+            = link_to user_followers_path(@user), class: 'text-dark' do
+              = @user.followers.count
+              |  フォロワー
+        .body.mt-3
+          = simple_format(@user.introduction)
+      .study_time-area.mb-4.py-4.border-bottom
+        .weekly-time.h5.font-weight-bold
+          | 最新7件の勉強時間計： 
+          = @last7_time
+          |  時間
+        .total-time.mb-3
+          | トータル勉強時間： 
+          = @total_time
+          |  時間
+        .record-area.container
+          .row
+            - @user.study_times.last(7).each do |study_time|
+              .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded
+                .day.p-2.border-bottom.border-secondary
+                  = study_time.created_at.strftime('%m/%d')
+                .study_time.p-2
+                  = study_time.time.round(1)
+                  |  h
+                - if @user == current_user
+                  .edit-btn.ml-auto
+                    = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
+                  .delete-btn.ml-auto
+                    = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
         - if @user == current_user
-          .row
-            .title
-              | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
-          .row
-            .form.ml-3.pt-3
-              = form_with model:[@user,@study_time], local:true do |f|
-                = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
-                |　時間
-                = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
-      h5.fas.fa-comments.font-weight-bold.text-white.p-3.bg-dark.rounded.col-12
-        |  つぶやき
+          .title
+            | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
+          .form-area.ml-3.pt-3
+            = form_with model:[@user,@study_time], local:true do |f|
+              = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
+              |　時間
+              = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
+      .title.h5.font-weight-bold.text-white.p-3.bg-dark.rounded
+        span.fas.fa-comments
+         |  つぶやき
       = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user
