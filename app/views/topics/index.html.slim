@@ -20,22 +20,15 @@
                 = form.submit "ソートする", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
       .topics-area
         - @topics.each do |topic|
-          .topic.container.border-bottom.p-3
-            .row
-              .image.mr-3
-                = link_to user_path(topic.user) do
-                  - if topic.user.image.attached?
-                    = image_tag topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                  - else
-                    = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-              .contents
-                .title
-                  = link_to topic_path(topic) do
-                    = topic.title
-                    | （
-                    = topic.comments.count
-                    | ）
-                .time
-                  = topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+          .topic.border-bottom.py-3
+            .index
+              .title
+                = link_to topic_path(topic) do
+                  = topic.title
+                  | （
+                  = topic.comments.count
+                  | ）
+              .time
+                = topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
         = paginate @topics
     = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

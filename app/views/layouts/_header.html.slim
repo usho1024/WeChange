@@ -24,10 +24,10 @@ header#main.text-white
     header#sub.bg-white
       nav.navbar.navbar-expand-lg.navbar-dark
         .container
-          .row.p-1
+          .row
             .font-weight-bold.catch-copy
               | 駆け出しエンジニアの輪を広げよう！
-          .row.search-form.p-1
+          .row.search-form
             = form_with url: search_path, method: :get, local: true do |f|
               span.mr-2.col-12
                 = f.text_field :content, class: 'bg-light rounded-pill border px-3', placeholder: 'キーワード検索'
@@ -35,4 +35,4 @@ header#main.text-white
                 = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), class: "mr-2"
               span.mr-3
                 = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
-              = f.submit '検索', class: "text-white btn btn-sm rounded-pill px-4 mb-1 mt-1 font-weight-bold post"
+              = f.submit '検索', class: "text-white btn btn-sm rounded-pill px-4 font-weight-bold post"

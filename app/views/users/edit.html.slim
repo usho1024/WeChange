@@ -8,7 +8,7 @@
         = message
 .container
   .row
-    .col-12.col-md-6.offset-md-3
+    .col-md-6.offset-md-3.p-0
       .profile-edit.bg-white.p-4
         h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-3.rounded
           | プロフィール編集
@@ -20,7 +20,8 @@
                 = image_tag @user.image.variant(resize:'100x100'), class: 'mr-3'
               - else
                 = image_tag 'no_image.jpg', class: 'mr-3'
-              = f.file_field :image, class: 'align-bottom'
+          .form-group 
+            = f.file_field :image, class: 'align-bottom'
           .form-group
             = f.label :ハンドルネーム
             = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control bg-light'
