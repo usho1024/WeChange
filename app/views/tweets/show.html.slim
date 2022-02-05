@@ -1,6 +1,6 @@
 .container
   .row
-    .main.bg-white.p-4.col-12.col-md-8
+    .main.bg-white.col-md-8.p-md-4.p-3
       .tweet-area.container.pb-3 id="tweet_#{@tweet.id}" 
         .row.align-items-center
           .image
@@ -64,7 +64,7 @@
         = form_with model:[@user, @tweet, @reply], local:true do |f|
           .form-group
             = f.label :このつぶやきについてどう思いましたか？
-            = f.text_area :body, class: 'form-control rounded bg-light', rows: '5', placeholder: '140字以内で返信してみよう！'
+            = f.text_area :body, class: 'form-control rounded bg-light shadow-sm', rows: '5', placeholder: '140字以内で返信してみよう！'
           .form-group
             = f.label :画像を添付する　
             = f.file_field :images, multiple: true

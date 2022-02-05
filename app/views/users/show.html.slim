@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-8.bg-white.p-4
+    .col-md-8.bg-white.p-md-4.p-3
       .user.border-bottom
         .image.mb-2
           - if @user.image.attached?
@@ -41,7 +41,7 @@
         .record-area.container
           .row
             - @user.study_times.last(7).each do |study_time|
-              .weekly-report.border.mb-4.mr-3.text-center.border-secondary.rounded
+              .study_time.border.mb-4.mr-2.text-center.border-secondary.rounded
                 .day.p-2.border-bottom.border-secondary
                   = study_time.created_at.strftime('%m/%d')
                 .study_time.p-2

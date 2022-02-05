@@ -1,29 +1,39 @@
-header#main
+header
   nav.navbar.navbar-expand-lg.navbar-light
-    .container
+    .container-fluid
       a.navbar-brand.logo[href="/"]
         = image_tag('logo.png')
       button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
         span.navbar-toggler-icon
       #navbarNavDropdown.collapse.navbar-collapse
+        .massage.text-light.ml-md-5.py-2
+          - if user_signed_in?
+            | ようこそ　
+            span.text-secondary.bg-white.p-2.rounded
+              = current_user.name
+            | 　さん
+          - else
+            | ログインもしくは新規登録が必要です。
+
         ul.navbar-nav.ml-auto
           - if user_signed_in?
             li.nav-item.mr-4
               = link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light'
-            li.nav-item.mr-5
-              = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light'
             li.nav-item
-             = form_with url: search_path, method: :get, local: true do |f|
-                span.mr-2
-                  = f.text_field :content, class: 'bg-light rounded-pill border px-3 form-control mb-2', placeholder: 'Search'
-                span.mr-2
-                  = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" })
-                span.mr-3
-                  = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
-                span
-                  = f.submit '検索', class: " btn btn-sm rounded-pill px-4 bg-white font-weight-bold"
+              = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light'
           - else
             li.nav-item.mr-4
               = link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'
             li.nav-item
               = link_to "ログイン", new_user_session_path, class: 'nav-link text-light'
+        - if user_signed_in?
+          = form_with url: search_path, method: :get, local: true do |f|
+            .form-area.row.align-items-end.justify-content-end.mr-lg-4.py-2.py-lg-0
+              .text_field.col-lg-4.col-12.p-lg-0
+                = f.text_field :content, class: 'bg-light rounded border form-control shadow-sm', placeholder: 'Search'
+              .model.col-lg-2.col
+                = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" })
+              .method.col-lg-2.col.mr-lg-2
+                = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
+              .submit.col-lg-2.col
+                = f.submit '検索', class: " btn btn-sm rounded-pill px-4 mt-2 bg-white font-weight-bold shadow-sm"

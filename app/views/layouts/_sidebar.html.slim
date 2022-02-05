@@ -1,5 +1,5 @@
-.col-md-4.p-0
-  .sidebar.p-4.bg-white
+.col-md-4.pl-md-3.p-0
+  .sidebar.bg-white.p-md-4.p-3
     .menu
       h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-3.rounded
         | Contents
@@ -12,7 +12,7 @@
       = form_with model:[user,tweet], local:true do |f|
         .form-group
           = f.label :いまどうしてる？
-          = f.text_area :body, class: 'form-control bg-light', rows: '12', placeholder: '140字以内でつぶやこう！'
+          = f.text_area :body, class: 'form-control bg-light shadow-sm', rows: '12', placeholder: '140字以内でつぶやこう！'
         .form-group
           = f.label :画像を添付する
           = f.file_field :images, multiple: true
