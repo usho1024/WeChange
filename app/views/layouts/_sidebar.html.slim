@@ -15,6 +15,6 @@
           = f.text_area :body, class: 'form-control bg-light shadow-sm', rows: '12', placeholder: '140字以内でつぶやこう！'
         .form-group
           = f.label :画像を添付する
-          = f.file_field :images, multiple: true
+          = f.file_field :images, multiple: true, class: 'big_form'
         .form-group
           = f.submit "つぶやく", class: 'btn post rounded-pill text-white font-weight-bold form-control'

@@ -41,7 +41,7 @@
         .record-area.container
           .row
             - @user.study_times.last(7).each do |study_time|
-              .study_time.border.mb-4.mr-2.text-center.border-secondary.rounded
+              .study_time.border.mb-4.mr-2.mr-md-3.text-center.border-secondary.rounded
                 .day.p-2.border-bottom.border-secondary
                   = study_time.created_at.strftime('%m/%d')
                 .study_time.p-2
