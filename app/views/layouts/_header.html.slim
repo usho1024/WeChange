@@ -29,10 +29,10 @@ header
           = form_with url: search_path, method: :get, local: true do |f|
             .form-area.row.align-items-end.justify-content-end.mr-lg-4.py-2.py-lg-0
               .text_field.col-lg-4.col-12.p-lg-0
-                = f.text_field :content, class: 'bg-light rounded border form-control shadow-sm', placeholder: 'Search'
+                = f.text_field :content, class: 'bg-light rounded border form-control rounded-pill', placeholder: 'Search'
               .model.col-lg-2.col
                 = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" })
               .method.col-lg-2.col.mr-lg-2
                 = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
               .submit.col-lg-2.col
-                = f.submit '検索', class: " btn btn-sm rounded-pill px-4 mt-2 bg-white font-weight-bold shadow-sm"
+                = f.submit '検索', class: " btn btn-sm rounded-pill px-4 mt-2 bg-white font-weight-bold"

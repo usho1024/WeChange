@@ -64,7 +64,7 @@
         = form_with model:[@user, @tweet, @reply], local:true do |f|
           .form-group
             = f.label :このつぶやきについてどう思いましたか？
-            = f.text_area :body, class: 'form-control rounded bg-light shadow-sm', rows: '5', placeholder: '140字以内で返信してみよう！'
+            = f.text_area :body, class: 'form-control rounded bg-light', rows: '7', placeholder: '140字以内で返信してみよう！'
           .form-group
             = f.label :画像を添付する　
             = f.file_field :images, multiple: true

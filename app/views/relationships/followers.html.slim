@@ -1,11 +1,10 @@
 .container
   .row
-    .col-12.col-md-8.main.bg-white.p-4
-      .contents-head.border-bottom
-        h5.m-0.p-3
-          = @user.name
-          | をフォローしている
-          = @users.count
-          | 人のユーザー
+    .col-md-8.main.bg-white.p-md-4.p-3
+      .contents-head.border-bottom.h5.py-3
+        = @user.name
+        | をフォローしている
+        = @users.count
+        | 人のユーザー
       = render 'users/index', users: @users
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

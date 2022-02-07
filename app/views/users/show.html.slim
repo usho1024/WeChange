@@ -60,8 +60,10 @@
               = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
               |　時間
               = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
-      .title.h5.font-weight-bold.text-white.p-3.bg-dark.rounded
-        span.fas.fa-comments
+      .title.h5.border.border-secondary.rounded.p-2.bg-light
+        span.fas.fa-comments.mr-2
+         |
+        span
          |  つぶやき
       = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

@@ -1,7 +1,7 @@
 .contents.mt-3
   - users.each do |user|
-    .user.p-1.border-bottom
-      .head.d-flex.align-items-end.p-2
+    .user.border-bottom
+      .head.d-flex.align-items-end
         .image.mr-4
           = link_to user_path(user) do
             - if user.image.attached?
@@ -16,6 +16,6 @@
               = link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3 rounded-pill font-weight-bold"
             - else
               = link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3 rounded-pill font-weight-bold"
-      .body.p-2
+      .body.mt-2
         = simple_format(user.introduction)
   = paginate users

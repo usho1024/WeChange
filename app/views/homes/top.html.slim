@@ -1,8 +1,10 @@
 .container
   .row
-    .tl-area.bg-white.col-12.col-md-8.p-md-4.p-3
-      .title.h5.font-weight-bold.bg-dark.text-white.p-3.m-0.rounded
-        span.fas.fa-comments
-          |  タイムライン
+    .tl-area.bg-white.col-md-8.p-md-4.p-3
+      .title.h5.border.border-secondary.rounded.p-2.bg-light
+        span.fas.fa-comments.mr-2
+          | 
+        span
+          | Timeline
       = render 'tweets/index', tweets: @tweets
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

@@ -10,7 +10,7 @@
   .row
     .col-md-6.offset-md-3.p-0
       .profile-edit.bg-white.p-4
-        h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-3.rounded
+        .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
           | プロフィール編集
         = form_with model:@user, local:true do |f|
           .form-group
@@ -20,7 +20,7 @@
                 = image_tag @user.image.variant(resize:'100x100'), class: 'mr-3'
               - else
                 = image_tag 'no_image.jpg', class: 'mr-3'
-          .form-group 
+          .form-group.mb-4
             = f.file_field :image, class: 'align-bottom'
           .form-group
             = f.label :ハンドルネーム
