@@ -34,24 +34,23 @@
           | 最新7件の勉強時間計： 
           = @last7_time
           |  時間
-        .total-time.mb-3
+        .total-time
           | トータル勉強時間： 
           = @total_time
           |  時間
-        .record-area.container
-          .row
-            - @user.study_times.last(7).each do |study_time|
-              .study_time.border.mb-4.mr-2.mr-md-3.text-center.border-secondary.rounded
-                .day.p-2.border-bottom.border-secondary
-                  = study_time.created_at.strftime('%m/%d')
-                .study_time.p-2
-                  = study_time.time.round(1)
-                  |  h
-                - if @user == current_user
-                  .edit-btn.ml-auto
-                    = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
-                  .delete-btn.ml-auto
-                    = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
+        .record-area.row.justify-content-center.py-4
+          - @user.study_times.last(7).each do |study_time|
+            .study_time.border.mb-2.mb-md-0.mr-2.mr-md-3.text-center.border-secondary.rounded
+              .day.p-2.border-bottom.border-secondary
+                = study_time.created_at.strftime('%m/%d')
+              .study_time.p-2
+                = study_time.time.round(1)
+                |  h
+              - if @user == current_user
+                .edit-btn.ml-auto
+                  = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
+                .delete-btn.ml-auto
+                  = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
         - if @user == current_user
           .title
             | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）

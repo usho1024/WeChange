@@ -1,48 +1,48 @@
 .container
   .row
-    .col-md-8.bg-white.p-4
-      .title.p-3.rounded.bg-dark.text-white.h5
-        span.fas.fa-crown
+    .col-md-8.bg-white.p-md-4.p-3
+      .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3
+        span.fas.fa-crown.mr-2
+          |
+        span
           - if @selection == 'total'
             |  トータルの勉強時間ランキング　TOP10
           - else
             |  今週の勉強時間ランキング　TOP10（毎週月曜0時リセット）
-      .form-area.container
-        = form_with url: users_path, method: :get, local: true do |form|
-          .row
-            .select.p-0.mr-4
-              = form.select :keyword, [['週間勉強時間ランキング', 'weekly'],['トータル勉強時間ランキング', 'total']]
-            .submit.p-0
-              = form.submit "表示する", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
+      = form_with url: users_path, method: :get, local: true do |form|
+        .form-area.d-flex.align-items-end
+          .select.mr-3
+            = form.select :keyword, [['週間勉強時間ランキング', 'weekly'],['トータル勉強時間ランキング', 'total']]
+          .submit
+            = form.submit "表示する", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
       .contents.mt-3
         - @users.each.with_index(@users.offset_value + 1) do |user, i|
           .user.container.border-bottom.py-3
             .row.align-items-end
-              .index.col-md-1.col-2.p-0
-                span.h4
-                  = i
-                  | 位
-              .image.col-md-1.col-2
+              .index.col-md-auto.col-6.h4
+                = i
+                | 位
+              .image.col-md-auto.col-6
                 = link_to user_path(user) do
                   - if user.image.attached?
                     = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
                   - else
                     = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-              .name.col-md-4.col-8.pl-4
+              .name.col-md-auto.mr-md-3.col-12
                 = link_to user.name, user_path(user), class: "text-dark"
               - if @selection == 'total'
-                .total_time.h4.col-md-3.col-4.m-0.p-0
+                .total_time.h4.col-md-auto.col-6.m-0
                   = user.total_time
                   |  時間
-                .weekly_time.col-md-3.col-8
+                .weekly_time.col-md-auto.col-6
                   |  週間 
                   = user.weekly_time
                   |  時間
               - else
-                .weekly_time.col-md-3.h4.col-4.m-0.p-0
+                .weekly_time.col-md-auto.h4.col-6.m-0
                   = user.weekly_time
                   |  時間
-                .total_time.col-md-3.col-8
+                .total_time.col-md-auto.col-6
                   | トータル 
                   = user.total_time
                   |  時間

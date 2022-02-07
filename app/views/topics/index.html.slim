@@ -2,22 +2,24 @@
   .row
     .main.col-md-8.bg-white.p-md-4.p-3
       .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3
-        span.fas.fa-chalkboard
-           |  トピック一覧
-      .search-area
-        .row.justify-content-end
-          .create-btn.col
-            = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
-          .sort-form.col.row
+        span.fas.fa-chalkboard.mr-2
+          |
+        span
+          | トピック一覧
+      .head.row.align-items-end
+        .create-btn.col-md-auto.col-12
+          = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
+        .form-area.col-md-auto.ml-md-auto
           = form_with url: topics_path, method: :get, local: true do |form|
-            .form-group
-              = form.select :keyword, [ ['作成日が新しい順', 'new'],
-                                        ['作成日が古い順', 'old'],
-                                        ['コメントが多い順', 'many'],
-                                        ['コメントが少ない順', 'less'],
-                                      ]
-            .form-group
-              = form.submit "ソートする", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
+            .form-area.d-flex.align-items-end
+              .select.mr-3
+                = form.select :keyword, [ ['作成日が新しい順', 'new'],
+                                          ['作成日が古い順', 'old'],
+                                          ['コメントが多い順', 'many'],
+                                          ['コメントが少ない順', 'less'],
+                                        ]
+              .submit
+                = form.submit "ソートする", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
       .topics-area
         - @topics.each do |topic|
           .topic.border-bottom.py-3

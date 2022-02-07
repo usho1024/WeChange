@@ -9,8 +9,8 @@
 .container
   .row
     .col-md-6.offset-md-3.p-0
-      .topic-new.bg-white.p-4
-        h5.mb-3.font-weight-bold.bg-dark.text-white.text-center.p-3.rounded
+      .topic-new.bg-white.p-md-4.p-3
+        .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
           | 新規トピック作成
         = form_with model:@topic, local:true do |f|
           .form-group

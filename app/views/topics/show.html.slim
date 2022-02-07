@@ -1,6 +1,6 @@
 .container
   .row
-    .contents.bg-white.p-4.col-md-8
+    .contents.bg-white.p-md-4.p-3.col-md-8
       .topic-area.pb-3.border-bottom
         .title.border-bottom
           h5.font-weight-bold
@@ -31,10 +31,9 @@
             .time.ml-5
               = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
       .comment-area.pb-3
-        .head.border-bottom
-          h5.m-0.py-3
-            = @topic.comments.count
-            | 件のコメント
+        .head.border-bottom.h5.py-3
+          = @topic.comments.count
+          | 件のコメント
         .contents.p-0
           - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
             .comment.border-bottom.py-3
