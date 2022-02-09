@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-8.bg-white.p-md-4.p-3
+    .contents.col-md-8.bg-white.p-md-4.p-3.shadow
       .user.border-bottom
         .image.mb-2
           - if @user.image.attached?
@@ -61,7 +61,6 @@
               = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
       .title.h5.border.border-secondary.rounded.p-2.bg-light
         span.fas.fa-comments.mr-2
-         |
         span
          |  つぶやき
       = render 'tweets/index', tweets: @tweets

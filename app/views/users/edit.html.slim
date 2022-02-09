@@ -8,25 +8,24 @@
         = message
 .container
   .row
-    .col-md-6.offset-md-3.p-0
-      .profile-edit.bg-white.p-md-4.p-3
-        .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
-          | プロフィール編集
-        = form_with model:@user, local:true do |f|
-          .form-group
-            = f.label :ユーザーアイコン
-            .image-group
-              - if @user.image.attached?
-                = image_tag @user.image.variant(resize:'100x100'), class: 'mr-3'
-              - else
-                = image_tag 'no_image.jpg', class: 'mr-3'
-          .form-group.mb-4
-            = f.file_field :image, class: 'align-bottom'
-          .form-group
-            = f.label :ハンドルネーム
-            = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control bg-light'
-          .form-group
-            = f.label :自己紹介文
-            = f.text_area :introduction, placeholder:"200文字以内で入力してください", rows: '10', class: 'form-control bg-light'
-          .form-group
-            = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold px-4'
+    .contents.col-md-6.offset-md-3.bg-white.p-md-4.p-3.shadow
+      .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
+        | プロフィール編集
+      = form_with model:@user, local:true do |f|
+        .form-group
+          = f.label :ユーザーアイコン
+          .image-group
+            - if @user.image.attached?
+              = image_tag @user.image.variant(resize:'100x100'), class: 'mr-3'
+            - else
+              = image_tag 'no_image.jpg', class: 'mr-3'
+        .form-group.mb-4
+          = f.file_field :image, class: 'align-bottom'
+        .form-group
+          = f.label :ハンドルネーム
+          = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control bg-light'
+        .form-group
+          = f.label :自己紹介文
+          = f.text_area :introduction, placeholder:"200文字以内で入力してください", rows: '10', class: 'form-control bg-light'
+        .form-group
+          = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold px-4'

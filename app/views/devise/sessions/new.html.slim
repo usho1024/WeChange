@@ -1,6 +1,6 @@
 .container
   .row
-    .col-12.col-md-4.offset-md-4.bg-white.p-4
+    .col-md-4.offset-md-4.bg-white.p-md-4.p-3.shadow
       h4.mb-3.font-weight-bold.text-center
         | ログイン
       = form_with model: @user, url: user_session_path, local: true do |f|

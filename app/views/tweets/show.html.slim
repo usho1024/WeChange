@@ -1,6 +1,6 @@
 .container
   .row
-    .main.bg-white.col-md-8.p-md-4.p-3
+    .contents.bg-white.col-md-8.p-md-4.p-3.shadow
       .tweet-area.container.pb-3 id="tweet_#{@tweet.id}" 
         .row.align-items-center
           .image
@@ -16,7 +16,7 @@
             = simple_format(@tweet.body)
             - if @tweet.images.attached?
               - @tweet.images.each do |image|
-                = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3'
+                = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3 border'
         .row
           .favorite-btn
             = render "favorites/favorite-btn", tweet: @tweet
@@ -51,7 +51,7 @@
                 = simple_format(reply.body)
                 - if reply.images.attached?
                   - reply.images.each do |image|
-                    = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3'
+                    = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3 border'
               .bottom.container
                 .row.align-items-end
                   .time

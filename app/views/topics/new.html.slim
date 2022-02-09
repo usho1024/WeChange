@@ -8,19 +8,18 @@
         = message
 .container
   .row
-    .col-md-6.offset-md-3.p-0
-      .topic-new.bg-white.p-md-4.p-3
-        .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
-          | 新規トピック作成
-        = form_with model:@topic, local:true do |f|
-          .form-group
-            = f.label :トピックタイトル
-            = f.text_field :title, autofocus: true, placeholder:"50文字以内で入力してください", class: 'form-control bg-light'
-          .form-group
-            = f.label :コメント
-            = f.text_area :body, placeholder:"500文字以内で入力してください", rows: '15', class: 'form-control bg-light'
-          .form-group
-            = f.label :画像を添付する　
-            = f.file_field :images, multiple: true
-          .form-group
-            = f.submit "トピックを作成", class: 'btn post rounded-pill text-white font-weight-bold px-4'
+    .contents.col-md-6.offset-md-3.bg-white.p-md-4.p-3.shadow
+      .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
+        | 新規トピック作成
+      = form_with model:@topic, local:true do |f|
+        .form-group
+          = f.label :トピックタイトル
+          = f.text_field :title, autofocus: true, placeholder:"50文字以内で入力してください", class: 'form-control bg-light'
+        .form-group
+          = f.label :コメント
+          = f.text_area :body, placeholder:"500文字以内で入力してください", rows: '15', class: 'form-control bg-light'
+        .form-group
+          = f.label :画像を添付する　
+          = f.file_field :images, multiple: true
+        .form-group
+          = f.submit "トピックを作成", class: 'btn post rounded-pill text-white font-weight-bold px-4'

@@ -1,9 +1,8 @@
 .container
   .row
-    .tl-area.bg-white.col-md-8.p-md-4.p-3
+    .contents.bg-white.col-md-8.p-md-4.p-3.shadow
       .title.h5.border.border-secondary.rounded.p-2.bg-light
         span.fas.fa-comments.mr-2
-          | 
         span
           | Timeline
       = render 'tweets/index', tweets: @tweets

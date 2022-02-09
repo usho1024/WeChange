@@ -8,16 +8,15 @@
         = message
 .container
   .row
-    .col-md-6.offset-md-3.p-0
-      .profile-edit.bg-white.p-md-4.p-3
-        .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
-          | 勉強時間編集
-        .time.p-3
-          = @study_time.created_at.strftime('%m月%d日')
-        = form_with model:[@user,@study_time], local:true do |f|
-          .form-group
-            = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
-          .text.mb-3
-            |時間
-          .form-group
-            = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold px-4'
+    .contents.col-md-6.offset-md-3.bg-white.p-md-4.p-3.shadow
+      .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.text-center
+        | 勉強時間編集
+      .time.p-3
+        = @study_time.created_at.strftime('%m月%d日')
+      = form_with model:[@user,@study_time], local:true do |f|
+        .form-group
+          = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
+        .text.mb-3
+          |時間
+        .form-group
+          = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold px-4'
