@@ -28,12 +28,10 @@ main {
 
 header {
   background: #c1a470;
-  border-bottom: solid 2px #dadada;
 }
 
 footer {
   height: 150px;
-  border-top: solid 2px #dadada;
 }
 
 .menu ul {
@@ -88,4 +86,8 @@ footer {
 
 .form-group input {
   width: 100%;
+}
+
+.btn {
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }

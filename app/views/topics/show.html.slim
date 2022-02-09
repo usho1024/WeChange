@@ -21,7 +21,7 @@
           - if @topic.images.attached?
             .images.mt-3
               - @topic.images.each do |image|
-                = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3 border shadow'
+                = image_tag image.variant(resize: '300').processed, class: 'mr-md-3 mb-3 shadow'
         .bottom.container
           .row.align-items-end
             .comment-count
@@ -51,7 +51,7 @@
               - if comment.images.attached?
                 .image.mt-3
                   - comment.images.each do |image|
-                    = image_tag image.variant(resize: '200').processed, class: 'mr-3 mb-3 border shadow'
+                    = image_tag image.variant(resize: '200').processed, class: 'mr-md-3 mb-3 shadow'
           = paginate @comments
       .comment-form-area.mt-3.bg-white
         = form_with model:[@topic, @comment], local:true do |f|

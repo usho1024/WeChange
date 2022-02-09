@@ -1,22 +1,20 @@
 .container
   .row
-    .col-12.col-md-8.main.bg-white.p-3
+    .contents.col-md-8.bg-white.p-md-4.p-3.shadow
       - if @model == 'user'
-        .contents-head.border-bottom
-          h5.m-0.p-3
-            | " 
-            = @content
-            |  "のユーザー検索結果、
-            = @result.count
-            | 件のヒット
+        .title.border-bottom.h5.py-3
+          | " 
+          = @content
+          |  "のユーザー検索結果、
+          = @result.count
+          | 件のヒット
         = render 'users/index', users: @records
       - elsif @model == 'tweet'
-        .contents-head.border-bottom
-          h5.m-0.p-3
-            | " 
-            = @content
-            |  "のつぶやき検索結果、
-            = @result.count
-            | 件のヒット
+        .title.border-bottom.h5.py-3
+          | " 
+          = @content
+          |  "のつぶやき検索結果、
+          = @result.count
+          | 件のヒット
         = render 'tweets/index', tweets: @records
     = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

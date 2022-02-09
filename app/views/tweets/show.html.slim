@@ -16,7 +16,7 @@
             = simple_format(@tweet.body)
             - if @tweet.images.attached?
               - @tweet.images.each do |image|
-                = image_tag image.variant(resize: '300').processed, class: 'mr-2 mb-3 border'
+                = image_tag image.variant(resize: '300').processed, class: 'mr-md-3 mb-3 shadow'
         .row
           .favorite-btn
             = render "favorites/favorite-btn", tweet: @tweet
@@ -51,7 +51,7 @@
                 = simple_format(reply.body)
                 - if reply.images.attached?
                   - reply.images.each do |image|
-                    = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3 border'
+                    = image_tag image.variant(resize: '150').processed, class: 'mr-3 mb-3 shadow'
               .bottom.container
                 .row.align-items-end
                   .time

@@ -15,7 +15,7 @@
           = simple_format(tweet.body)
           - if tweet.images.attached?
             - tweet.images.each do |image|
-              = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-3 shadow'
+              = image_tag image.variant(resize: '150').processed, class: 'mr-2 mb-2 shadow'
     .row
       .favorite-btn.col-3.col-md-2
         = render "favorites/favorite-btn", tweet: tweet
