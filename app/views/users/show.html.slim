@@ -40,7 +40,7 @@
           |  時間
         .record-area.row.justify-content-center.py-4
           - @user.study_times.last(7).each do |study_time|
-            .study_time.border.mb-2.mb-md-0.mr-2.mr-md-3.text-center.border-secondary.rounded
+            .study_time.border.mb-2.mb-md-0.mr-2.mr-md-3.text-center.border-secondary.rounded.shadow-sm
               .day.p-2.border-bottom.border-secondary
                 = study_time.created_at.strftime('%m/%d')
               .study_time.p-2
@@ -59,7 +59,7 @@
               = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
               |　時間
               = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
-      .title.h5.border.border-secondary.rounded.p-2.bg-light
+      .title.h5.border.border-secondary.rounded.p-2.bg-light.shadow-sm
         span.fas.fa-comments.mr-2
         span
          |  つぶやき

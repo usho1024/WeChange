@@ -6,16 +6,16 @@ header.sticky-top.shadow-sm
     button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse
-      .massage.text-light.ml-xl-5.py-3
+      .massage.text-light.ml-xl-5.py-2
         - if user_signed_in?
-          | ようこそ　
-          span.text-secondary.bg-white.p-2.rounded
+          | ようこそ 
+          span.text-secondary.bg-white.p-1.rounded
             = current_user.name
-          | 　さん
+          |  さん
         - else
           | ログインもしくは新規登録が必要です。
       - if user_signed_in?
-        ul.navbar-nav.ml-xl-3.mr-xl-5
+        ul.navbar-nav.ml-xl-5.mr-xl-5
           li.nav-item.mr-xl-2
             = link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light'
           li.nav-item
@@ -23,9 +23,9 @@ header.sticky-top.shadow-sm
       - else
         ul.navbar-nav.ml-xl-5
           li.nav-item.mr-xl-4
-            = link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'
-          li.nav-item
             = link_to "ログイン", new_user_session_path, class: 'nav-link text-light'
+          li.nav-item
+            = link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'
       - if user_signed_in?
         = form_with url: search_path, method: :get, local: true do |f|
           .form-area.container.py-2.py-xl-0
