@@ -24,8 +24,10 @@ header.sticky-top.shadow-sm
         ul.navbar-nav.ml-xl-5
           li.nav-item.mr-xl-4
             = link_to "ログイン", new_user_session_path, class: 'nav-link text-light'
-          li.nav-item
+          li.nav-item.mr-xl-4
             = link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'
+          li.nav-item
+            = link_to "WeChangeとは？", about_path, class: 'nav-link text-light'
       - if user_signed_in?
         = form_with url: search_path, method: :get, local: true do |f|
           .form-area.container.py-2.py-xl-0

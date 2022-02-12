@@ -1,7 +1,8 @@
 # WeChange!
 
 ## サイト概要
-![test](https://user-images.githubusercontent.com/89927015/153604464-a896727e-c0ae-4a34-a380-df871eeb41e2.gif)　　　
+![test](https://user-images.githubusercontent.com/89927015/153604464-a896727e-c0ae-4a34-a380-df871eeb41e2.gif)
+
 ![test2](https://user-images.githubusercontent.com/89927015/153606938-f39fa33e-5e93-4868-9025-c8ac61b227e0.gif)
 
 - URL：http://wechange-dwc.com

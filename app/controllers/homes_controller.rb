@@ -6,4 +6,7 @@ class HomesController < ApplicationController
     @tweets = Tweet.where(user_id: [current_user.id, *current_user.following_ids]).page(params[:page]).reverse_order
     @tweet_new = Tweet.new
   end
+
+  def about
+  end
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, skip: [:passwords]
   root to: 'homes#top'
+  get 'about' => 'homes#about'
 
   resources :users, only: [:index, :show, :edit, :update] do
     resources :tweets, only: [:show, :create, :destroy] do
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
   resources :topics, only: [:index, :show, :create, :new] do
     resources :comments, only: [:create]
   end
-  get '/search' => 'searches#search'
+  get 'search' => 'searches#search'
 end
