@@ -64,17 +64,9 @@ class User < ApplicationRecord
     User.find(StudyTime.group(:user_id).where(study_times: { created_at: Time.current.all_week }).order(Arel.sql('sum(time) desc')).limit(10).pluck(:user_id))
   end
 
-  # ユーザーの検索方式を判別するクラスメソッド
-  def self.search_for(content, method)
-    if method == 'perfect'
-      User.where(name: content) # 完全一致
-    elsif method == 'forward'
-      User.where('name LIKE ?', content + '%') # 前方一致
-    elsif method == 'backward'
-      User.where('name LIKE ?', '%' + content) # 後方一致
-    else
-      User.where('name LIKE ?', '%' + content + '%') # 部分一致
-    end
+  # 部分一致で検索するクラスメソッド
+  def self.search_for(content)
+    User.where('name LIKE ?', '%' + content + '%')
   end
 
   # 勉強時間ランキングの対象期間（週間、トータル）を判別するクラスメソッド

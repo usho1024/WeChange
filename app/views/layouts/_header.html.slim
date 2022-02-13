@@ -6,38 +6,34 @@ header.sticky-top.shadow-sm
     button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse
-      .massage.text-light.ml-xl-5.py-2
-        - if user_signed_in?
-          | ようこそ 
-          span.text-secondary.bg-white.p-1.rounded
-            = current_user.name
-          |  さん
-        - else
-          | ログインもしくは新規登録が必要です。
       - if user_signed_in?
-        ul.navbar-nav.ml-xl-5.mr-xl-5
-          li.nav-item.mr-xl-2
-            = link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light'
-          li.nav-item
-            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light'
+          .text.ml-xl-5.py-2
+            span.text-secondary.bg-white.p-1.rounded
+              = current_user.name
+            span.text-light.ml-2
+              | さん
+          ul.navbar-nav.ml-xl-5.mr-xl-5
+            li.nav-item.mr-xl-3
+              = link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light'
+            li.nav-item
+              = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light'
+          ul.navbar-nav.ml-auto
+            = form_with url: search_path, method: :get, local: true do |f|
+              .search-area.d-md-flex.align-items-end.mr-md-5.py-2
+                .text.mr-2.mb-2.mb-md-0
+                  = f.text_field :content, class: 'bg-light rounded border form-control rounded-pill', placeholder: 'Search'
+                .d-flex.align-items-end
+                  .model.mr-2
+                    = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" })
+                  .submit
+                    = f.submit '検索', class: " btn btn-sm rounded-pill px-4 bg-white font-weight-bold"
       - else
+        .text.text-light.py-2.ml-xl-5
+          | ログインもしくは新規登録が必要です。
         ul.navbar-nav.ml-xl-5
-          li.nav-item.mr-xl-4
+          li.nav-item.mr-xl-3
             = link_to "ログイン", new_user_session_path, class: 'nav-link text-light'
-          li.nav-item.mr-xl-4
+          li.nav-item.mr-xl-3
             = link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'
           li.nav-item
             = link_to "WeChangeとは？", about_path, class: 'nav-link text-light'
-      - if user_signed_in?
-        = form_with url: search_path, method: :get, local: true do |f|
-          .form-area.container.py-2.py-xl-0
-            .row
-              .text_field.col-12.col-xl-6.p-xl-0
-                = f.text_field :content, class: 'bg-light rounded border form-control rounded-pill mb-2 mb-xl-0', placeholder: 'Search'
-              .col-12.col-xl-6.d-flex.align-items-end
-                .model.mr-3
-                  = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" })
-                .method.mr-3
-                  = f.select :method, options_for_select({ "部分一致" => "partial", "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward" })
-                .submit
-                  = f.submit '検索', class: " btn btn-sm rounded-pill px-4 bg-white font-weight-bold"
