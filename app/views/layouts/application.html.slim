@@ -15,7 +15,8 @@ html
     = render 'layouts/header'
     main.py-md-4
       = yield
-    span#back
-      a[href="#"]
-        = image_tag 'arrow.png', width: '50px'
+    - if user_signed_in?
+      span#back
+        a[href="#"]
+          = image_tag 'arrow.png', width: '50px'
     = render 'layouts/footer'
