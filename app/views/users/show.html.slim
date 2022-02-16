@@ -40,7 +40,7 @@
           |  時間
         .record-area.d-flex.flex-wrap.justify-content-center.py-4
           - @user.study_times.last(7).each do |study_time|
-            .study_time.border.mb-2.mb-md-0.mr-2.mr-md-3.text-center.border-secondary.rounded.shadow-sm.bg-light
+            .study_time.border.text-center.border-secondary.rounded.shadow-sm.bg-light
               .day.p-2.border-bottom.border-secondary
                 = study_time.created_at.strftime('%m/%d')
               .study_time.p-2

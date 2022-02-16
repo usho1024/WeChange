@@ -1,59 +1,56 @@
 .container
   .row
     .contents.bg-white.p-md-4.p-3.col-md-8.shadow
-      .topic-area.pb-3.border-bottom
-        .title.border-bottom
-          h5.font-weight-bold
-            = @topic.title
-        .head.container.mt-3
-          .row.align-items-center
-            .image
-              = link_to user_path(@topic.user) do
-                  - if @topic.user.image.attached?
-                    = image_tag @topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                  - else
-                    = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-            .name.font-weight-bold.ml-3
-              = link_to @topic.user.name, user_path(@topic.user), class: "text-dark"
-        .body.h5.pt-3
-          .sentence
-            = safe_join(@topic.body.split("\n"),tag(:br))
+      .title.border-bottom
+        h5.font-weight-bold
+          = @topic.title
+      .topic.py-4.border-bottom
+        .head.d-flex.align-items-end
+          .image.mr-3
+            = link_to user_path(@topic.user) do
+              - if @topic.user.image.attached?
+                = image_tag @topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
+              - else
+                = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+          .name.font-weight-bold
+            = link_to @topic.user.name, user_path(@topic.user), class: "text-success"
+        .body.h5.mt-3
+          = safe_join(@topic.body.split("\n"),tag(:br))
           - if @topic.images.attached?
-            .images.mt-3
+            .images.d-flex.flex-wrap.justify-content-center.py-4
               - @topic.images.each do |image|
-                = image_tag image.variant(resize: '300').processed, class: 'mr-md-3 mb-3 shadow'
-        .bottom.container
-          .row.align-items-end
-            .comment-count
-              span.far.fa-comment
-                |  
-                = @topic.comments.count
-            .time.ml-5
-              = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-      .comment-area.pb-3
-        .head.border-bottom.h5.py-3
-          = @topic.comments.count
-          | 件のコメント
-        .contents.p-0
-          - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
-            .comment.border-bottom.py-3
-              .head.container.mb-2
-                .row
-                  .index.mr-3
-                    | No.
-                    = i
-                  .name.font-weight-bold.mr-5
-                    = link_to comment.user.name, user_path(comment.user), class: "text-dark"
-                  .time
-                    = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-              .body
-                = safe_join(comment.body.split("\n"),tag(:br))
+                .image
+                  = image_tag image.variant(resize: '300').processed, class: 'shadow'
+        .time-area.d-flex.align-items-end
+          .comment-count.mr-5
+            span.far.fa-comment
+              |  
+              = @topic.comments.count
+          .time
+            = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+      .title.border-bottom.h5.py-3
+        = @topic.comments.count
+        | 件のコメント
+      .comments-area.mb-4
+        - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
+          .comment.border-bottom.py-3
+            .head.d-flex.align-items-center
+              .index.mr-3
+                | No.
+                = i
+              .name.font-weight-bold.mr-5
+                = link_to comment.user.name, user_path(comment.user), class: "text-success"
+            .body.my-3
+              = safe_join(comment.body.split("\n"),tag(:br))
               - if comment.images.attached?
-                .image.mt-3
+                .images.d-flex.flex-wrap.justify-content-center.py-3
                   - comment.images.each do |image|
-                    = image_tag image.variant(resize: '200').processed, class: 'mr-md-3 mb-3 shadow'
-          = paginate @comments
-      .comment-form-area.mt-3.bg-white
+                    .image
+                      = image_tag image.variant(resize: '200').processed, class: 'shadow'
+            .time
+              = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+        = paginate @comments
+      .comment-form-area
         = form_with model:[@topic, @comment], local:true do |f|
           .form-group
             = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
