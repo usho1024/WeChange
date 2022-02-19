@@ -1,13 +1,13 @@
 .container
   .row
-    .contents.col-md-8.bg-white.p-md-4.p-3.shadow
+    .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
       .user.border-bottom
         .head.d-flex.align-items-end.mb-4
           .image.mr-4
             - if @user.image.attached?
               = image_tag @user.image.variant(resize:'80x80'), class: 'rounded-circle'
             - else
-              = image_tag 'no_image.jpg', class: 'rounded-circle'
+              = image_tag 'no_image.jpg', size: '80x80', class: 'rounded-circle border'
           .name-area.d-md-flex
             .name.font-weight-bold.h5.mr-md-5
               = @user.name
@@ -56,12 +56,10 @@
             | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
           .form-area.ml-3.pt-3
             = form_with model:[@user,@study_time], local:true do |f|
-              = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border px-1'
-              |　時間
-              = f.submit "記録する", class: 'btn post rounded-pill text-white btn-sm ml-5 px-4 font-weight-bold'
+              = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'border rounded bg-light mr-2'
+              | 時間
+              = f.submit "記録する", class: 'btn btn-sm post rounded-pill text-white ml-5 font-weight-bold col-md-3 col-4'
       .title.h5.border.border-secondary.rounded.p-2.bg-light.shadow-sm
-        span.fas.fa-comments.mr-2
-        span
-         |  つぶやき
+        i.fas.fa-comments.mr-3
+        | つぶやき
       = render 'tweets/index', tweets: @tweets
-    = render 'layouts/sidebar', tweet: @tweet_new, user: current_user

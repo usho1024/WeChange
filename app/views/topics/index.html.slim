@@ -1,24 +1,33 @@
 .container
   .row
-    .contents.col-md-8.bg-white.p-md-4.p-3.shadow
+    .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
+      ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
+        li.nav-item
+          = link_to root_path, class: 'nav-link text-dark bg-light border' do
+            i.fas.fa-house
+        li.nav-item
+          = link_to topics_path, class: 'nav-link active text-light' do
+            i.fas.fa-chalkboard
+        li.nav-item
+          = link_to users_path, class: 'nav-link text-dark bg-light border' do
+            i.fas.fa-crown
       .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.shadow-sm
-        span.fas.fa-chalkboard.mr-2
-        span
-          | トピック一覧
-      .head.row.align-items-end
-        .create-btn.col-md-auto.col-12
+        i.fas.fa-chalkboard.mx-3
+        | トピック一覧
+      .head.d-md-flex.align-items-end.mb-2
+        .create-btn.mb-2.mb-md-0
           = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
-        .form-area.col-md-auto.ml-md-auto
-          = form_with url: topics_path, method: :get, local: true do |form|
+        .form-area.ml-auto
+          = form_with url: topics_path, method: :get, local: true do |f|
             .form-area.d-flex.align-items-end
-              .select.mr-3
-                = form.select :keyword, [ ['作成日が新しい順', 'new'],
-                                          ['作成日が古い順', 'old'],
-                                          ['コメントが多い順', 'many'],
-                                          ['コメントが少ない順', 'less'],
-                                        ]
+              .select.mr-1
+                = f.select :keyword, [ ['作成日が新しい順', 'new'],
+                                       ['作成日が古い順', 'old'],
+                                       ['コメントが多い順', 'many'],
+                                       ['コメントが少ない順', 'less'],
+                                     ], {}, class: 'form-item border rounded bg-light'
               .submit
-                = form.submit "ソートする", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
+                = f.submit "ソート", class: 'form-item btn btn-sm bg-dark text-light border rounded font-weight-bold px-3'
       .topics-area
         - @topics.each do |topic|
           .topic.border-bottom.py-3
@@ -32,4 +41,3 @@
               .time
                 = topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
         = paginate @topics
-    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user

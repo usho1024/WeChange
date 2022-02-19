@@ -20,6 +20,6 @@
           = f.text_area :body, placeholder:"500文字以内で入力してください", rows: '15', class: 'form-control bg-light'
         .form-group
           = f.label :画像を添付する　
-          = f.file_field :images, multiple: true
-        .form-group
-          = f.submit "トピックを作成", class: 'btn post rounded-pill text-white font-weight-bold px-4'
+          = f.file_field :images, multiple: true, class: 'attach'
+        .form-group.text-center
+          = f.submit "トピックを作成", class: 'btn post rounded-pill text-white font-weight-bold col-6'

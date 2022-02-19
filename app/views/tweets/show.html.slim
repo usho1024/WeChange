@@ -1,6 +1,6 @@
 .container
   .row
-    .contents.bg-white.col-md-8.p-md-4.p-3.shadow
+    .contents.bg-white.col-md-8.offset-md-2.p-md-4.p-3.shadow
       .tweet.pb-4 id="tweet_#{@tweet.id}" 
         .head.d-flex.align-items-center
           .image.mr-3
@@ -8,7 +8,7 @@
               - if @tweet.user.image.attached?
                 = image_tag @tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
               - else
-                = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+                = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
           .name.font-weight-bold
             = link_to @tweet.user.name, user_path(@tweet.user), class: "text-dark"
         .body.h5.mt-3
@@ -22,9 +22,8 @@
           .favorite-btn.mr-5
             = render "favorites/favorite-btn", tweet: @tweet
           .replies-count
-            span.far.fa-comment
-              |  
-              = @tweet.replies.count
+            i.far.fa-comment.mr-1
+            = @tweet.replies.count
         .time-area.d-flex.align-items-end
           .time
             = @tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
@@ -44,7 +43,7 @@
                     - if reply.user.image.attached?
                       = image_tag reply.user.image.variant(resize:'50x50'), class: 'rounded-circle'
                     - else
-                      = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+                      = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
                 .name.font-weight-bold
                   = link_to reply.user.name, user_path(reply.user), class: "text-dark"
               .body.mt-3
@@ -68,7 +67,6 @@
             = f.text_area :body, class: 'form-control rounded bg-light', rows: '7', placeholder: '140字以内で返信してみよう！'
           .form-group
             = f.label :画像を添付する　
-            = f.file_field :images, multiple: true
-          .form-group
-            = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold'
-    = render 'layouts/sidebar', tweet: @tweet_new, user: current_user
+            = f.file_field :images, multiple: true, class: 'attach'
+          .form-group.text-center
+            = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold col-md-3 col-6'

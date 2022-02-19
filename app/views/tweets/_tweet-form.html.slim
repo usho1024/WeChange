@@ -1,0 +1,10 @@
+.tweet_form.border-bottom
+  = form_with model:[user,tweet], local:true do |f|
+    .form-group
+      = f.label :いまどうしてる？
+      = f.text_area :body, class: 'form-control bg-light', rows: '5', placeholder: '140字以内でつぶやこう！'
+    .form-group
+      = f.label :画像を添付する
+      = f.file_field :images, multiple: true, class: 'attach'
+    .form-group.text-center
+      = f.submit "つぶやく", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'

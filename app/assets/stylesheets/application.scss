@@ -23,6 +23,7 @@ html {
 }
 
 main {
+  min-height: 700px;
   background-color: #faf3ea;
 }
 
@@ -32,23 +33,6 @@ header {
 
 footer {
   height: 150px;
-}
-
-.menu ul {
-  padding: 0;
-}
-
-.menu ul li, .menu ol li {
-  color: #ffffff;
-  border-left: solid 6px #c1a470;/*左側の線*/
-  border-bottom: solid 2px #dadada;/*下に灰色線*/
-  background: #fffaf0;
-  margin-bottom: 5px;/*下のバーとの余白*/
-  line-height: 1.5;
-  padding: 0.3em;
-  list-style-type: none!important;/*ポチ消す*/
-  font-weight: bold;
-  font-size: 15px;
 }
 
 .study_time {
@@ -76,7 +60,7 @@ footer {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
-.form-group input {
+.attach {
   width: 100%;
 }
 
@@ -92,4 +76,45 @@ footer {
 
 .record-area {
 	gap: 10px 10px;
+}
+
+.nav-tabs .nav-item .active {
+  background-color: #808080;
+}
+
+.form-item {
+  height: 30px;
+}
+
+.user:nth-of-type(1) .index {
+  font-size: 40px;
+  background-color: #d7c447;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+}
+
+.user:nth-of-type(2) .index {
+  font-size: 35px;
+  background-color: silver;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+}
+
+.user:nth-of-type(3) .index {
+  font-size: 30px;
+  background-color: #ac6b25;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
 }

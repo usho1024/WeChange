@@ -1,17 +1,17 @@
 .container
   .row
-    .contents.bg-white.p-md-4.p-3.col-md-8.shadow
+    .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
       .title.border-bottom
         h5.font-weight-bold
           = @topic.title
       .topic.py-4.border-bottom
-        .head.d-flex.align-items-end
+        .head.d-flex.align-items-center
           .image.mr-3
             = link_to user_path(@topic.user) do
               - if @topic.user.image.attached?
                 = image_tag @topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
               - else
-                = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+                = image_tag 'no-image-icon.jpg', class: 'rounded-circle border'
           .name.font-weight-bold
             = link_to @topic.user.name, user_path(@topic.user), class: "text-success"
         .body.h5.mt-3
@@ -23,9 +23,8 @@
                   = image_tag image.variant(resize: '300').processed, class: 'shadow'
         .time-area.d-flex.align-items-end
           .comment-count.mr-5
-            span.far.fa-comment
-              |  
-              = @topic.comments.count
+            i.far.fa-comment.mr-1
+            = @topic.comments.count
           .time
             = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
       .title.border-bottom.h5.py-3
@@ -57,7 +56,6 @@
             = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
           .form-group
             = f.label :画像を添付する　
-            = f.file_field :images, multiple: true
-          .form-group
-            = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold px-4'
-    = render 'layouts/sidebar', tweet: @tweet_new, user: current_user
+            = f.file_field :images, multiple: true, class: 'attach'
+          .form-group.text-center
+            = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'

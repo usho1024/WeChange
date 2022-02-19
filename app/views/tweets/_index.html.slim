@@ -6,7 +6,7 @@
           - if tweet.user.image.attached?
             = image_tag tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
           - else
-            = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
+            = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
       .name.font-weight-bold
         = link_to tweet.user.name, user_path(tweet.user), class: "text-dark"
     .body.mt-3
@@ -21,9 +21,8 @@
       .favorite-btn.mr-5
         = render "favorites/favorite-btn", tweet: tweet
       .replies-count
-        span.far.fa-comment
-          |  
-          = tweet.replies.count
+        i.far.fa-comment.mr-1
+        = tweet.replies.count
     .time-area.d-flex.align-items-end
       .time
         = tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')

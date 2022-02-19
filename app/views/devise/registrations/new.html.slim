@@ -22,8 +22,8 @@
           = f.label :password_confirmation, "パスワード(確認用)"
           br
           = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control bg-light rounded-pill'
-        .actions.mb-4
-          = f.submit "新規登録", class: 'btn btn-dark text-white rounded-pill form-control font-weight-bold'
+        .button.mb-4.text-center
+          = f.submit "新規登録", class: 'btn btn-dark text-white rounded-pill form-control font-weight-bold col-6'
       h4.mb-3.font-weight-bold.text-center.mt-5
         | 既に登録済みの方
       p.text-center

@@ -1,48 +1,64 @@
 .container
   .row
-    .contents.col-md-8.bg-white.p-md-4.p-3.shadow
-      .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.shadow-sm
-        span.fas.fa-crown.mr-2
-        span
+    .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
+      ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
+        li.nav-item
+          = link_to root_path, class: 'nav-link text-dark bg-light border' do
+            span.fas.fa-house
+        li.nav-item
+          = link_to topics_path, class: 'nav-link text-dark bg-light border' do
+            span.fas.fa-chalkboard
+        li.nav-item
+          = link_to users_path, class: 'nav-link active text-light' do
+            span.fas.fa-crown
+      - if @selection == 'total'
+        .title.h5.border.border-secondary.rounded.p-2.bg-light.shadow-sm
+          i.fas.fa-crown.mx-3
           - if @selection == 'total'
-            |  トータルの勉強時間ランキング　TOP10
-          - else
-            |  今週の勉強時間ランキング　TOP10（毎週月曜0時リセット）
+            |  トータルTOP10
+      - else
+        .title.h5.border.border-secondary.rounded.p-2.bg-light.shadow-sm
+          i.fas.fa-crown.mx-3
+          |  週間TOP10
+        .text.mb-3
+          | 毎週月曜0時リセット
       = form_with url: users_path, method: :get, local: true do |form|
         .form-area.d-flex.align-items-end
-          .select.mr-3
-            = form.select :keyword, [['週間勉強時間ランキング', 'weekly'],['トータル勉強時間ランキング', 'total']]
+          .select.mr-1
+            = form.select :keyword, [ ['週間勉強時間ランキング', 'weekly'],
+                                      ['トータル勉強時間ランキング', 'total'],
+                                    ], {}, class: 'form-item border rounded bg-light'
           .submit
-            = form.submit "表示する", class: 'btn btn-sm post rounded-pill text-white font-weight-bold px-3'
+            = form.submit "表示する", class: 'form-item btn btn-sm bg-dark text-light border rounded font-weight-bold px-3'
       .contents.mt-3
         - @users.each.with_index(@users.offset_value + 1) do |user, i|
-          .user.container.border-bottom.py-3
-            .row.align-items-end
-              .index.col-md-auto.col-6.h4
-                = i
-                | 位
-              .image.col-md-auto.col-6
-                = link_to user_path(user) do
-                  - if user.image.attached?
-                    = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                  - else
-                    = image_tag 'no-image-icon.jpg', class: 'rounded-circle'
-              .name.col-md-auto.mr-md-3.col-12
-                = link_to user.name, user_path(user), class: "text-dark"
-              - if @selection == 'total'
-                .total_time.h4.col-md-auto.col-6.m-0
-                  = user.total_time
-                  |  時間
-                .weekly_time.col-md-auto.col-6
-                  |  週間 
-                  = user.weekly_time
-                  |  時間
-              - else
-                .weekly_time.col-md-auto.h4.col-6.m-0
-                  = user.weekly_time
-                  |  時間
-                .total_time.col-md-auto.col-6
-                  | トータル 
-                  = user.total_time
-                  |  時間
-    = render 'layouts/sidebar', tweet: @tweet_new, user: @current_user
+          .user.border-bottom.py-3
+            .d-md-flex
+              .d-flex.align-items-center.mb-3.mb-md-0
+                .index.mr-4
+                  = i
+                .image.mr-3
+                  = link_to user_path(user) do
+                    - if user.image.attached?
+                      = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
+                    - else
+                      = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
+                .name
+                  = link_to user.name, user_path(user), class: "text-dark"
+              .d-flex.ml-auto.align-items-center
+                - if @selection == 'total'
+                  .total_time.h5.m-0.mr-4
+                    = user.total_time
+                    |  時間
+                  .weekly_time
+                    |  週間 
+                    = user.weekly_time
+                    |  時間
+                - else
+                  .weekly_time.h5.m-0.mr-4
+                    = user.weekly_time
+                    |  時間
+                  .total_time
+                    | トータル 
+                    = user.total_time
+                    |  時間

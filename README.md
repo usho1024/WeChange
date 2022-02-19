@@ -5,7 +5,7 @@
 
 ![test2](https://user-images.githubusercontent.com/89927015/153606938-f39fa33e-5e93-4868-9025-c8ac61b227e0.gif)
 
-- URL：http://wechange-dwc.com
+- URL：https://wechange-dwc.com
 - テストID：1@1
 - パスワード：123456
 
