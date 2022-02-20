@@ -13,7 +13,7 @@
                 = image_tag 'no-image-icon.jpg', class: 'rounded-circle border'
           .name.font-weight-bold
             = link_to @topic.user.name, user_path(@topic.user), class: "text-success"
-        .body-show.mt-3
+        .body-show.py-3
           = safe_join(@topic.body.split("\n"),tag(:br))
           - if @topic.images.attached?
             .images.d-flex.flex-wrap.justify-content-center.py-4
@@ -38,7 +38,7 @@
                 = i
               .name.font-weight-bold.mr-5
                 = link_to comment.user.name, user_path(comment.user), class: "text-success"
-            .body.my-3
+            .body.py-3
               = safe_join(comment.body.split("\n"),tag(:br))
               - if comment.images.attached?
                 .images.d-flex.flex-wrap.justify-content-center.py-3

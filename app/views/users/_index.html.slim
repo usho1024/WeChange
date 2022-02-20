@@ -1,20 +1,21 @@
 - users.each do |user|
   .user.border-bottom.pt-3
-    .head.d-flex.align-items-center.mb-3
+    .head.d-flex.align-items-center
       .image.mr-3
         = link_to user_path(user) do
           - if user.image.attached?
             = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
           - else
             = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
-      .name.font-weight-bold.mr-4
-        = link_to user.name, user_path(user), class: "text-dark"
-      - if user != current_user
-        .links
-          - if current_user.following?(user)
-            = link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-sm btn-outline-secondary ml-4 px-3 rounded-pill font-weight-bold"
-          - else
-            = link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-sm btn-dark ml-4 px-3 rounded-pill font-weight-bold"
-    .body
+      .name-area.d-md-flex.align-items-center
+        .name.font-weight-bold.mr-md-4
+          = link_to user.name, user_path(user), class: "text-dark"
+        - if user != current_user
+          .button.ml-md-4.mt-2.mt-md-0
+            - if current_user.following?(user)
+              = link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill font-weight-bold"
+            - else
+              = link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill font-weight-bold"
+    .body.pt-3
       = simple_format(user.introduction)
 = paginate users

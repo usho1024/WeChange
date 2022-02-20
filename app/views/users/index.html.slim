@@ -43,7 +43,7 @@
                       = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
                     - else
                       = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
-                .name
+                .name.font-weight-bold
                   = link_to user.name, user_path(user), class: "text-dark"
               .d-flex.ml-auto.align-items-center
                 - if @selection == 'total'
