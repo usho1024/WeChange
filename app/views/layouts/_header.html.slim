@@ -7,33 +7,44 @@ header.sticky-top.shadow-sm
       span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse
       - if user_signed_in?
-          ul.navbar-nav.ml-xl-5.align-items-xl-center
-            li.nav-item.mr-xl-5
+          ul.navbar-nav.ml-xl-5.align-items-center
+            li.nav-item.font-weight-bold.mr-xl-4
               = link_to user_path(current_user.id), class: 'nav-link text-light' do
-                  - if current_user.image.attached?
-                    = image_tag current_user.image.variant(resize:'35x35'), class: 'image rounded-circle mr-1'
-                  - else
-                    = image_tag 'no-image-icon.jpg', size: '35x35', class: 'image rounded-circle mr-1'
-                  = current_user.name
+                - if current_user.image.attached?
+                  = image_tag current_user.image.variant(resize:'35x35'), class: 'image rounded-circle mr-1'
+                - else
+                  = image_tag 'no-image-icon.jpg', size: '35x35', class: 'image rounded-circle mr-1'
+                = current_user.name
+            li.nav-item.dropdown.mr-xl-4
+              a#dropdown1.btn.dropdown-toggle.nav-link.text-light[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+                | コンテンツ
+              .dropdown-menu[aria-labelledby="dropdown1"]
+                = link_to root_path, class: 'nav-link text-dark text-center bg-light' do
+                  | タイムライン
+                = link_to topics_path, class: 'nav-link text-dark text-center bg-light' do
+                  | 掲示板
+                = link_to users_path, class: 'nav-link text-dark text-center bg-light' do
+                  | ランキング
             li.nav-item
               = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light'
-          ul.navbar-nav.ml-auto
+          ul.navbar-nav.ml-auto.align-items-center
             = form_with url: search_path, method: :get, local: true do |f|
-              .search-area.d-flex.align-items-end.mr-xl-5.py-2
-                .select.mr-1
-                  = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), {}, class: 'form-item border rounded'
-                .text.mr-1
-                  = f.text_field :content, class: 'form-item border rounded', placeholder: ' 検索'
-                .button
-                  = button_tag :type => "submit", :class =>"form-item btn btn-sm border px-3 bg-white" do
-                    i.fa.fa-search
+              .search-area.d-md-flex.align-items-end.mr-xl-5.py-2
+                .input.mr-1
+                  = f.text_field :content, class: 'form-item border rounded col-auto', placeholder: '検索'
+                .d-flex.pt-xl-0.pt-2
+                  .select.mr-1
+                    = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), {}, class: 'form-item border rounded'
+                  .button
+                    = button_tag :type => "submit", :class =>"form-item btn btn-sm border px-3 bg-white" do
+                      i.fa.fa-search
       - else
-        .text.text-light.py-2.ml-xl-5
+        .text.text-light.py-2.ml-xl-5.text-center
           | ログインもしくは新規登録が必要です。
-        ul.navbar-nav.ml-xl-5
-          li.nav-item.mr-xl-3
+        ul.navbar-nav.ml-xl-5.align-items-center
+          li.nav-item.mr-xl-4
             = link_to "ログイン", new_user_session_path, class: 'nav-link text-light'
-          li.nav-item.mr-xl-3
+          li.nav-item.mr-xl-4
             = link_to "新規登録", new_user_registration_path, class: 'nav-link text-light'
           li.nav-item
             = link_to "WeChangeとは？", about_path, class: 'nav-link text-light'

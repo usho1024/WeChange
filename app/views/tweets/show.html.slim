@@ -11,7 +11,7 @@
                 = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
           .name.font-weight-bold
             = link_to @tweet.user.name, user_path(@tweet.user), class: "text-dark"
-        .body.h5.mt-3
+        .body-show.mt-3
           = simple_format(@tweet.body)
           - if @tweet.images.attached?
             .images.d-flex.flex-wrap.justify-content-center.py-3
@@ -31,7 +31,7 @@
             .delete-btn.ml-auto
               = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
       .reply-area.mb-4
-        .title.h5.border-top.border-bottom.py-3
+        .title.border-top.border-bottom.py-3
           = @count
           | 件の返信
         .replies-area
@@ -67,6 +67,6 @@
             = f.text_area :body, class: 'form-control rounded bg-light', rows: '7', placeholder: '140字以内で返信してみよう！'
           .form-group
             = f.label :画像を添付する　
-            = f.file_field :images, multiple: true, class: 'attach'
+            = f.file_field :images, multiple: true, class: 'form-control-file'
           .form-group.text-center
             = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold col-md-3 col-6'

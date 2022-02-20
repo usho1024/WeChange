@@ -12,25 +12,25 @@
           = link_to users_path, class: 'nav-link active text-light' do
             span.fas.fa-crown
       - if @selection == 'total'
-        .title.h5.border.border-secondary.rounded.p-2.bg-light.shadow-sm
+        .title.border.rounded.p-2.bg-light.shadow-sm
           i.fas.fa-crown.mx-3
           - if @selection == 'total'
-            |  トータルTOP10
+            |  トータルＴＯＰ１０
       - else
-        .title.h5.border.border-secondary.rounded.p-2.bg-light.shadow-sm
+        .title.border.rounded.p-2.bg-light.shadow-sm
           i.fas.fa-crown.mx-3
-          |  週間TOP10
-        .text.mb-3
+          |  週間ＴＯＰ１０
+        .note.mt-3
           | 毎週月曜0時リセット
-      = form_with url: users_path, method: :get, local: true do |form|
-        .form-area.d-flex.align-items-end
+      = form_with url: users_path, method: :get, local: true do |f|
+        .form-area.d-flex.align-items-end.py-3.border-bottom
           .select.mr-1
-            = form.select :keyword, [ ['週間勉強時間ランキング', 'weekly'],
-                                      ['トータル勉強時間ランキング', 'total'],
-                                    ], {}, class: 'form-item border rounded bg-light'
+            = f.select :keyword, [ ['週間勉強時間ランキング', 'weekly'],
+                                   ['トータル勉強時間ランキング', 'total'],
+                                 ], {}, class: 'form-item border rounded bg-light'
           .submit
-            = form.submit "表示する", class: 'form-item btn btn-sm bg-dark text-light border rounded font-weight-bold px-3'
-      .contents.mt-3
+            = f.submit "表示する", class: 'form-item btn btn-sm bg-dark text-light border rounded font-weight-bold px-3'
+      .rank-area
         - @users.each.with_index(@users.offset_value + 1) do |user, i|
           .user.border-bottom.py-3
             .d-md-flex

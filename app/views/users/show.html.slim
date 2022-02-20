@@ -2,14 +2,14 @@
   .row
     .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
       .user.border-bottom
-        .head.d-flex.align-items-end.mb-4
+        .head.d-flex.align-items-lg-center.align-items-end
           .image.mr-4
             - if @user.image.attached?
               = image_tag @user.image.variant(resize:'80x80'), class: 'rounded-circle'
             - else
               = image_tag 'no_image.jpg', size: '80x80', class: 'rounded-circle border'
-          .name-area.d-md-flex
-            .name.font-weight-bold.h5.mr-md-5
+          .name-area.d-lg-flex.align-items-end
+            .name.font-weight-bold.h5.mr-lg-5.m-lg-0
               = @user.name
             .button
               - if @user == current_user
@@ -19,7 +19,7 @@
                   = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
                 - else
                   = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill"
-        .follow-area
+        .follow-area.py-3
           = link_to user_followings_path(@user), class: 'text-dark' do
             = @user.followings.count
             |  フォロー中
@@ -27,7 +27,7 @@
             = link_to user_followers_path(@user), class: 'text-dark' do
               = @user.followers.count
               |  フォロワー
-        .body.mt-3
+        .body
           = simple_format(@user.introduction)
       .study_time-area.mb-4.py-4.border-bottom
         .weekly-time.h5.font-weight-bold
@@ -52,14 +52,14 @@
                 .delete-btn.ml-auto
                   = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
         - if @user == current_user
-          .title
+          .text
             | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
           .form-area.ml-3.pt-3
             = form_with model:[@user,@study_time], local:true do |f|
               = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'border rounded bg-light mr-2'
               | 時間
               = f.submit "記録する", class: 'btn btn-sm post rounded-pill text-white ml-5 font-weight-bold col-md-3 col-4'
-      .title.h5.border.border-secondary.rounded.p-2.bg-light.shadow-sm
-        i.fas.fa-comments.mr-3
+      .title.border.rounded.p-2.bg-light.shadow-sm
+        i.fas.fa-comments.mx-3
         | つぶやき
       = render 'tweets/index', tweets: @tweets

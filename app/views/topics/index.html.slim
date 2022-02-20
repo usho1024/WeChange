@@ -11,10 +11,10 @@
         li.nav-item
           = link_to users_path, class: 'nav-link text-dark bg-light border' do
             i.fas.fa-crown
-      .title.h5.border.border-secondary.rounded.p-2.bg-light.mb-3.shadow-sm
+      .title.p-2.shadow-sm.bg-light.border.rounded
         i.fas.fa-chalkboard.mx-3
         | トピック一覧
-      .head.d-md-flex.align-items-end.mb-2
+      .form-area.d-md-flex.align-items-end.py-3.border-bottom
         .create-btn.mb-2.mb-md-0
           = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
         .form-area.ml-auto
@@ -32,7 +32,7 @@
         - @topics.each do |topic|
           .topic.border-bottom.py-3
             .index
-              .title
+              .topic-title
                 = link_to topic_path(topic) do
                   = topic.title
                   | （
