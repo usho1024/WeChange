@@ -1,6 +1,6 @@
 .container
-  .row
-    .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
+  .row.justify-content-center
+    .contents.col-lg-8.bg-white.p-lg-4.p-3.shadow
       ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
         li.nav-item
           = link_to root_path, class: 'nav-link text-dark bg-light border' do
@@ -17,12 +17,12 @@
             |  トータルＴＯＰ１０
           - else
             |  週間ＴＯＰ１０
-      .row.no-gutters.py-3.border-bottom.align-items-lg-center
+      .row.no-gutters.py-3.border-bottom.align-items-md-center
         - if @selection == 'total'
         - else
-          .note.mb-2.mb-lg-0
+          .note.mb-2.mb-md-0
             | 毎週月曜0時リセット
-        .form-inline.ml-lg-auto
+        .form-inline.ml-md-auto
           = form_with url: users_path, method: :get, local: true do |f|
             .input-group
               .input-group-prepend
@@ -36,7 +36,7 @@
         - @users.each.with_index(@users.offset_value + 1) do |user, i|
           .user.border-bottom.py-3
             .d-lg-flex
-              .d-flex.align-items-center.mb-3.mb-md-0
+              .d-flex.align-items-center.mb-3.mb-lg-0
                 .index.mr-4
                   = i
                 .image.mr-3

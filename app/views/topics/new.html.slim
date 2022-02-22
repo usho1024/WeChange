@@ -7,8 +7,8 @@
       .massage
         = message
 .container
-  .row
-    .contents.col-md-6.offset-md-3.bg-white.p-md-4.p-3.shadow
+  .row.justify-content-center
+    .contents.col-lg-6.bg-white.p-lg-4.p-3.shadow
       .title.border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm.font-weight-bold
         | 新規トピック作成
       = form_with model:@topic, local:true do |f|

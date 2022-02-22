@@ -1,6 +1,6 @@
 .container
-  .row
-    .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
+  .row.justify-content-center
+    .contents.col-lg-8.bg-white.p-lg-4.p-3.shadow
       ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
         li.nav-item
           = link_to root_path, class: 'nav-link text-dark bg-light border' do
@@ -14,10 +14,10 @@
       .title.p-2.shadow-sm.bg-light.border.rounded.font-weight-bold
         i.fas.fa-chalkboard.mx-3
         | トピック一覧
-      .row.no-gutters.py-3.border-bottom.align-items-lg-center
-        .create-btn.mb-2.mb-lg-0.col-12.col-lg-auto
+      .row.no-gutters.py-3.border-bottom.align-items-md-center
+        .create-btn.mb-2.mb-md-0.col-12.col-md-auto
           = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
-        .form-inline.ml-lg-auto.col-12.col-lg-auto
+        .form-inline.ml-md-auto.col-12.col-md-auto
           = form_with url: topics_path, method: :get, local: true do |f|
             .input-group
               .input-group-prepend

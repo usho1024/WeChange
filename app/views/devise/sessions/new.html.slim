@@ -1,6 +1,6 @@
-.container.p-0
-  .row.no-gutters.justify-content-center
-    .col-lg-4.col-md-8.bg-white.p-lg-4.p-3.shadow
+.container
+  .row.justify-content-center
+    .col-lg-4.col-md-6.bg-white.p-lg-4.p-3.shadow
       h4.mb-3.font-weight-bold.text-center
         | ログイン
       = form_with model: @user, url: user_session_path, local: true do |f|
