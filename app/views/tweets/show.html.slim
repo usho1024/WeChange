@@ -31,7 +31,7 @@
             .delete-btn.ml-auto
               = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
       .reply-area.mb-4
-        .title.border-top.border-bottom.py-3
+        .title.border-top.border-bottom.py-3.font-weight-bold
           = @count
           | 件の返信
         .replies-area

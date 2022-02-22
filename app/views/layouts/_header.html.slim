@@ -7,7 +7,7 @@ header.sticky-top.shadow-sm
       span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse
       - if user_signed_in?
-          ul.navbar-nav.ml-xl-5.align-items-center
+          ul.navbar-nav.ml-xl-5.align-items-xl-center.align-items-start
             li.nav-item.font-weight-bold.mr-xl-4
               = link_to user_path(current_user.id), class: 'nav-link text-light' do
                 - if current_user.image.attached?
@@ -27,19 +27,17 @@ header.sticky-top.shadow-sm
                   | ランキング
             li.nav-item
               = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light'
-          ul.navbar-nav.ml-auto.align-items-center
+          .form-inline.ml-xl-auto.mr-xl-4.py-2
             = form_with url: search_path, method: :get, local: true do |f|
-              .search-area.d-md-flex.align-items-end.mr-xl-5.py-2
-                .input.mr-1
-                  = f.text_field :content, class: 'form-item border rounded col-auto', placeholder: '検索'
-                .d-flex.pt-xl-0.pt-2
-                  .select.mr-1
-                    = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), {}, class: 'form-item border rounded'
-                  .button
-                    = button_tag :type => "submit", :class =>"form-item btn btn-sm border px-3 bg-white" do
-                      i.fa.fa-search
+              .input-group
+                .input-group-prepend
+                  = f.select :model, options_for_select({ "ユーザー" => "user", "つぶやき" => "tweet" }), {}, class: 'btn btn-light border'
+                = f.text_field :content, class: 'form-control border', placeholder: '検索'
+                .input-group-append
+                  = button_tag :type => "submit", :class =>"btn btn-dark" do
+                    i.fa.fa-search
       - else
-        .text.text-light.py-2.ml-xl-5.text-center
+        .note.text-light.py-2.ml-xl-5.text-center
           | ログインもしくは新規登録が必要です。
         ul.navbar-nav.ml-xl-5.align-items-center
           li.nav-item.mr-xl-4

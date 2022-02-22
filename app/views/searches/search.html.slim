@@ -2,7 +2,7 @@
   .row
     .contents.col-md-8.offset-md-2.bg-white.p-md-4.p-3.shadow
       - if @model == 'user'
-        .title.border-bottom.py-3
+        .title.border-bottom.py-3.font-weight-bold
           | " 
           = @content
           |  "のユーザー検索結果、
@@ -10,7 +10,7 @@
           | 件のヒット
         = render 'users/index', users: @records
       - elsif @model == 'tweet'
-        .title.border-bottom.py-3
+        .title.border-bottom.py-3.font-weight-bold
           | " 
           = @content
           |  "のつぶやき検索結果、

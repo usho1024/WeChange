@@ -11,23 +11,24 @@
         li.nav-item
           = link_to users_path, class: 'nav-link text-dark bg-light border' do
             i.fas.fa-crown
-      .title.p-2.shadow-sm.bg-light.border.rounded
+      .title.p-2.shadow-sm.bg-light.border.rounded.font-weight-bold
         i.fas.fa-chalkboard.mx-3
         | トピック一覧
-      .form-area.d-md-flex.align-items-end.py-3.border-bottom
-        .create-btn.mb-2.mb-md-0
+      .row.no-gutters.py-3.border-bottom.align-items-lg-center
+        .create-btn.mb-2.mb-lg-0.col-12.col-lg-auto
           = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"
-        .form-area.ml-auto
+        .form-inline.ml-lg-auto.col-12.col-lg-auto
           = form_with url: topics_path, method: :get, local: true do |f|
-            .form-area.d-flex.align-items-end
-              .select.mr-1
+            .input-group
+              .input-group-prepend
                 = f.select :keyword, [ ['作成日が新しい順', 'new'],
                                        ['作成日が古い順', 'old'],
                                        ['コメントが多い順', 'many'],
                                        ['コメントが少ない順', 'less'],
-                                     ], {}, class: 'form-item border rounded bg-light'
-              .submit
-                = f.submit "ソート", class: 'form-item btn btn-sm bg-dark text-light border rounded font-weight-bold px-3'
+                                     ], {}, class: 'btn btn-light border'
+              .input-group-append
+                = button_tag :type => "submit", :class =>"btn btn-dark" do
+                  i.fa.fa-sort
       .topics-area
         - @topics.each do |topic|
           .topic.border-bottom.py-3

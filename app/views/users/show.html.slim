@@ -59,7 +59,7 @@
               = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'border rounded mr-2 bg-light'
               | 時間
               = f.submit "記録する", class: 'btn btn-sm post rounded-pill text-white ml-5 font-weight-bold col-md-3 col-4'
-      .title.border.rounded.p-2.bg-light.shadow-sm
+      .title.border.rounded.p-2.bg-light.shadow-sm.font-weight-bold
         i.fas.fa-comments.mx-3
         | つぶやき
       = render 'tweets/index', tweets: @tweets
