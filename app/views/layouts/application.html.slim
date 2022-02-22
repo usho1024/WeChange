@@ -14,7 +14,7 @@ html
     link[href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap" rel="stylesheet"]
   body
     = render 'layouts/header'
-    main.py-md-4
+    main.py-md-4.min-vh-100
       = yield
     - if user_signed_in?
       span#back

@@ -52,7 +52,7 @@
                 .delete-btn.ml-auto
                   = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
         - if @user == current_user
-          .text
+          .note
             | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
           .form-area.ml-3.pt-3
             = form_with model:[@user,@study_time], local:true do |f|

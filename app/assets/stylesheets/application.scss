@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
+
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -23,11 +23,10 @@ html {
 }
 
 main {
-  min-height: 600px;
   background-color: #faf3ea;
 }
 
-header {
+header, .post {
   background: #c1a470;
 }
 
@@ -37,10 +36,6 @@ footer {
 
 .study_time {
   width: 75px;
-}
-
-.post {
-  background-color: #c1a470;
 }
 
 .pagination {
@@ -115,6 +110,10 @@ footer {
   border-radius: 50%;
 }
 
-.body-show, .title, .app-introduction {
+.body-show, .title {
   font-size: 18px;
+}
+
+.app-introduction {
+  line-height: 2rem;
 }

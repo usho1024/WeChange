@@ -20,7 +20,9 @@
 //= require_tree .
 
 /*global $*/
+
 $(document).on('turbolinks:load', function () {
+  // トップに戻る
   $('#back a').on('click',function(event){
     $('body, html').animate({
       scrollTop:0
