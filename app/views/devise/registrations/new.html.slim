@@ -1,31 +1,31 @@
-.container
-  .row.justify-content-center
-    .col-lg-4.col-md-6.bg-white.p-lg-4.p-3.shadow
-      h4.mb-3.font-weight-bold.text-center
-        | 新規登録
-      = form_with model: @user, url: user_registration_path, local: true do |f|
-        span.error
-          = render "devise/shared/error_messages", resource: resource
-        .field.mb-3
-          = f.label :name, "ハンドルネーム"
-          br
-          = f.text_field :name, autofocus: true, class: 'form-control bg-light rounded-pill'
-        .field.mb-3
-          = f.label :email, "メールアドレス"
-          br
-          = f.email_field :email, autocomplete: "email", class: 'form-control bg-light rounded-pill'
-        .field.mb-3
-          = f.label :password, "パスワード(#{@minimum_password_length}文字以上)"
-          br
-          = f.password_field :password, autocomplete: "new-password", class: 'form-control bg-light rounded-pill'
-        .field.mb-4
-          = f.label :password_confirmation, "パスワード(確認用)"
-          br
-          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control bg-light rounded-pill'
-        .button.mb-4.text-center
-          = f.submit "新規登録", class: 'btn btn-dark text-white rounded-pill form-control font-weight-bold col-6'
-      h4.mb-3.font-weight-bold.text-center.mt-5
-        | 既に登録済みの方
-      p.text-center
-        = link_to "こちら", new_user_session_path
-        | からログインしてください。
+.col-xl-3.col-md-5.mx-auto.p-lg-4.p-3.shadow-lg.rounded
+  h4.mb-3.font-weight-bold.text-center
+    | 新規登録
+  .form-body
+    = form_with model: @user, url: user_registration_path, local: true do |f|
+      .input-group.mb-3
+        .input-group-prepend
+          span.input-group-text
+            i.fa.fa-user
+        = f.email_field :email, autofocus: true, class: 'form-control bg-light', placeholder: 'ハンドルネーム'
+      .input-group.mb-3
+        .input-group-prepend
+          span.input-group-text
+            i.fa.fa-envelope
+        = f.password_field :password, class: 'form-control bg-light', placeholder: 'メールアドレス'
+      .input-group.mb-3
+        .input-group-prepend
+          span.input-group-text
+            i.fa.fa-lock
+        = f.password_field :password, class: 'form-control bg-light', placeholder: 'パスワード'
+      .input-group.mb-3
+        .input-group-prepend
+          span.input-group-text
+            i.fa.fa-check
+        = f.password_field :password_confirmation, class: 'form-control bg-light', placeholder: 'パスワード確認'
+      = f.submit "新規登録", class: 'btn btn-dark text-white rounded-pill font-weight-bold btn-block text-center'
+  h4.mb-3.font-weight-bold.text-center.mt-5
+    | 既に登録済みの方
+  p.text-center
+    = link_to "こちら", new_user_session_path
+    | からログインしてください。

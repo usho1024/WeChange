@@ -1,72 +1,70 @@
-.container
-  .row.justify-content-center
-    .contents.bg-white.col-lg-8.p-lg-4.p-3.shadow
-      .tweet.pb-4 id="tweet_#{@tweet.id}" 
-        .head.d-flex.align-items-center
-          .image.mr-3
-            = link_to user_path(@tweet.user) do
-              - if @tweet.user.image.attached?
-                = image_tag @tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-              - else
-                = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
-          .name.font-weight-bold
-            = link_to @tweet.user.name, user_path(@tweet.user), class: "text-dark"
-        .body-show.mt-3
-          = simple_format(@tweet.body)
-          - if @tweet.images.attached?
-            .images.d-flex.flex-wrap.justify-content-center.py-3
-              - @tweet.images.each do |image|
-                .image
-                  = image_tag image.variant(resize: '300').processed, class: 'shadow'
-        .icon-area.d-flex
-          .favorite-btn.mr-5
-            = render "favorites/favorite-btn", tweet: @tweet
-          .replies-count
-            i.far.fa-comment.mr-1
-            = @tweet.replies.count
-        .time-area.d-flex.align-items-end
-          .time
-            = @tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-          - if @tweet.user == current_user
-            .delete-btn.ml-auto
-              = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
-      .reply-area.mb-4
-        .title.border-top.border-bottom.py-3.font-weight-bold
-          = @count
-          | 件の返信
-        .replies-area
-          - @replies.each do |reply|
-            .reply.border-bottom.py-3
-              .head.d-flex.align-items-center
-                .image.mr-3
-                  = link_to user_path(reply.user) do
-                    - if reply.user.image.attached?
-                      = image_tag reply.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                    - else
-                      = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
-                .name.font-weight-bold
-                  = link_to reply.user.name, user_path(reply.user), class: "text-dark"
-              .body.mt-3
-                = simple_format(reply.body)
-                - if reply.images.attached?
-                  .images.d-flex.flex-wrap.justify-content-center.py-3
-                    - reply.images.each do |image|
-                      .image
-                        = image_tag image.variant(resize: '150').processed, class: 'shadow'
-              .time-area.d-flex.align-items-end
-                .time
-                  = reply.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-                - if reply.user == current_user
-                  .delete-btn.ml-auto
-                    = link_to '返信を削除', user_tweet_reply_path(@tweet.user, @tweet, reply), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
-          = paginate @replies
-      .reply-form-area
-        = form_with model:[@user, @tweet, @reply], local:true do |f|
-          .form-group
-            = f.label :このつぶやきについてどう思いましたか？
-            = f.text_area :body, class: 'form-control rounded bg-light', rows: '7', placeholder: '140字以内で返信してみよう！'
-          .form-group
-            = f.label :画像を添付する　
-            = f.file_field :images, multiple: true, class: 'form-control-file'
-          .form-group.text-center
-            = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold col-md-3 col-6'
+.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  .tweet.pb-4 id="tweet_#{@tweet.id}" 
+    .head.d-flex.align-items-center
+      .image.mr-3
+        = link_to user_path(@tweet.user) do
+          - if @tweet.user.image.attached?
+            = image_tag @tweet.user.image.variant(resize:'50x50'), class: 'rounded-circle'
+          - else
+            = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
+      .name.font-weight-bold
+        = link_to @tweet.user.name, user_path(@tweet.user), class: "text-dark"
+    .body-show.mt-3
+      = simple_format(@tweet.body)
+      - if @tweet.images.attached?
+        .images.d-flex.flex-wrap.justify-content-center.py-3
+          - @tweet.images.each do |image|
+            .image
+              = image_tag image.variant(resize: '300').processed, class: 'shadow'
+    .icon-area.d-flex
+      .favorite-btn.mr-5
+        = render "favorites/favorite-btn", tweet: @tweet
+      .replies-count
+        i.far.fa-comment.mr-1
+        = @tweet.replies.count
+    .time-area.d-flex.align-items-end
+      .time
+        = @tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+      - if @tweet.user == current_user
+        .delete-btn.ml-auto
+          = link_to 'つぶやきを削除', user_tweet_path(@tweet.user, @tweet), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
+  .reply-area.mb-4
+    .title.border-top.border-bottom.py-3.font-weight-bold
+      = @count
+      | 件の返信
+    .replies-area
+      - @replies.each do |reply|
+        .reply.border-bottom.py-3
+          .head.d-flex.align-items-center
+            .image.mr-3
+              = link_to user_path(reply.user) do
+                - if reply.user.image.attached?
+                  = image_tag reply.user.image.variant(resize:'50x50'), class: 'rounded-circle'
+                - else
+                  = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
+            .name.font-weight-bold
+              = link_to reply.user.name, user_path(reply.user), class: "text-dark"
+          .body.mt-3
+            = simple_format(reply.body)
+            - if reply.images.attached?
+              .images.d-flex.flex-wrap.justify-content-center.py-3
+                - reply.images.each do |image|
+                  .image
+                    = image_tag image.variant(resize: '150').processed, class: 'shadow'
+          .time-area.d-flex.align-items-end
+            .time
+              = reply.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+            - if reply.user == current_user
+              .delete-btn.ml-auto
+                = link_to '返信を削除', user_tweet_reply_path(@tweet.user, @tweet, reply), method: :delete, class: "btn btn-sm btn-outline-danger px-3 font-weight-bold rounded-pill"
+      = paginate @replies
+  .reply-form-area
+    = form_with model:[@user, @tweet, @reply], local:true do |f|
+      .form-group
+        = f.label :このつぶやきについてどう思いましたか？
+        = f.text_area :body, class: 'form-control rounded bg-light', rows: '7', placeholder: '140字以内で返信してみよう！'
+      .form-group
+        = f.label :画像を添付する　
+        = f.file_field :images, multiple: true, class: 'form-control-file'
+      .form-group.text-center
+        = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold col-md-3 col-6'

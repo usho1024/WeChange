@@ -12,12 +12,11 @@ html
     link[rel="preconnect" href="https://fonts.googleapis.com"]
     link[rel="preconnect" href="https://fonts.gstatic.com" crossorigin]
     link[href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap" rel="stylesheet"]
-  body
+  body.d-flex.flex-column.vh-100
     = render 'layouts/header'
-    main.py-md-4.min-vh-100
+    main.py-lg-4.mb-auto
       = yield
-    - if user_signed_in?
-      span#back
-        a[href="#"]
-          = image_tag 'arrow.png', width: '50px'
+    span#back
+      a[href="#"]
+        = image_tag 'arrow.png', width: '50px'
     = render 'layouts/footer'

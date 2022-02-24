@@ -6,16 +6,14 @@
     - @study_time.errors.full_messages.each do |message|
       .massage
         = message
-.container
-  .row.justify-content-center
-    .contents.col-md-6.bg-white.p-md-4.p-3.shadow
-      .title.border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm.font-weight-bold
-        | 勉強時間編集
-      .time.py-3.text-center
-        = @study_time.created_at.strftime('%m月%d日')
-      = form_with model:[@user,@study_time], local:true do |f|
-        .form-group.text-center
-          = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border mr-2'
-          | 時間
-        .form-group.text-center
-          = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold col-6'
+.col-lg-4.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  .title.border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm.font-weight-bold
+    | 勉強時間編集
+  .time.py-3.text-center
+    = @study_time.created_at.strftime('%m月%d日')
+  = form_with model:[@user,@study_time], local:true do |f|
+    .form-group.text-center
+      = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border mr-2'
+      | 時間
+    .form-group.text-center
+      = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold col-6'

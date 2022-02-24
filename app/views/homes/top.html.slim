@@ -1,15 +1,13 @@
-.container
-  .row.justify-content-center
-    .contents.bg-white.col-lg-8.p-lg-4.p-3.shadow
-      ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
-        li.nav-item
-          = link_to root_path, class: 'nav-link active text-light' do
-            i.fas.fa-house
-        li.nav-item
-          = link_to topics_path, class: 'nav-link text-dark bg-light border' do
-            i.fas.fa-chalkboard
-        li.nav-item
-          = link_to users_path, class: 'nav-link text-dark bg-light border' do
-            i.fas.fa-crown
-      = render 'tweets/tweet-form', tweet: @tweet_new, user: current_user
-      = render 'tweets/index', tweets: @tweets
+.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
+    li.nav-item
+      = link_to root_path, class: 'nav-link active text-light' do
+        i.fas.fa-house
+    li.nav-item
+      = link_to topics_path, class: 'nav-link text-dark bg-light border' do
+        i.fas.fa-chalkboard
+    li.nav-item
+      = link_to users_path, class: 'nav-link text-dark bg-light border' do
+        i.fas.fa-crown
+  = render 'tweets/tweet-form', tweet: @tweet_new, user: current_user
+  = render 'tweets/index', tweets: @tweets

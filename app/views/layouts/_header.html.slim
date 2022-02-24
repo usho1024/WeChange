@@ -1,8 +1,7 @@
 header.sticky-top.shadow-sm
   nav.navbar.navbar-expand-xl.navbar-light
-    a.navbar-brand.logo[href="/"]
-      span.ml-xl-5
-        = image_tag 'logo.png', height: '50px'
+    a.navbar-brand.logo.ml-xl-5[href="/"]
+      = image_tag 'logo.png', height: '50px'
     button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse
@@ -38,7 +37,8 @@ header.sticky-top.shadow-sm
                     i.fa.fa-search
       - else
         .note.text-light.py-2.ml-xl-5.text-xl-center.text-start
-          | ログインもしくは新規登録が必要です。
+          span
+            | ログインもしくは新規登録が必要です。
         ul.navbar-nav.ml-xl-5.align-items-xl-center.align-items-start
           li.nav-item.mr-xl-4
             = link_to "ログイン", new_user_session_path, class: 'nav-link text-light'

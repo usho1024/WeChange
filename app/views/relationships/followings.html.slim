@@ -1,9 +1,7 @@
-.container
-  .row.justify-content-center
-    .contents.col-md-8.bg-white.p-md-4.p-3.shadow
-      .title.border-bottom.py-3.font-weight-bold
-        = @user.name
-        | がフォロー中の
-        = @users.count
-        | 人のユーザー
-      = render 'users/index', users: @users
+.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  .title.border-bottom.py-3.font-weight-bold
+    = @user.name
+    | がフォロー中の
+    = @users.count
+    | 人のユーザー
+  = render 'users/index', users: @users

@@ -6,26 +6,24 @@
     - @user.errors.full_messages.each do |message|
       .massage
         = message
-.container
-  .row.justify-content-center
-    .contents.bg-white.col-md-8.p-md-4.p-3.shadow
-      .title.border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm.font-weight-bold
-        | プロフィール編集
-      = form_with model:@user, local:true do |f|
-        .form-group
-          = f.label :ユーザーアイコン
-          .image-group
-            - if @user.image.attached?
-              = image_tag @user.image.variant(resize:'100x100')
-            - else
-              = image_tag 'no_image.jpg', size: '100x100', class: 'border'
-        .form-group.mb-4
-          = f.file_field :image, class: 'form-control-file'
-        .form-group
-          = f.label :ハンドルネーム
-          = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control bg-light'
-        .form-group
-          = f.label :自己紹介文
-          = f.text_area :introduction, placeholder:"200文字以内で入力してください", rows: '10', class: 'form-control bg-light'
-        .form-group.text-center
-          = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold col-6'
+.col-lg-5.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  .title.border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm.font-weight-bold
+    | プロフィール編集
+  = form_with model:@user, local:true do |f|
+    .form-group
+      = f.label :ユーザーアイコン
+      .image-group
+        - if @user.image.attached?
+          = image_tag @user.image.variant(resize:'100x100')
+        - else
+          = image_tag 'no_image.jpg', size: '100x100', class: 'border'
+    .form-group.mb-4
+      = f.file_field :image, class: 'form-control-file'
+    .form-group
+      = f.label :ハンドルネーム
+      = f.text_field :name, autofocus: true, placeholder:"1〜10文字以内で入力してください", class: 'form-control bg-light'
+    .form-group
+      = f.label :自己紹介文
+      = f.text_area :introduction, placeholder:"200文字以内で入力してください", rows: '10', class: 'form-control bg-light'
+    .form-group.text-center
+      = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold col-6'

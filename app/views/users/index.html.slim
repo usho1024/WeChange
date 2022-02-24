@@ -1,66 +1,65 @@
-.container
-  .row.justify-content-center
-    .contents.col-lg-8.bg-white.p-lg-4.p-3.shadow
-      ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
-        li.nav-item
-          = link_to root_path, class: 'nav-link text-dark bg-light border' do
-            span.fas.fa-house
-        li.nav-item
-          = link_to topics_path, class: 'nav-link text-dark bg-light border' do
-            span.fas.fa-chalkboard
-        li.nav-item
-          = link_to users_path, class: 'nav-link active text-light' do
-            span.fas.fa-crown
-      .title.border.rounded.p-2.bg-light.shadow-sm.font-weight-bold
-        i.fas.fa-crown.mx-3
-          - if @selection == 'total'
-            |  トータルＴＯＰ１０
-          - else
-            |  週間ＴＯＰ１０
-      .row.no-gutters.py-3.border-bottom.align-items-md-center
-        - if @selection == 'total'
-        - else
-          .note.mb-2.mb-md-0
-            | 毎週月曜0時リセット
-        .form-inline.ml-md-auto
-          = form_with url: users_path, method: :get, local: true do |f|
-            .input-group
-              .input-group-prepend
-                = f.select :keyword, [ ['週間勉強時間ランキング', 'weekly'],
-                                       ['トータル勉強時間ランキング', 'total'],
-                                     ], {}, class: 'btn btn-light border'
-              .input-group-append
-                = button_tag :type => "submit", :class =>"btn btn-dark" do
-                  i.fa.fa-sort
-      .rank-area
-        - @users.each.with_index(@users.offset_value + 1) do |user, i|
-          .user.border-bottom.py-3
-            .d-lg-flex
-              .d-flex.align-items-center.mb-3.mb-lg-0
-                .index.mr-4
-                  = i
-                .image.mr-3
-                  = link_to user_path(user) do
-                    - if user.image.attached?
-                      = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
-                    - else
-                      = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
-                .name.font-weight-bold
-                  = link_to user.name, user_path(user), class: "text-dark"
-              .d-flex.ml-auto.align-items-center
-                - if @selection == 'total'
-                  .total_time.h5.m-0.mr-4
-                    = user.total_time
-                    |  時間
-                  .weekly_time
-                    |  週間 
-                    = user.weekly_time
-                    |  時間
+.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  ul.nav.nav-tabs.nav-justified.nav-pills.mb-3.border-0
+    li.nav-item
+      = link_to root_path, class: 'nav-link text-dark bg-light border' do
+        span.fas.fa-house
+    li.nav-item
+      = link_to topics_path, class: 'nav-link text-dark bg-light border' do
+        span.fas.fa-chalkboard
+    li.nav-item
+      = link_to users_path, class: 'nav-link active text-light' do
+        span.fas.fa-crown
+  .title.border.rounded.p-2.bg-light.shadow-sm.font-weight-bold
+    i.fas.fa-crown.mx-3
+      - if @selection == 'total'
+        |  トータルＴＯＰ１０
+      - else
+        |  週間ＴＯＰ１０
+  .row.no-gutters.py-3.border-bottom.align-items-md-center
+    - if @selection == 'total'
+    - else
+      .note.mb-2.mb-md-0
+        span
+          | 毎週月曜0時リセット
+    .form-inline.ml-md-auto
+      = form_with url: users_path, method: :get, local: true do |f|
+        .input-group
+          .input-group-prepend
+            = f.select :keyword, [ ['週間勉強時間ランキング', 'weekly'],
+                                   ['トータル勉強時間ランキング', 'total'],
+                                 ], {}, class: 'btn btn-light border'
+          .input-group-append
+            = button_tag :type => "submit", :class =>"btn btn-dark" do
+              i.fa.fa-sort
+  .rank-area
+    - @users.each.with_index(@users.offset_value + 1) do |user, i|
+      .user.border-bottom.py-3
+        .d-lg-flex
+          .d-flex.align-items-center.mb-3.mb-lg-0
+            .index.mr-4
+              = i
+            .image.mr-3
+              = link_to user_path(user) do
+                - if user.image.attached?
+                  = image_tag user.image.variant(resize:'50x50'), class: 'rounded-circle'
                 - else
-                  .weekly_time.h5.m-0.mr-4
-                    = user.weekly_time
-                    |  時間
-                  .total_time
-                    | トータル 
-                    = user.total_time
-                    |  時間
+                  = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border'
+            .name.font-weight-bold
+              = link_to user.name, user_path(user), class: "text-dark"
+          .d-flex.ml-auto.align-items-center
+            - if @selection == 'total'
+              .total_time.h5.m-0.mr-4
+                = user.total_time
+                |  時間
+              .weekly_time
+                |  週間 
+                = user.weekly_time
+                |  時間
+            - else
+              .weekly_time.h5.m-0.mr-4
+                = user.weekly_time
+                |  時間
+              .total_time
+                | トータル 
+                = user.total_time
+                |  時間

@@ -1,60 +1,58 @@
-.container
-  .row.justify-content-center
-    .contents.col-lg-8.bg-white.p-lg-4.p-3.shadow
-      .title.border-bottom.py-3.font-weight-bold
-        = @topic.title
-      .topic.py-4.border-bottom
-        .head.d-flex.align-items-center
-          .image.mr-3
-            = link_to user_path(@topic.user) do
-              - if @topic.user.image.attached?
-                = image_tag @topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
-              - else
-                = image_tag 'no-image-icon.jpg', class: 'rounded-circle border'
-          .name.font-weight-bold
-            = link_to @topic.user.name, user_path(@topic.user), class: "text-success"
-        .body-show.py-3
-          = safe_join(@topic.body.split("\n"),tag(:br))
-          - if @topic.images.attached?
-            .images.d-flex.flex-wrap.justify-content-center.py-4
-              - @topic.images.each do |image|
-                .image
-                  = image_tag image.variant(resize: '300').processed, class: 'shadow'
-        .time-area.d-flex.align-items-end
-          .comment-count.mr-5
-            i.far.fa-comment.mr-1
-            = @topic.comments.count
-          .time
-            = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-      .title.border-bottom.py-3.font-weight-bold
+.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  .title.border-bottom.py-3.font-weight-bold
+    = @topic.title
+  .topic.py-4.border-bottom
+    .head.d-flex.align-items-center
+      .image.mr-3
+        = link_to user_path(@topic.user) do
+          - if @topic.user.image.attached?
+            = image_tag @topic.user.image.variant(resize:'50x50'), class: 'rounded-circle'
+          - else
+            = image_tag 'no-image-icon.jpg', class: 'rounded-circle border'
+      .name.font-weight-bold
+        = link_to @topic.user.name, user_path(@topic.user), class: "text-success"
+    .body-show.py-3
+      = safe_join(@topic.body.split("\n"),tag(:br))
+      - if @topic.images.attached?
+        .images.d-flex.flex-wrap.justify-content-center.py-4
+          - @topic.images.each do |image|
+            .image
+              = image_tag image.variant(resize: '300').processed, class: 'shadow'
+    .time-area.d-flex.align-items-end
+      .comment-count.mr-5
+        i.far.fa-comment.mr-1
         = @topic.comments.count
-        | 件のコメント
-      .comments-area.mb-4
-        - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
-          .comment.border-bottom.py-3
-            .head.d-flex.align-items-center
-              .index.mr-3
-                | No.
-                = i
-              .name.font-weight-bold.mr-5
-                = link_to comment.user.name, user_path(comment.user), class: "text-success"
-            .body.py-3
-              = safe_join(comment.body.split("\n"),tag(:br))
-              - if comment.images.attached?
-                .images.d-flex.flex-wrap.justify-content-center.py-3
-                  - comment.images.each do |image|
-                    .image
-                      = image_tag image.variant(resize: '200').processed, class: 'shadow'
-            .time
-              = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
-        = paginate @comments
-      .comment-form-area
-        = form_with model:[@topic, @comment], local:true do |f|
-          .form-group
-            = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
-            = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
-          .form-group
-            = f.label :画像を添付する　
-            = f.file_field :images, multiple: true, class: 'form-control-file'
-          .form-group.text-center
-            = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'
+      .time
+        = @topic.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+  .title.border-bottom.py-3.font-weight-bold
+    = @topic.comments.count
+    | 件のコメント
+  .comments-area.mb-4
+    - @comments.each.with_index(@comments.offset_value + 1) do |comment, i|
+      .comment.border-bottom.py-3
+        .head.d-flex.align-items-center
+          .index.mr-3
+            | No.
+            = i
+          .name.font-weight-bold.mr-5
+            = link_to comment.user.name, user_path(comment.user), class: "text-success"
+        .body.py-3
+          = safe_join(comment.body.split("\n"),tag(:br))
+          - if comment.images.attached?
+            .images.d-flex.flex-wrap.justify-content-center.py-3
+              - comment.images.each do |image|
+                .image
+                  = image_tag image.variant(resize: '200').processed, class: 'shadow'
+        .time
+          = comment.created_at.strftime('%Y/%m/%d　%H:%M:%S')
+    = paginate @comments
+  .comment-form-area
+    = form_with model:[@topic, @comment], local:true do |f|
+      .form-group
+        = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
+        = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
+      .form-group
+        = f.label :画像を添付する　
+        = f.file_field :images, multiple: true, class: 'form-control-file'
+      .form-group.text-center
+        = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'

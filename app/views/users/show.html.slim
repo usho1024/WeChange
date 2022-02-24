@@ -1,65 +1,63 @@
-.container
-  .row.justify-content-center
-    .contents.bg-white.col-lg-8.p-lg-4.p-3.shadow
-      .user.border-bottom
-        .head.d-flex.align-items-lg-center.align-items-end
-          .image.mr-4
-            - if @user.image.attached?
-              = image_tag @user.image.variant(resize:'80x80'), class: 'rounded-circle'
+.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  .user.border-bottom
+    .head.d-flex.align-items-lg-center.align-items-end
+      .image.mr-4
+        - if @user.image.attached?
+          = image_tag @user.image.variant(resize:'80x80'), class: 'rounded-circle'
+        - else
+          = image_tag 'no_image.jpg', size: '80x80', class: 'rounded-circle border'
+      .name-area.d-lg-flex.align-items-end
+        .name.font-weight-bold.h5.mr-lg-5.m-lg-0
+          = @user.name
+        .button
+          - if @user == current_user
+            = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
+          - else
+            - if current_user.following?(@user)
+              = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
             - else
-              = image_tag 'no_image.jpg', size: '80x80', class: 'rounded-circle border'
-          .name-area.d-lg-flex.align-items-end
-            .name.font-weight-bold.h5.mr-lg-5.m-lg-0
-              = @user.name
-            .button
-              - if @user == current_user
-                = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
-              - else
-                - if current_user.following?(@user)
-                  = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
-                - else
-                  = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill"
-        .follow-area.py-3
-          = link_to user_followings_path(@user), class: 'text-dark' do
-            = @user.followings.count
-            |  フォロー中
-          span.ml-4
-            = link_to user_followers_path(@user), class: 'text-dark' do
-              = @user.followers.count
-              |  フォロワー
-        .body
-          = simple_format(@user.introduction)
-      .study_time-area.mb-4.py-4.border-bottom
-        .weekly-time.h5.font-weight-bold
-          | 最新7件の勉強時間計： 
-          = @last7_time
-          |  時間
-        .total-time
-          | トータル勉強時間： 
-          = @total_time
-          |  時間
-        .record-area.d-flex.flex-wrap.justify-content-center.py-4
-          - @user.study_times.last(7).each do |study_time|
-            .study_time.border.text-center.border-secondary.rounded.shadow-sm.bg-light
-              .day.p-2.border-bottom.border-secondary
-                = study_time.created_at.strftime('%m/%d')
-              .study_time.p-2
-                = study_time.time.round(1)
-                |  h
-              - if @user == current_user
-                .edit-btn.ml-auto
-                  = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
-                .delete-btn.ml-auto
-                  = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
-        - if @user == current_user
-          .note
-            | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
-          .form-area.ml-3.pt-3
-            = form_with model:[@user,@study_time], local:true do |f|
-              = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'border rounded mr-2 bg-light'
-              | 時間
-              = f.submit "記録する", class: 'btn btn-sm post rounded-pill text-white ml-5 font-weight-bold col-md-3 col-4'
-      .title.border.rounded.p-2.bg-light.shadow-sm.font-weight-bold
-        i.fas.fa-comments.mx-3
-        | つぶやき
-      = render 'tweets/index', tweets: @tweets
+              = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill"
+    .follow-area.py-3
+      = link_to user_followings_path(@user), class: 'text-dark' do
+        = @user.followings.count
+        |  フォロー中
+      span.ml-4
+        = link_to user_followers_path(@user), class: 'text-dark' do
+          = @user.followers.count
+          |  フォロワー
+    .body
+      = simple_format(@user.introduction)
+  .study_time-area.mb-4.py-4.border-bottom
+    .weekly-time.h5.font-weight-bold
+      | 最新7件の勉強時間計： 
+      = @last7_time
+      |  時間
+    .total-time
+      | トータル勉強時間： 
+      = @total_time
+      |  時間
+    .record-area.d-flex.flex-wrap.justify-content-center.py-4
+      - @user.study_times.last(7).each do |study_time|
+        .study_time.border.text-center.border-secondary.rounded.shadow-sm.bg-light
+          .day.p-2.border-bottom.border-secondary
+            = study_time.created_at.strftime('%m/%d')
+          .study_time.p-2
+            = study_time.time.round(1)
+            |  h
+          - if @user == current_user
+            .edit-btn.ml-auto
+              = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
+            .delete-btn.ml-auto
+              = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
+    - if @user == current_user
+      .note
+        | 本日の勉強時間を記録しましょう！（原則として一日一回、小数点第一位まで入力可）
+      .form-area.ml-3.pt-3
+        = form_with model:[@user,@study_time], local:true do |f|
+          = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'border rounded mr-2 bg-light'
+          | 時間
+          = f.submit "記録する", class: 'btn btn-sm post rounded-pill text-white ml-5 font-weight-bold col-md-3 col-4'
+  .title.border.rounded.p-2.bg-light.shadow-sm.font-weight-bold
+    i.fas.fa-comments.mx-3
+    | つぶやき
+  = render 'tweets/index', tweets: @tweets
