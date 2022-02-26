@@ -75,7 +75,7 @@ https://docs.google.com/spreadsheets/d/1CPgOUYC84neEGCovVf93LNb69Zl9O_rptn_8AT28
 - OS：Amazon Linux release 2 (Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails(Ver.5.2.6)
-- CSSフレームワーク：Bootstrap 4
+- CSSフレームワーク：Bootstrap 4.
 - テンプレートエンジン：Slim
 - JSライブラリ：jQuery
 - IDE：Cloud9

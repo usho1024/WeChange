@@ -36,18 +36,17 @@
       | トータル勉強時間： 
       = @total_time
       |  時間
-    .record-area.d-flex.flex-wrap.justify-content-center.py-4
+    .card-group.my-4
       - @user.study_times.last(7).each do |study_time|
-        .study_time.border.text-center.border-secondary.rounded.shadow-sm.bg-light
-          .day.p-2.border-bottom.border-secondary
+        .card.text-center
+          .card-header
             = study_time.created_at.strftime('%m/%d')
-          .study_time.p-2
-            = study_time.time.round(1)
-            |  h
-          - if @user == current_user
-            .edit-btn.ml-auto
-              = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
-            .delete-btn.ml-auto
+          .card-body.p-2
+            p
+              = study_time.time.round(1)
+              |  h
+            - if @user == current_user
+              = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold mr-md-0 mr-3'
               = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"
     - if @user == current_user
       .note
