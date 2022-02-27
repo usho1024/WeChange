@@ -14,8 +14,7 @@ html
     link[href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap" rel="stylesheet"]
   body.d-flex.flex-column.vh-100
     = render 'layouts/header'
-    - flash.each do |key, value|
-      = content_tag(:div, value, class: key)
+    = render 'layouts/flash_messages'
     main.py-lg-4.mb-auto
       = yield
     span#back

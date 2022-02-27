@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      flash.now[:alert] = 'プロフィールの編集に失敗しました。'
+      flash.now[:error] = 'プロフィールの編集に失敗しました。'
       render "edit"
     end
   end

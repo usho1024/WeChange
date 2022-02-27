@@ -8,7 +8,7 @@
           = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border mr-3'
         span.font-weight-bold
           = @tweet.user.name
-    .body-show.mt-3
+    .body-show-area.mt-3
       = simple_format(@tweet.body)
       - if @tweet.images.attached?
         .images.d-flex.flex-wrap.justify-content-center.mb-3
@@ -21,7 +21,7 @@
       span
         i.far.fa-comment.mr-1
         = @tweet.replies.count
-    .bottom-area.d-flex.align-items-end
+    .foot-area.d-flex.align-items-end
       .time
         = @tweet.created_at.strftime('%Y/%m/%d　%H:%M:%S')
       - if @tweet.user == current_user
@@ -43,14 +43,14 @@
                 = image_tag 'no-image-icon.jpg', size: '50x50', class: 'rounded-circle border mr-3'
               span.font-weight-bold
                 = reply.user.name
-          .body.mt-3
+          .body-area.mt-3
             = simple_format(reply.body)
             - if reply.images.attached?
               .images.d-flex.flex-wrap.justify-content-center.mb-3
                 - reply.images.each do |image|
                   .image
                     = image_tag image.variant(resize: '150').processed, class: 'shadow'
-          .bottom-area.d-flex.align-items-end
+          .foot-area.d-flex.align-items-end
             .time
               = reply.created_at.strftime('%Y/%m/%d　%H:%M:%S')
             - if reply.user == current_user
