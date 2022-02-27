@@ -1,7 +1,8 @@
 .col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
-  .title.border-bottom.py-3.font-weight-bold
-    = @user.name
-    | をフォローしている
-    = @users.count
-    | 人のユーザー
+  .border-bottom.py-3
+    span.title.font-weight-bold
+      = @user.name
+      | をフォローしている
+      = @users.count
+      | 人のユーザー
   = render 'users/index', users: @users

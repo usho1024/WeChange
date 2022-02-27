@@ -9,8 +9,9 @@
     li.nav-item
       = link_to users_path, class: 'nav-link active text-light' do
         span.fas.fa-crown
-  .title.border.rounded.p-2.bg-light.shadow-sm.font-weight-bold
-    i.fas.fa-crown.mx-3
+  .border.rounded.p-2.bg-light.shadow-sm
+    span.title.font-weight-bold
+      i.fas.fa-crown.mx-3
       - if @selection == 'total'
         |  トータルＴＯＰ１０
       - else

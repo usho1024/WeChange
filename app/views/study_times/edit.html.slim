@@ -7,8 +7,9 @@
       .massage
         = message
 .col-lg-4.p-lg-4.mx-auto.p-3.shadow-lg.rounded
-  .title.border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm.font-weight-bold
-    | 勉強時間編集
+  .border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm
+    span.title.font-weight-bold
+      | 勉強時間編集
   .time.py-3.text-center
     = @study_time.created_at.strftime('%m月%d日')
   = form_with model:[@user,@study_time], local:true do |f|

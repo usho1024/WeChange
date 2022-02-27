@@ -1,17 +1,19 @@
 .col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+  .border-bottom.py-3
+    span.title.font-weight-bold
+      - if @model == 'user'
+        | " 
+        = @content
+        |  "のユーザー検索結果、
+        = @result.count
+        | 件のヒット
+      - else
+        | " 
+        = @content
+        |  "のつぶやき検索結果、
+        = @result.count
+        | 件のヒット
   - if @model == 'user'
-    .title.border-bottom.py-3.font-weight-bold
-      | " 
-      = @content
-      |  "のユーザー検索結果、
-      = @result.count
-      | 件のヒット
     = render 'users/index', users: @records
-  - elsif @model == 'tweet'
-    .title.border-bottom.py-3.font-weight-bold
-      | " 
-      = @content
-      |  "のつぶやき検索結果、
-      = @result.count
-      | 件のヒット
+  - else
     = render 'tweets/index', tweets: @records

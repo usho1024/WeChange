@@ -7,13 +7,14 @@ header.sticky-top.shadow-sm
     #navbarNavDropdown.collapse.navbar-collapse
       - if user_signed_in?
           ul.navbar-nav.ml-xl-5.align-items-xl-center.align-items-start
-            li.nav-item.font-weight-bold.mr-xl-4
+            li.nav-item.mr-xl-4
               = link_to user_path(current_user.id), class: 'nav-link text-light' do
                 - if current_user.image.attached?
                   = image_tag current_user.image.variant(resize:'35x35'), class: 'image rounded-circle mr-1'
                 - else
                   = image_tag 'no-image-icon.jpg', size: '35x35', class: 'image rounded-circle mr-1'
-                = current_user.name
+                span.font-weight-bold
+                  = current_user.name
             li.nav-item.dropdown.mr-xl-4
               a#dropdown1.btn.dropdown-toggle.nav-link.text-light[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
                 | コンテンツ

@@ -1,14 +1,8 @@
-- if @user.errors.any?
-  .error.text-center.mb-3
-    .count
-      = @user.errors.count
-      | 件のエラーが発生しました
-    - @user.errors.full_messages.each do |message|
-      .massage
-        = message
 .col-lg-5.p-lg-4.mx-auto.p-3.shadow-lg.rounded
-  .title.border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm.font-weight-bold
-    | プロフィール編集
+  .border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm
+    span.title.font-weight-bold
+      | プロフィール編集
+  = render 'layouts/error_messages', model: @user
   = form_with model:@user, local:true do |f|
     .form-group
       = f.label :ユーザーアイコン

@@ -1,6 +1,6 @@
 .col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
   .user.border-bottom
-    .head.d-flex.align-items-lg-center.align-items-end
+    .head-area.d-flex.align-items-lg-center.align-items-end
       .image.mr-4
         - if @user.image.attached?
           = image_tag @user.image.variant(resize:'80x80'), class: 'rounded-circle'
@@ -17,15 +17,16 @@
               = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
             - else
               = link_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-sm btn-dark px-3 rounded-pill"
-    .follow-area.py-3
-      = link_to user_followings_path(@user), class: 'text-dark' do
-        = @user.followings.count
-        |  フォロー中
-      span.ml-4
+    .follow-area.my-3
+      span.mr-4
+        = link_to user_followings_path(@user), class: 'text-dark' do
+          = @user.followings.count
+          |  フォロー中
+      span
         = link_to user_followers_path(@user), class: 'text-dark' do
           = @user.followers.count
           |  フォロワー
-    .body
+    .body-area
       = simple_format(@user.introduction)
   .study_time-area.mb-4.py-4.border-bottom
     .weekly-time.h5.font-weight-bold
@@ -39,8 +40,9 @@
     .card-group.my-4
       - @user.study_times.last(7).each do |study_time|
         .card.text-center
-          .card-header
-            = study_time.created_at.strftime('%m/%d')
+          .card-header.p-2
+            span
+              = study_time.created_at.strftime('%m/%d')
           .card-body.p-2
             p
               = study_time.time.round(1)
@@ -56,7 +58,8 @@
           = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'border rounded mr-2 bg-light'
           | 時間
           = f.submit "記録する", class: 'btn btn-sm post rounded-pill text-white ml-5 font-weight-bold col-md-3 col-4'
-  .title.border.rounded.p-2.bg-light.shadow-sm.font-weight-bold
-    i.fas.fa-comments.mx-3
-    | つぶやき
+  .border.rounded.p-2.bg-light.shadow-sm
+    span.title.font-weight-bold
+      i.fas.fa-comments.mx-3
+      | つぶやき
   = render 'tweets/index', tweets: @tweets

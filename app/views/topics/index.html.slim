@@ -9,9 +9,10 @@
     li.nav-item
       = link_to users_path, class: 'nav-link text-dark bg-light border' do
         i.fas.fa-crown
-  .title.p-2.shadow-sm.bg-light.border.rounded.font-weight-bold
-    i.fas.fa-chalkboard.mx-3
-    | トピック一覧
+  .p-2.shadow-sm.bg-light.border.rounded
+    span.title.font-weight-bold
+      i.fas.fa-chalkboard.mx-3
+      | トピック一覧
   .row.no-gutters.py-3.border-bottom.align-items-md-center
     .create-btn.mb-2.mb-md-0.col-12.col-md-auto
       = link_to 'トピックを作成する', new_topic_path, class: "btn post btn-sm px-3 rounded-pill text-white font-weight-bold"

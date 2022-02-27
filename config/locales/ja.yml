@@ -95,6 +95,9 @@ ja:
     sessions:
       new:
         sign_in: "ログイン"
+      user:
+        signed_in: "ログイン成功"
+        signed_out: "ログアウト成功"
     shared:
       links:
         back: "戻る"
@@ -107,3 +110,6 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+    failure:
+      user:
+        invalid: "ログイン失敗"
