@@ -1,18 +1,10 @@
-- if @study_time.errors.any?
-  .error.text-center.mb-3
-    .count
-      = @study_time.errors.count
-      | 件のエラーが発生しました
-    - @study_time.errors.full_messages.each do |message|
-      .massage
-        = message
 .col-lg-4.p-lg-4.mx-auto.p-3.shadow-lg.rounded
   .border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm
     span.title.font-weight-bold
       | 勉強時間編集
   .time.py-3.text-center
     = @study_time.created_at.strftime('%m月%d日')
-  = form_with model:[@user,@study_time], local:true do |f|
+  = form_with model:[current_user,@study_time], local:true do |f|
     .form-group.text-center
       = f.number_field :time, step: '0.1', min: 0, max: 24, class: 'rounded bg-light border mr-2'
       | 時間

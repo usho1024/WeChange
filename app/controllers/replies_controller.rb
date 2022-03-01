@@ -7,12 +7,13 @@ class RepliesController < ApplicationController
     @reply.tweet_id = @tweet.id
     @reply.user_id = current_user.id
     if @reply.save
-      redirect_to request.referer
+      redirect_to user_tweet_path(@tweet.user, @tweet)
     else
       @replies = @tweet.replies.page(params[:page])
-      @tweet_new = Tweet.new
+      @count = @tweet.replies.count
       @user = @tweet.user
-      redirect_to request.referer
+      flash.now[:error] = '返信の投稿に失敗しました。'
+      render "tweets/show"
     end
   end
 

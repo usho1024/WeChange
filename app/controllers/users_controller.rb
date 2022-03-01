@@ -4,15 +4,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @tweets = @user.tweets.page(params[:page]).reverse_order
-    @tweet_new = Tweet.new
     @study_time = StudyTime.new
     @last7_time = @user.last7_time
     @total_time = @user.total_time
   end
 
   def index
-    @current_user = current_user
-    @tweet_new = Tweet.new
     if @selection = params[:keyword]
       @users = User.sort(@selection)
       @users = Kaminari.paginate_array(@users).page(params[:page])

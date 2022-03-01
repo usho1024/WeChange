@@ -1,6 +1,5 @@
 class SearchesController < ApplicationController
   def search
-    @tweet_new = Tweet.new
     @model = params[:model]
     @content = params[:content]
     if @model == 'user'

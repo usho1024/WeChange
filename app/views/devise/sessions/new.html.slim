@@ -8,13 +8,13 @@
       .input-group.mb-3
         .input-group-prepend
           span.input-group-text
-            i.fa.fa-user
-        = f.email_field :email, autofocus: true, class: 'form-control bg-light', placeholder: 'ハンドルネーム'
+            i.fa.fa-envelope
+        = f.email_field :email, autofocus: true, class: 'form-control bg-light', placeholder: 'メールアドレス'
       .input-group.mb-3
         .input-group-prepend
           span.input-group-text
-            i.fa.fa-envelope
-        = f.password_field :password, class: 'form-control bg-light', placeholder: 'メールアドレス'
+            i.fa.fa-lock
+        = f.password_field :password, class: 'form-control bg-light', placeholder: 'パスワード'
       = f.submit "ログイン", class: 'btn btn-dark text-white rounded-pill font-weight-bold btn-block text-center'
   h4.mb-3.font-weight-bold.text-center.mt-5
     | 会員登録がお済みでない方

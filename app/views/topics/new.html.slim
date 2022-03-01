@@ -1,15 +1,8 @@
-- if @topic.errors.any?
-  .error.text-center.mb-3
-    .count
-      = @topic.errors.count
-      | 件のエラーが発生しました
-    - @topic.errors.full_messages.each do |message|
-      .massage
-        = message
 .col-lg-5.p-lg-4.mx-auto.p-3.shadow-lg.rounded
   .border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm
     span.title.font-weight-bold
       | 新規トピック作成
+  = render 'layouts/error_messages', model: @topic
   = form_with model:@topic, local:true do |f|
     .form-group
       = f.label :トピックタイトル

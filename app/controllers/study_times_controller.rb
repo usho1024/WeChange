@@ -5,13 +5,18 @@ class StudyTimesController < ApplicationController
     @user = User.find(params[:user_id])
     @weekly_time = @user.weekly_time
     @tweets = current_user.tweets.page(params[:page]).reverse_order
-    @tweet_new = Tweet.new
     @study_time = StudyTime.new(study_time_params)
     @study_time.user_id = current_user.id
     if @study_time.save
       redirect_to user_path(current_user)
     else
-      redirect_to user_path(current_user)
+      @user = current_user
+      @tweets = @user.tweets.page(params[:page]).reverse_order
+      @study_time = StudyTime.new
+      @last7_time = @user.last7_time
+      @total_time = @user.total_time
+      flash.now[:error] = '勉強時間の投稿に失敗しました。'
+      render "users/show"
     end
   end
 
@@ -21,14 +26,13 @@ class StudyTimesController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def update
     if @study_time.update(study_time_params)
       redirect_to user_path(current_user)
     else
-      @user = current_user
+      flash.now[:error] = '勉強時間の編集に失敗しました。'
       render "edit"
     end
   end

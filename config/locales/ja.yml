@@ -28,12 +28,16 @@ ja:
               confirmation: "が内容とあっていません。"
             password_confirmation: 
               confirmation: "が内容とあっていません。"
+            introduction:
+              too_long: "は%{count}文字以下に設定して下さい。"
         topic:
           attributes:
             title:
               blank: "が入力されていません。"
+              too_long: "は%{count}文字以下に設定して下さい。"
             body:
               blank: "が入力されていません。"
+              too_long: "は%{count}文字以下に設定して下さい。"
         study_time:
           attributes:
             time:
@@ -41,13 +45,14 @@ ja:
     attributes:
       user:
         current_password: "現在のパスワード"
-        name: 名前
+        name: "名前"
+        introduction: "自己紹介文"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
       topic:
-        title: トピックタイトル
-        body: コメント
+        title: "トピックタイトル"
+        body: "コメント"
     models:
       user: "ユーザ"

@@ -7,12 +7,10 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @comments = @topic.comments.page(params[:page])
     @comment = Comment.new
-    @tweet_new = Tweet.new
   end
 
   def index
     @current_user = current_user
-    @tweet_new = Tweet.new
     if selection = params[:keyword]
       @topics = Topic.sort(selection)
       @topics = Kaminari.paginate_array(@topics).page(params[:page])
@@ -27,7 +25,8 @@ class TopicsController < ApplicationController
     if @topic.save
       redirect_to topic_path(@topic)
     else
-      render 'new'
+      flash.now[:error] = 'トピックの投稿に失敗しました。'
+      render "new"
     end
   end
 

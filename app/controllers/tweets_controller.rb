@@ -5,7 +5,6 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @replies = @tweet.replies.page(params[:page])
     @count = @tweet.replies.count
-    @tweet_new = Tweet.new
     @reply = Reply.new
     @user = @tweet.user
   end
@@ -16,7 +15,10 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to user_tweet_path(current_user, @tweet)
     else
-      redirect_to request.referer
+      @tweets = Tweet.where(user_id: [current_user.id, *current_user.following_ids]).page(params[:page]).reverse_order
+      @tweet_new = Tweet.new
+      flash.now[:error] = 'つぶやきの投稿に失敗しました。'
+      render "homes/top"
     end
   end
 
