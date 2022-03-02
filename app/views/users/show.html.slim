@@ -10,8 +10,9 @@
         .name.font-weight-bold.h5.mr-lg-5.m-lg-0
           = @user.name
         .button
-          - if @user == current_user
+          - if !(@user.name == "ゲストユーザー") && @user == current_user
             = link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-sm btn-outline-dark px-3 rounded-pill font-weight-bold"
+          - elsif current_user.name == "ゲストユーザー"
           - else
             - if current_user.following?(@user)
               = link_to "フォロー中", user_relationships_path(@user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill"
