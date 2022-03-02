@@ -1,4 +1,5 @@
 class HomesController < ApplicationController
+  before_action :authenticate_user!, except: [:about]
   def top
     # whereメソッドでログインユーザーとそのフォローしているユーザーのつぶやきを取得する
     # "*"は可変長引数で、複数の引数（フォローしているユーザーID）を配列として返すことができる
