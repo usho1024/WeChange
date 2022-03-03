@@ -57,30 +57,41 @@ footer {
   background-color: #808080;
 }
 
+.user .index {
+  font-size: 25px;
+  font-style: italic;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
+
 .user:nth-of-type(1) .index {
-  font-size: 40px;
+  font-size: 25px;
+  font-style: italic;
   background-color: #d7c447;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   color: white;
   border-radius: 50%;
 }
 
 .user:nth-of-type(2) .index {
-  font-size: 35px;
+  font-size: 25px;
+  font-style: italic;
   background-color: silver;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   color: white;
   border-radius: 50%;
 }
 
 .user:nth-of-type(3) .index {
-  font-size: 30px;
+  font-size: 25px;
+  font-style: italic;
   background-color: #ac6b25;
   width: 40px;
   height: 40px;

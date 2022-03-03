@@ -16,7 +16,7 @@
             i.fa.fa-lock
         = f.password_field :password, class: 'form-control bg-light', placeholder: 'パスワード'
       = f.submit "ログイン", class: 'btn btn-dark text-white rounded-pill font-weight-bold btn-block text-center mb-3'
-      = link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary rounded-pill font-weight-bold btn-block text-center", method: :post
+      = link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-outline-dark rounded-pill font-weight-bold btn-block text-center", method: :post
   h4.mb-3.font-weight-bold.text-center.mt-5
     | 会員登録がお済みでない方
   p.text-center

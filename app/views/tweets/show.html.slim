@@ -1,4 +1,4 @@
-.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+.col-lg-6.p-md-4.p-3.mx-auto.shadow-lg.rounded
   .tweet.pb-4 id="tweet_#{@tweet.id}" 
     .head-area
       = link_to user_path(@tweet.user), class: "text-dark" do
@@ -63,7 +63,6 @@
         = f.label :このつぶやきについてどう思いましたか？
         = f.text_area :body, class: 'form-control rounded bg-light', rows: '7', placeholder: '140字以内で返信してみよう！'
       .form-group
-        = f.label :画像を添付する　
         = f.file_field :images, multiple: true, class: 'form-control-file'
       .form-group.text-center
-        = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold col-md-3 col-6'
+        = f.submit "返信する", class: 'btn post rounded-pill text-white px-4 font-weight-bold col-md-4 col-6'

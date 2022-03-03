@@ -1,5 +1,5 @@
-.tweet_form-area.border-bottom.border-top.py-4.text-center
-  button.btn.post.rounded-pill.text-white.font-weight-bold.col-md-3.col-6[type="button" data-toggle="modal" data-target="#modal1"]
+.tweet-form-area.border-bottom.border-top.py-4.text-center
+  button.btn.post.rounded-pill.text-white.font-weight-bold.col-md-4.col-6[type="button" data-toggle="modal" data-target="#modal1"]
     | つぶやく
   #modal1.modal.fade[tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"]
     .modal-dialog[role="document"]
@@ -17,4 +17,4 @@
             .form-group
               = f.file_field :images, multiple: true, class: 'form-control-file'
             .form-group.text-center
-              = f.submit "つぶやく", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'
+              = f.submit "つぶやく", class: 'btn post rounded-pill text-white font-weight-bold col-md-4 col-6'

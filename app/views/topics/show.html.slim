@@ -1,4 +1,4 @@
-.col-lg-6.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+.col-lg-6.p-md-4.p-3.mx-auto.shadow-lg.rounded
   .border-bottom.pb-3
     span.title.font-weight-bold
       = @topic.title
@@ -53,7 +53,6 @@
         = f.label :自由にコメントを投稿してみましょう！（荒らし行為や連投はご遠慮ください）
         = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '500字以内でコメントしてみよう！'
       .form-group
-        = f.label :画像を添付する　
         = f.file_field :images, multiple: true, class: 'form-control-file'
       .form-group.text-center
-        = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'
+        = f.submit "コメントする", class: 'btn post rounded-pill text-white font-weight-bold col-md-4 col-6'

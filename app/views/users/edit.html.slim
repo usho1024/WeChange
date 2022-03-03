@@ -1,4 +1,4 @@
-.col-lg-5.p-lg-4.mx-auto.p-3.shadow-lg.rounded
+.col-lg-5.p-md-4.p-3.mx-auto.shadow-lg.rounded
   .border.rounded.p-2.bg-light.mb-3.text-center.shadow-sm
     span.title.font-weight-bold
       | プロフィール編集
@@ -20,4 +20,4 @@
       = f.label :自己紹介文
       = f.text_area :introduction, placeholder:"200文字以内で入力してください", rows: '10', class: 'form-control bg-light'
     .form-group.text-center
-      = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold col-6'
+      = f.submit "変更を保存", class: 'btn post rounded-pill text-white font-weight-bold col-md-4 col-6'
