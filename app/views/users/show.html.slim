@@ -45,11 +45,11 @@
             span
               = study_time.created_at.strftime('%m/%d')
           .card-body.p-2
-            p
+            span
               = study_time.time.round(1)
               |  h
             - if @user == current_user
-              .delete-btn
+              .delete-btn.mt-3
                 = link_to '編集', edit_user_study_time_path(@user, study_time), class: 'btn post rounded text-white btn-sm mb-2 px-3 font-weight-bold'
               .edit-btn
                 = link_to '削除', user_study_time_path(@user, study_time), method: :delete, class: "btn btn-sm btn-outline-danger px-3 mb-2 font-weight-bold rounded"

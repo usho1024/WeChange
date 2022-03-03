@@ -1,10 +1,23 @@
-.tweet_form.border-bottom.py-2
-  = form_with model:[user,tweet], local:true do |f|
-    .form-group
-      = f.label :いまどうしてる？
-      = f.text_area :body, class: 'form-control bg-light', rows: '5', placeholder: '140字以内でつぶやこう！'
-    .form-group
-      = f.label :画像を添付する
-      = f.file_field :images, multiple: true, class: 'form-control-file'
-    .form-group.text-center
-      = f.submit "つぶやく", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'
+.tweet_form-area.border-bottom.border-top.py-4.text-center
+  button.btn.post.rounded-pill.text-white.font-weight-bold.col-md-3.col-6[type="button" data-toggle="modal" data-target="#modal1"]
+    | つぶやく
+  #modal1.modal.fade[tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"]
+    .modal-dialog[role="document"]
+      .modal-content
+        .modal-header
+          h6#label1.modal-title
+            | いまどうしてる？
+          button.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]
+              | ×
+        .modal-body
+          = form_with model:[user,tweet], local:true do |f|
+            .form-group
+              = f.text_area :body, class: 'form-control bg-light', rows: '10', placeholder: '140字以内でつぶやこう！'
+            .form-group
+              = f.file_field :images, multiple: true, class: 'form-control-file'
+            .form-group.text-center
+              = f.submit "つぶやく", class: 'btn post rounded-pill text-white font-weight-bold col-md-3 col-6'
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-dismiss="modal"]
+            | Close

@@ -10,8 +10,9 @@
       .name-area.d-md-flex.align-items-center
         .name.font-weight-bold.mr-md-4
           = link_to user.name, user_path(user), class: "text-dark"
-        - if !(current_user.name == "ゲストユーザー")
-          .button.ml-md-4.mt-2.mt-md-0
+        .button.ml-md-4.mt-2.mt-md-0
+          - if current_user.name == "ゲストユーザー"
+          - else
             - if current_user.following?(user)
               = link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-sm btn-outline-secondary px-3 rounded-pill font-weight-bold"
             - else
